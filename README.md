@@ -1,7 +1,7 @@
 [![Build Status](https://travis-ci.org/beatles-chameleon/chameleon-api.svg?branch=master)](https://travis-ci.org/beatles-chameleon/chameleon-api)
 
 # 使用说明
-本项目为chameleon的api相关代码
+本仓库为chameleon的api的相关代码
 
 ## 如何开发
 ```
