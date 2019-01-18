@@ -1,0 +1,327 @@
+<template>
+  <view class="page-contain">
+    <view class="container">
+      <view class="btn-box">
+        <text class="title">Transform</text>
+        <view class="btn-wraper">
+          <button
+            text="Rotate"
+            size="medium"
+            c-bind:onclick="rotate"
+          ></button>
+        </view>
+        <view class="btn-wraper">
+          <button
+            text="Scale"
+            size="medium"
+            c-bind:onclick="scale"
+          ></button>
+        </view>
+        <view class="btn-wraper">
+          <button
+            text="Translate"
+            size="medium"
+            c-bind:onclick="translate"
+          ></button>
+        </view>
+        <view class="btn-wraper">
+          <button
+            text="Transform"
+            size="medium"
+            type="green"
+            c-bind:onclick="transform"
+          ></button>
+        </view>
+        <text class="title">Others</text>
+        <view class="btn-wraper">
+          <button
+            text="BgColor"
+            size="medium"
+            c-bind:onclick="backgroundColor"
+          ></button>
+        </view>
+        <view class="btn-wraper">
+          <button
+            text="Opacity"
+            size="medium"
+            c-bind:onclick="opacity"
+          ></button>
+        </view>
+        <view class="btn-wraper">
+          <button
+            text="width"
+            size="medium"
+            c-bind:onclick="width"
+          ></button>
+        </view>
+        <view class="btn-wraper">
+          <button
+            text="height"
+            size="medium"
+            c-bind:onclick="height"
+          ></button>
+        </view>
+        <view class="btn-wraper">
+          <button
+            text="All"
+            size="medium"
+            type="green"
+            c-bind:onclick="composite"
+          ></button>
+        </view>
+      </view>
+      <view
+        class="animation-entity"
+        c-animation="{{animationData}}"
+      >
+        <text
+          class="animation-text"
+          c-animation="{{animationTextData}}"
+        >Anim</text>
+      </view>
+    </view>
+    <button
+      text="返回"
+      class="back-btn"
+      c-bind:onclick="navigateBack"
+    ></button>
+  </view>
+</template>
+<script>
+import cml from '../../api/index.js';
+import interfaces from './animation.interface';
+
+const animation = cml.createAnimation();
+const textAnimation = cml.createAnimation();
+
+
+
+class CAnimation {
+  data = {
+    animationData: animation,
+    animationTextData: textAnimation,
+    current_rotate: 0,
+    current_scale: 1,
+    current_translate: 50,
+    current_transform: [45, 1],
+    current_color: '#F0AD4E',
+    current_opacity: 1,
+    current_width: 250,
+    current_height: 250,
+  }
+  methods = {
+    navigateBack() {
+      cml.navigateBack()
+    },
+    rotate() {
+      let animationCreation = animation;
+      while (this.current_rotate !== 360) {
+        this.current_rotate += 90;
+        animationCreation = animationCreation
+          .rotate(this.current_rotate)
+          .step({
+            duration: 500,
+            timingFunction: 'ease-in-out',
+            delay: 0,
+          })
+      }
+      this.animationData = animationCreation.export();
+      this.current_rotate = 0
+    },
+    scale() {
+      this.current_scale = this.current_scale === 2 ? 1 : 2
+      this.animationData = animation
+        .scale(this.current_scale)
+        .step({
+          duration: 500,
+          timingFunction: 'linear',
+          delay: 0
+        })
+        .export()
+    },
+    translate() {
+      this.current_translate = this.current_translate === 50 ? -50 : 50;
+      this.animationData = animation
+        .translate(this.current_translate, this.current_translate)
+        .step({
+          duration: 500,
+          timingFunction: 'ease-in',
+          delay: 0,
+        })
+        .export()
+    },
+    transform() {
+      this.current_transform = this.current_transform[0] === 0 ? [45, 1.2] : [0, 1];
+      this.animationData = animation
+        .rotate(this.current_transform[0])
+        .scale(this.current_transform[1])
+        .step({
+          duration: 500,
+          timingFunction: 'ease-out',
+          delay: 0
+        })
+        .rotate("-90deg")
+        .scale(1.2)
+        .step({
+          duration: 500,
+          timingFunction: 'ease-out',
+          delay: 0
+        })
+        .export()
+    },
+    backgroundColor() {
+      this.current_color = this.current_color === '#F0AD4E' ? '#D9534F' : '#F0AD4E';
+      this.animationData = animation
+        .backgroundColor(this.current_color)
+        .step({
+          duration: 500,
+          timingFunction: 'linear',
+          delay: 0
+        })
+        .export()
+    },
+    opacity() {
+      this.current_opacity = this.current_opacity === 1 ? 0.1 : 1;
+      this.animationData = animation
+        .opacity(this.current_opacity)
+        .step({
+          duration: 500,
+          timingFunction: 'linear',
+          delay: 0
+        })
+        .export()
+    },
+    width() {
+      //fixbug  修复weex端缩小容器宽高内部字体位置不变bug
+      this.current_width = this.current_width === 250 ? 125 : 250;
+
+      if (interfaces.isWeex) {
+        let textTranslateX = this.current_width === 250 ? 0 : -62;
+        this.animationTextData = textAnimation
+          .translateX(textTranslateX).step({
+            timingFunction: 'linear',
+            delay: 0,
+            duration: 500,
+          })
+          .export()
+      }
+
+      this.animationData = animation
+        .width(this.current_width)
+        .step({
+          timingFunction: 'linear',
+          delay: 0,
+          duration: 500,
+        })
+        .export()
+    },
+    height() {
+      this.current_height = this.current_height === 250 ? 125 : 250;
+      if (interfaces.isWeex) {
+        let textTranslateY = this.current_height === 250 ? 0 : -62;
+        this.animationTextData = textAnimation
+          .translateY(textTranslateY).step({
+            timingFunction: 'linear',
+            delay: 0,
+            duration: 500,
+          })
+          .export()
+      }
+
+
+      this.animationData = animation
+        .height(this.current_height)
+        .step({
+          duration: 500,
+          timingFunction: 'linear',
+          delay: 0
+        })
+        .export()
+    },
+    composite() {
+      this.current_transform = this.current_transform[0] === 0 ? [45, 1.5] : [0, 1];
+      this.current_color = this.current_color === '#F0AD4E' ? '#D9534F' : '#F0AD4E';
+      this.current_opacity = this.current_opacity === 1 ? 0.1 : 1;
+      this.current_translate = this.current_translate === 50 ? -50 : 50;
+      this.current_width = this.current_width === 250 ? 125 : 250;
+      this.current_height = this.current_height === 250 ? 125 : 250;
+      this.animationData = animation
+        .width(this.current_width)
+        .height(this.current_height)
+        .rotate(this.current_transform[0])
+        .scale(this.current_transform[1])
+        .opacity(this.current_opacity)
+        .backgroundColor(this.current_color)
+        .translate(this.current_translate, this.current_translate)
+        .step({
+          duration: 1000,
+          timingFunction: 'ease-out',
+          delay: 0
+        })
+        .export()
+    }
+  }
+}
+export default new CAnimation();
+</script>
+<style scoped lang="less">
+.title {
+  font-size: 45cpx;
+  font-weight: 400;
+  margin: 20cpx 0;
+  padding: 8cpx 30cpx;
+  background: #4a4c5b;
+  color: #ffffff;
+  display: block;
+}
+.animation-entity {
+  position: fixed;
+  width: 250cpx;
+  height: 250cpx;
+  top: 500cpx;
+  left: 400cpx;
+  background-color: #f0ad4e;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.animation-text {
+  color: #ffffff;
+  font-size: 70cpx;
+}
+.btn-wraper {
+  margin: 6cpx 10cpx;
+  display: flex;
+  align-items: start;
+  justify-content: flex-start;
+  flex-direction: column;
+}
+.page-container {
+  font-size: 32cpx;
+  color: #000;
+  padding: 20cpx 25cpx;
+  background: #fafafa;
+}
+.back-btn {
+  margin: auto;
+  margin-top: 60cpx;
+}
+</style>
+<script cml-type="json">
+{
+    "base": {
+        "usingComponents": {
+        }
+    },
+    "wx": {
+        "navigationBarTitleText": "index",
+        "backgroundTextStyle": "dark",
+        "backgroundColor": "#E2E2E2"
+    },
+    "baidu": {
+        "navigationBarTitleText": "index",
+        "backgroundTextStyle": "dark",
+        "backgroundColor": "#E2E2E2"
+    }    
+}
+</script>

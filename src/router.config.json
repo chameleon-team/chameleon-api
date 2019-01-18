@@ -1,0 +1,24 @@
+{
+  "mode": "hash",
+  "domain": "",
+  "routes":[
+    {
+      "url": "/pages/index/index",
+      "path": "/pages/index/index",
+      "name": "首页",
+      "mock": "index.php"
+    },
+    {
+      "url": "/pages/navigateBack/index",
+      "path": "/pages/navigateBack/index",
+      "name": "navigateBack",
+      "mock": "index.php"
+    },
+    {
+      "url": "/pages/animation/animation",
+      "path": "/pages/animation/animation",
+      "name": "animation",
+      "mock": "index.php"
+    }
+  ]
+}

@@ -1,0 +1,132 @@
+<template lang="vue">
+  <view class="collapse-container">
+    <view class="collapse-title" c-bind:tap="collapseTitleClick">
+      <text>{{title}}</text>
+      <view class="icon">
+        <image class="icon-img" src="{{iconSrc}}" />
+      </view>
+    </view>
+    <view class="collapse-content">
+      <slot></slot>
+    </view>
+  </view>
+</template>
+<script>
+class CollapsePanel   {
+  props = {
+    title: {
+      default: '',
+      type: String
+    },
+    active: {
+      default: false,
+      type: Boolean
+    }
+  }
+
+
+  data = {
+    panelActive: Boolean,
+    iconSrc: require('./images/left.png?inline')
+  }
+
+  computed = {
+
+  }
+
+  watch  = {
+  }
+
+  methods = {
+    collapseTitleClick() {
+      this.panelActive = !this.panelActive;
+    }
+    
+  }
+
+  beforeCreate() {
+  }
+
+  created() {
+  }
+
+  beforeMount() {
+  }
+
+  mounted() {
+    this.panelActive = this.active;
+  }
+
+  beforeDestroy() {
+  }
+
+  destroyed() {
+  }
+}
+
+export default new CollapsePanel();
+</script>
+<style scoped>
+.collapse-container {
+  font-size: 30cpx;
+  color: #4B4F5A;
+  background: #FFFFFF;
+  margin-bottom: 30cpx;
+}
+.collapse-title {
+  height: 100cpx;
+  display: flex;
+  padding-left: 40cpx;
+  padding-right: 40cpx;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+}
+.collapse-content {
+  transition: height .5s;
+  overflow: hidden;
+}
+.collapse-content-show {
+  height: auto;
+  border-top: none;
+}
+.collapse-content-hide {
+  height: 0;
+  border-bottom: none;
+}
+.icon {
+  transition: transform .5s;
+  height: 30cpx;
+  width: 15cpx;
+}
+.icon-open {
+  transform: rotate(90deg);
+  transform-origin: 50% 50%;
+}
+.icon-close {
+  transform: rotate(0);
+  transform-origin: 50% 50%;
+}
+.icon-img {
+  height: 30cpx;
+  width: 15cpx;
+}
+
+
+
+</style>
+<script cml-type="json">
+{
+    "base": {
+        "usingComponents": {
+        }
+    },
+    "wx": {
+        "navigationBarTitleText": "index",
+        "backgroundTextStyle": "dark",
+        "backgroundColor": "#E2E2E2",
+        "component": true
+       
+    }
+}
+</script>

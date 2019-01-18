@@ -1,0 +1,77 @@
+<script cml-type="interface">
+type CallBack = (res: String) => void;
+interface GetDataInterface {
+  getPageData(url: String, errnoWhiteList: String, params: String, cb: CallBack): void;
+}
+
+</script>
+
+<script cml-type="web">
+import {ajaxGetData} from './common.js';
+class Method implements GetDataInterface {
+  
+  getPageData(url, errnoWhiteList, params, cb) {
+    // if( window.__HAS_LOADED === undefined) {
+    //     window.__HAS_LOADED = true;
+    //     let result =  JSON.stringify({
+    //         data: window.PAGEDATA,
+    //         errno: window.ERRNO,
+    //         errmsg: window.ERRMSG
+    //       })
+    //     cb(result);
+    // } else {
+      ajaxGetData({
+        url,
+        errnoWhiteList: JSON.parse(errnoWhiteList),
+        params: JSON.parse(params)
+      }).then(function(res){
+        cb(JSON.stringify(res))
+      })
+    // }
+  }
+}
+
+
+
+export default new Method();
+</script>
+
+<script cml-type="weex">
+import {ajaxGetData} from './common.js';
+import cml from '../../api/index.js';
+
+class Method implements GetDataInterface {
+  
+  getPageData(url, errnoWhiteList, params, cb) {
+    ajaxGetData({
+      url,
+      errnoWhiteList: JSON.parse(errnoWhiteList),
+      params: JSON.parse(params)
+    }).then(function(res){
+      cb(JSON.stringify(res))
+    })
+  }
+}
+
+export default new Method();
+</script>
+
+<script cml-type="wx">
+import request from "../request/index.js";
+import {ajaxGetData} from './common.js';
+
+class Method implements GetDataInterface {
+  
+  getPageData(url, errnoWhiteList, params, cb) {
+    ajaxGetData({
+      url,
+      errnoWhiteList: JSON.parse(errnoWhiteList),
+      params: JSON.parse(params)
+    }).then(function(res){
+      cb(JSON.stringify(res))
+    })
+  }
+}
+
+export default new Method();
+</script>

@@ -1,0 +1,63 @@
+<template>
+  <view>
+    <view>
+    <text>web 端2 c-title组件</text>
+    </view>
+    <text>props:{{name}}</text>
+  </view>
+</template>
+<script>
+ class Ctitle implements CtitleInterface {
+    props = {
+      name: {
+        type: String,
+        default: ''
+      }
+    }
+    data = {
+    }
+    computed ={
+    }
+    watch = {
+    }
+    methods = {
+      
+    }
+    beforeCreate(){
+     
+    }
+    created() {
+    }
+    beforeMount() {
+    }
+    mounted() {
+      this.$cmlEmit('onshow',{
+        value: 'c-title'
+      })
+
+    }
+    beforeDestroy() {
+    }
+    destroyed() {
+    }
+  }
+
+  export default new Ctitle();
+
+</script>
+
+<style scoped>
+
+</style>
+
+<script cml-type="json">
+{
+  "base": {
+    "usingComponents": {
+    }
+  }
+}
+</script>
+
+
+

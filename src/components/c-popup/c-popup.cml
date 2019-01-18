@@ -1,0 +1,115 @@
+<template>
+<view c-if="{{show}}" c-bind:tap="closeevent">
+  <view  class="{{maskClass}}">
+  </view>
+  <view class="popup-content">
+    <slot></slot>
+  </view>
+</view>
+</template>
+<script>
+class CPopup   {
+  props = {
+    mask: {
+      type: Boolean,
+      default: false
+    },
+    show: {
+      type: Boolean,
+      default: false
+    }
+  }
+
+
+  data = {
+  }
+
+  computed = {
+    maskClass() {
+      return this.mask ? "has-mask" : "no-mask";
+    }
+  }
+
+  watch  = {
+  }
+
+  methods = {
+    closeevent(){
+      this.$cmlEmit("close");
+    }
+  }
+
+  beforeCreate() {
+  }
+
+  created() {
+  }
+
+  beforeMount() {
+  }
+
+  mounted() {
+  }
+
+  beforeDestroy() {
+  }
+
+  destroyed() {
+  }
+}
+
+export default new CPopup();
+</script>
+<style scoped>
+.popup-content {
+  position: fixed;
+  z-index: 10000;
+  top: 0cpx;
+  bottom: 0cpx;
+  left: 0cpx;
+  right: 0cpx;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.has-mask {
+  position: fixed;
+  z-index: 9999;
+  top: 0cpx;
+  bottom: 0cpx;
+  left: 0cpx;
+  right: 0cpx;
+  background: #000;
+  filter: alpha(opacity=40);
+  overflow: hidden;
+  background-color: #25262d;
+  opacity: 0.4;
+  pointer-events: auto;
+}
+.no-mask {
+  position: fixed;
+  z-index: 9999;
+  top: 0cpx;
+  bottom: 0cpx;
+  left: 0cpx;
+  right: 0cpx;
+  background: #fff;
+  opacity: 0;
+  filter: alpha(opacity=0);
+}
+</style>
+<script cml-type="json">
+{
+    "base": {
+        "usingComponents": {
+        }
+    },
+    "wx": {
+        "navigationBarTitleText": "index",
+        "backgroundTextStyle": "dark",
+        "backgroundColor": "#E2E2E2",
+        "component": true
+       
+    }
+}
+</script>

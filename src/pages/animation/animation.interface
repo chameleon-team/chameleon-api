@@ -1,0 +1,32 @@
+<script cml-type="interface"> 
+  interface Animationrface {
+  }
+</script>
+<script cml-type="web">
+  class Method implements Animationrface {}
+
+  export default new Method();
+</script>
+
+<script cml-type="weex">
+  class Method implements Animationrface {
+    isWeex = true;
+  }
+
+  export default new Method();
+</script>
+
+
+<script cml-type="wx">
+  class Method implements Animationrface {
+  }
+
+  export default new Method();
+</script>
+
+<script cml-type="baidu">
+  class Method implements Animationrface {
+  }
+
+  export default new Method();
+</script>

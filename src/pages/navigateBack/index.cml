@@ -1,0 +1,83 @@
+<template>
+  <view class="page-container">
+    <scroller
+      class="scroller-box"
+      height="{{1200}}"
+    >
+      <view class="page-container">
+      {{createdQuery}}
+        <button text="点击调用navigateBack" class="api-btn" c-bind:onclick="navigateBack"></button>
+      </view>
+    </scroller>
+  </view>
+</template>
+
+<script>
+
+import cml from '../../api/index.js';
+
+
+class Index {
+  data = {
+    createdQuery: {},
+    wxQuery: {}
+  }
+  computed = {
+  }
+  watch = {
+  }
+  methods = {
+    navigateBack() {
+      cml.navigateBack()
+    },
+  }
+  beforeCreate(res) {
+
+  }
+  created(res) {
+    var query = cml.getLaunchOptionsSync();
+    this.createdQuery = query;
+    this.wxQuery = res;
+    console.log(query);
+    console.log(res);
+  }
+  beforeMount(res) {
+  }
+  mounted(res) {
+  }
+  beforeDestroy(res) {
+  }
+  destroyed(res) {
+  }
+
+}
+
+export default new Index();
+
+</script>
+<style scoped>
+.page-container {
+  font-size: 32cpx;
+  color: #000;
+  background: #fff;
+  padding: 80cpx 24cpx;
+}
+.api-btn {
+  margin: auto;
+  margin-bottom: 40cpx;
+}
+</style>
+<script cml-type="json">
+{
+    "base": {
+        "usingComponents": {
+        }
+    },
+    "wx": {
+        "navigationBarTitleText": "index",
+        "backgroundTextStyle": "dark",
+        "backgroundColor": "#E2E2E2"
+
+    }
+}
+</script>
