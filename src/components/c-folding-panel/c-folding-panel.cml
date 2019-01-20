@@ -1,4 +1,4 @@
-<template lang="vue">
+<template>
   <view class="collapse-container">
     <view class="collapse-title" c-bind:tap="collapseTitleClick">
       <text>{{title}}</text>
@@ -101,11 +101,9 @@ export default new CollapsePanel();
 }
 .icon-open {
   transform: rotate(90deg);
-  transform-origin: 50% 50%;
 }
 .icon-close {
   transform: rotate(0);
-  transform-origin: 50% 50%;
 }
 .icon-img {
   height: 30cpx;

@@ -6,7 +6,12 @@ const apiPrefix = '';
 
 cml.config.merge({
   enableGlobalCheck: true,
-  globalCheckWhiteList: ['.spec.js'],
+  globalCheckWhiteList: [
+    '.spec.js', 
+    'core-js/library/modules/_global.js', 
+    'chameleon-ui-builtin/assets/js/utils/utils.js',
+    'chameleon-runtime/src/platform/common/util/KEY.js',
+    '_microtask.js', 'mobx.module.js', '_task.js', '_object-gopn-ext.js'],
   cmlNpm: [
     'chameleon-bridge',
     'chameleon-runtime',

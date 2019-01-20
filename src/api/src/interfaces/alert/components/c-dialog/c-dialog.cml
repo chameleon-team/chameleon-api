@@ -1,30 +1,55 @@
 <template>
-<c-popup show="{{show}}" mask="{{mask}}">
-  <view class="dialog-content">
-    <!-- <slot name="header"></slot> -->
-    <view class="dialog-close" c-if="{{showClose}}" c-bind:tap="closeTap">
-      <image src="{{closeSrc}}" style="width:22cpx;height:22cpx;"/>
-    </view>
-    <!-- <slot> -->
+  <c-popup
+    show="{{show}}"
+    mask="{{mask}}"
+  >
+    <view class="dialog-content">
+      <view
+        class="dialog-close"
+        c-if="{{showClose}}"
+        c-bind:tap="closeTap"
+      >
+        <image
+          src="{{closeSrc}}"
+          style="width:22cpx;height:22cpx;"
+        />
+      </view>
       <view class="icon-row">
-        <image c-if="{{iconUrl}}" src="{{iconUrl}}" class="custom-icon" style="{{computedIconStyle}}" />       
-        <view c-else class="icon-bg">
-          <image src="{{iconSrc}}" class="icon" />
+        <image
+          c-if="{{iconUrl}}"
+          src="{{iconUrl}}"
+          class="custom-icon"
+          style="{{computedIconStyle}}"
+        />
+        <view
+          c-else
+          class="icon-bg"
+        >
+          <image
+            src="{{iconSrc}}"
+            class="icon"
+          />
         </view>
       </view>
       <text class="title-row">{{title}}</text>
       <text class="content-row">{{content}}</text>
-    <!-- </slot> -->
-    <!-- <slot name="footer"> -->
+      <!-- </slot> -->
+      <!-- <slot name="footer"> -->
       <view class="btn-row">
         <block c-if="{{type !== 'alert'}}">
-          <view class="left-btn-wrap" c-bind:tap="cancelTap"><text class="cancel-text">{{cancelText}}</text></view>
+          <view
+            class="left-btn-wrap"
+            c-bind:tap="cancelTap"
+          ><text class="cancel-text">{{cancelText}}</text></view>
         </block>
-        <view class="btn-wrap"  c-bind:tap="confirmTap"><text class="confirm-text">{{confirmText}}</text></view>
-      </view>     
-    <!-- </slot> -->
-  </view>
-</c-popup>
+        <view
+          class="btn-wrap"
+          c-bind:tap="confirmTap"
+        ><text class="confirm-text">{{confirmText}}</text></view>
+      </view>
+      <!-- </slot> -->
+    </view>
+  </c-popup>
 </template>
 <script>
 let IconMap = {
@@ -32,7 +57,7 @@ let IconMap = {
   warn: require("./images/warn.png?inline"),
   success: require("./images/success.png?inline")
 };
-class CDialog   {
+class CDialog {
   props = {
     show: {
       type: Boolean,
@@ -97,7 +122,7 @@ class CDialog   {
     }
   }
 
-  watch  = {
+  watch = {
   }
 
   methods = {
@@ -137,27 +162,6 @@ class CDialog   {
 export default new CDialog();
 </script>
 <style scoped lang="less">
-.border-scale(@color, @border-radius: 2cpx,
-      @border-width: 1cpx 1cpx 1cpx 1cpx) {
-  &:after {
-    content: " ";
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 200%;
-    height: 200%;
-    border: 1cpx solid @color;
-    border-width: @border-width;
-    border-radius: 2 * @border-radius;
-    transform-origin: 0% 0%;
-    -webkit-transform-origin: 0% 0%;
-    -webkit-transform: scale(0.5, 0.5);
-    transform: scale(0.5, 0.5);
-    pointer-events: none;
-    -webkit-box-sizing: border-box;
-    box-sizing: border-box;
-  }
-}
 .dialog-content {
   width: 540cpx;
   background: #fff;
@@ -185,7 +189,7 @@ export default new CDialog();
   height: 100cpx;
 }
 .icon-bg {
-  border-radius: 50%;
+  border-radius: 100cpx;
   background-color: #f3f4f5;
   display: flex;
   justify-content: center;

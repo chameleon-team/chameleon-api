@@ -5,8 +5,12 @@
       height="{{1200}}"
     >
       <view class="page-container">
-      {{createdQuery}}
-        <button text="点击调用navigateBack" class="api-btn" c-bind:onclick="navigateBack"></button>
+        <text>{{createdQuery}}</text>
+        <button
+          text="点击调用navigateBack"
+          class="api-btn"
+          c-bind:onclick="navigateBack"
+        ></button>
       </view>
     </scroller>
   </view>
