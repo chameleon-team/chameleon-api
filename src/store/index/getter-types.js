@@ -1,2 +1,0 @@
-export const INDEX_DESC_NAME = 'INDEX_DESC_NAME'
-export const INDEX_DESC_AGE = 'INDEX_DESC_AGE'

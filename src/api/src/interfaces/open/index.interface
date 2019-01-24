@@ -17,7 +17,7 @@ import {
   getUrlWithConnector
 } from '../../lib/utils.js';
 
-/* 
+/*
  * 打开新的web页面
  * @param {String} url 地址带参数
  * @param {Object} commonPatchParams 额外传入的三端都需要的参数，会被merge到前面
@@ -76,11 +76,31 @@ import {
   getUrlWithConnector
 } from '../../lib/utils.js';
 class Method implements openPageInterface {
-  
+
   open(url, commonPatchParams, extraOptions) {
     url = getUrlWithConnector(url) + queryStringify(commonPatchParams);
     wx.navigateToMiniProgram(getOpenObj(url).wx);
-  } 
+  }
+}
+
+export default new Method();
+
+</script>
+
+<script cml-type="baidu">
+import {
+  tryJsonParse,
+  getOpenObj,
+  queryStringify,
+  getUrlWithConnector
+} from '../../lib/utils.js';
+class Method implements openPageInterface {
+
+  open(url, commonPatchParams, extraOptions) {
+    commonPatchParams = tryJsonParse(commonPatchParams);
+    url = getUrlWithConnector(url) + queryStringify(commonPatchParams);
+    swan.navigateToSmartProgram(getOpenObj(url).baidu);
+  }
 }
 
 export default new Method();
@@ -88,5 +108,21 @@ export default new Method();
 </script>
 
 
+<script cml-type="alipay">
+import {
+  tryJsonParse,
+  getOpenObj,
+  queryStringify,
+  getUrlWithConnector
+} from '../../lib/utils.js';
+class Method implements openPageInterface {
 
+  open(url, commonPatchParams, extraOptions) {
+    url = getUrlWithConnector(url) + queryStringify(commonPatchParams);
+    my.navigateToMiniProgram(getOpenObj(url).alipay);
+  }
+}
 
+export default new Method();
+
+</script>

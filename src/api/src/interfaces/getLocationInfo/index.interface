@@ -71,7 +71,7 @@ interface UtilsInterface {
 
 <script cml-type="weex">
 import cmlBridge from '../../lib/sdk/cmlBridge';
-  
+
 class Method implements UtilsInterface {
   getLocationInfo(cb) {
     cmlBridge.getLocationInfo({}, function (res) {
@@ -121,3 +121,70 @@ export default new Method();
   }
   export default new Method();
 </script>
+
+<script cml-type="baidu">
+  class Method implements UtilsInterface {
+    getLocationInfo(cb) {
+      swan.getLocation({
+        type: 'wgs84',
+        success: function (res) {
+          const latitude = +res.latitude;
+          const longitude = +res.longitude;
+          cb({
+            errno: 0,
+            errMsg: '',
+            data: {
+              lat: latitude,
+              lng: longitude
+            }
+          });
+        },
+        fail() {
+          cb({
+            errno: -1,
+            errMsg: 'getLocation failed',
+            data: {
+              lat: 0,
+              lng: 0
+            }
+          });
+        }
+      });
+    }
+  }
+  export default new Method();
+</script>
+
+<script cml-type="alipay">
+  class Method implements UtilsInterface {
+    getLocationInfo(cb) {
+      my.getLocation({
+        // type: '0', 默认WGS84
+        success: function (res) {
+          const latitude = +res.latitude;
+          const longitude = +res.longitude;
+          cb({
+            errno: 0,
+            errMsg: '',
+            data: {
+              lat: latitude,
+              lng: longitude
+            }
+          });
+        },
+        fail() {
+          cb({
+            errno: -1,
+            errMsg: 'getLocation failed',
+            data: {
+              lat: 0,
+              lng: 0
+            }
+          });
+        }
+      });
+    }
+  }
+  export default new Method();
+</script>
+  

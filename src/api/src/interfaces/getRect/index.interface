@@ -9,7 +9,7 @@
   }
 
   type CallBack = (res: resData) => void;
-    
+
   interface UserInfoInterface {
     getRect(refObj: CMLObject, cb: CallBack): void
   }
@@ -90,6 +90,48 @@ import cmlBridge from '../../lib/sdk/cmlBridge';
   export default new Method();
 </script>
 
+<script cml-type="baidu">
+  class Method implements UserInfoInterface {
+    getRect(refObj, cb) {
+      let query = swan.createSelectorQuery().in(refObj.context);
+      query.select(`#${refObj.id}`).boundingClientRect();
 
+      query.exec(function(res) {
+        swan.getSystemInfo({
+          success: (systemRes) => {
+            let windowWidth = systemRes.windowWidth;
+            let scale = 750 / windowWidth;
+            let rectObj = {
+              width: res[0] && res[0].width * scale || 0,
+              height: res[0] && res[0].height * scale || 0,
+              left: res[0] && res[0].left * scale || 0,
+              top: res[0] && res[0].top * scale || 0,
+              right: res[0] && res[0].right * scale || 0,
+              bottom: res[0] && res[0].bottom * scale || 0
+            };
+            cb(rectObj);
+          }
+        });
+      });
+    }
+  }
 
+  export default new Method();
+</script>
 
+<script cml-type="alipay">
+  class Method implements UserInfoInterface {
+    getRect(refObj, cb) {
+      cb({
+        width: 0,
+        height: 0,
+        left: 0,
+        top: 0,
+        right: 0,
+        bottom: 0,
+      })
+    }
+  }
+
+  export default new Method();
+</script>

@@ -131,3 +131,75 @@ class Method implements chooseImageInterface {
 
 export default new Method();
 </script>
+
+<script cml-type="baidu">
+
+class Method implements chooseImageInterface {
+  chooseImage(params, callbackSuccess, callbackFail) {
+    let sourceType = [];
+    switch (params.type) {
+    case 'camera':
+      sourceType = ['camera'];
+      break;
+    case 'album':
+      sourceType = ['album'];
+      break;
+    default:
+      sourceType = ['album', 'camera'];
+    }
+
+    swan.chooseImage({
+      count: 1,
+      sizeType: ['original'],
+      sourceType: sourceType,
+      success(res) {
+        callbackSuccess({
+          base64: '',
+          WxTempFilePaths: res.tempFilePaths
+        });
+      },
+      fail(err) {
+        callbackFail(err);
+      }
+    });
+  }
+}
+
+export default new Method();
+</script>
+
+<script cml-type="alipay">
+
+class Method implements chooseImageInterface {
+  chooseImage(params, callbackSuccess, callbackFail) {
+    let sourceType = [];
+    switch (params.type) {
+    case 'camera':
+      sourceType = ['camera'];
+      break;
+    case 'album':
+      sourceType = ['album'];
+      break;
+    default:
+      sourceType = ['album', 'camera'];
+    }
+
+    my.chooseImage({
+      count: 1,
+      sizeType: ['original'],
+      sourceType: sourceType,
+      success(res) {
+        callbackSuccess({
+          base64: '',
+          WxTempFilePaths: res.apFilePaths
+        });
+      },
+      fail(err) {
+        callbackFail(err);
+      }
+    });
+  }
+}
+
+export default new Method();
+</script>

@@ -3,6 +3,7 @@ import { queryStringify, addApiPrefix, isNeedApiPrefix, tryJsonParse } from '../
 
 // contentType 支持json和form 不支持formdata body不知道如何处理
 export default function post({
+  domainkey,
   url,
   data = {},
   header = {},
@@ -10,8 +11,16 @@ export default function post({
   setting = { apiPrefix: isNeedApiPrefix(url) },
   resDataType = 'json'
 }) {
+  let media = process.env.media;
+  domainkey = domainkey || process.env.defaultDomainKey;
+  if(media === 'dev'){
+    if (url.indexOf('?') === -1) {
+      url += '?';
+    }
+    url += queryStringify({domainkey});
+  }
   if (setting.apiPrefix) {
-    url = addApiPrefix(url);
+    url = addApiPrefix(url,domainkey);
   }
   switch (contentType) {
   case 'form':

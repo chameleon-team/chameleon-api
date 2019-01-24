@@ -51,6 +51,29 @@ export default new Method();
 
 </script>
 
+<script cml-type="baidu">
+
+class Method implements setTitleInterface {
+  setTitle(title) {
+    swan.setNavigationBarTitle({
+      title
+    });
+  }
+}
+
+export default new Method();
+
+</script>
 
 
 
+<script cml-type="alipay">
+class Method implements setTitleInterface {
+  setTitle(title) {
+    my.setNavigationBar({
+      title
+    });
+  }
+}
+export default new Method();
+</script>

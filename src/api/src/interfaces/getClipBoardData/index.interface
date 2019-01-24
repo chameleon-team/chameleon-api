@@ -108,7 +108,7 @@ interface ClipBoardDataInterface {
               errMsg: '',
               data: ret.data
             }) : null;
-            
+
             ret.result === 'fail' ? cb({
               errno: -1,
               errMsg: 'weex clipboard.getString fail',
@@ -146,7 +146,7 @@ interface ClipBoardDataInterface {
       getClipBoardData(cb) {
         wx.getClipboardData({
           success : res => {
-            cb({              
+            cb({
               errno: 0,
               errMsg: '',
               data: res.data
@@ -176,6 +176,96 @@ interface ClipBoardDataInterface {
               errno: -1,
               data: '',
               errMsg : 'wx.setClipboardData fail'
+            });
+          }
+        });
+      }
+    }
+
+    export default new Method();
+</script>
+
+<script cml-type="baidu">
+    class Method implements ClipBoardDataInterface {
+      getClipBoardData(cb) {
+        swan.getClipboardData({
+          success : res => {
+            cb({
+              errno: 0,
+              errMsg: '',
+              data: res.data
+            });
+          },
+          fail:res => {
+            cb({
+              errno: -1,
+              errMsg : 'swan.getClipboardData fail',
+              data: ''
+            });
+          }
+        });
+      }
+      setClipBoardData(text, cb) {
+        swan.setClipboardData({
+          data: text,
+          success: res => {
+            cb({
+              errno: 0,
+              errMsg: '',
+              data : text
+            });
+          },
+          fail:res => {
+            cb({
+              errno: -1,
+              data: '',
+              errMsg : 'swan.setClipboardData fail'
+            });
+          }
+        });
+      }
+    }
+
+    export default new Method();
+</script>
+
+
+<script cml-type="alipay">
+    class Method implements ClipBoardDataInterface {
+      getClipBoardData(cb) {
+        my.getClipboard({
+          success : res => {
+            cb({
+              errno: 0,
+              errMsg: '',
+              data: res.text
+            });
+          },
+          fail:res => {
+            cb({
+              errno: -1,
+              errMsg : 'wx.getClipboardData fail',
+              data: ''
+            });
+          }
+        });
+      }
+
+      setClipBoardData(text, cb) {
+        my.setClipboard({
+          text: text,
+          success: res => {
+            cb({
+              errno: 0,
+              errMsg: '',
+              data : text
+            });
+          },
+          fail:res => {
+            cb({
+              errno: -1,
+              data: '',
+              errMsg : 'swan.setClipboardData fail'
             });
           }
         });

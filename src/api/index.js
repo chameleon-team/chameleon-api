@@ -28,6 +28,7 @@ import setClipBoardData from './src/interfaces/setClipBoardData/index.js';
 import px2cpx from './src/interfaces/px2cpx/index.js';
 import cpx2px from './src/interfaces/cpx2px/index.js';
 import getLaunchOptionsSync from './src/interfaces/getLaunchOptionsSync/index.js';
+import inSDK from './src/interfaces/inSDK/index.js';
 
 export default {
   requestAnimationFrame,
@@ -59,5 +60,6 @@ export default {
   setClipBoardData,
   px2cpx,
   cpx2px,
-  getLaunchOptionsSync
+  getLaunchOptionsSync,
+  inSDK
 };

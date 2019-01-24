@@ -86,9 +86,10 @@ export function isNeedApiPrefix(url) {
   return /^\/[^/]/.test(url);
 }
 
-export function addApiPrefix(url) {
-  if (process.env.cmlApiPrefix) {
-    return process.env.cmlApiPrefix + url;
+export function addApiPrefix(url,domainkey) {
+  const domainMap = process.env.domainMap;
+  if (domainMap) {
+    return domainMap[domainkey] + url;
   }
   return url;
 }
@@ -156,7 +157,8 @@ export function getRefObj(ref) {
     id: '',
     weexRef: ''
   };
-  if (process.env.platform === 'wx') {
+  if (!ref) return refObj
+  if (process.env.platform === 'wx' || process.env.platform === 'baidu') {
     refObj.id = ref.id;
   } else if (process.env.platform === 'weex') {
     refObj.weexRef = ref;

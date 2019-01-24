@@ -111,3 +111,71 @@ export default new Method();
   }
   export default new Method();
 </script>
+
+<script cml-type="baidu">
+  class Method implements UtilsInterface {
+    getStorage(key, cb) {
+      try {
+        let data = swan.getStorageSync(key);
+        if (typeof data !== 'string') {
+          data = JSON.stringify(value);
+        }
+        cb({
+          errno: 0,
+          errMsg: 'success',
+          data: data !== null ? data : ''
+        });
+      } catch (e) {
+        let errMsg;
+        if (typeof e !== 'string') {
+          errMsg = JSON.stringify(e);
+        } else {
+          errMsg = e;
+        }
+        cb({
+          errno: -1,
+          errMsg,
+          data: ''
+        });
+      }
+    }
+  }
+  export default new Method();
+</script>
+
+
+<script cml-type="alipay">
+  class Method implements UtilsInterface {
+    getStorage(key, cb) {
+      try {
+        let data = my.getStorageSync({ key });
+        if(data && data.success){
+          cb({
+            errno: 0,
+            errMsg: 'success',
+            data: data.data !== null ? data.data : ''
+          });
+        } else {
+          cb({
+            errno: -1,
+            errMsg,
+            data: ''
+          });
+        }
+      } catch (e) {
+        let errMsg;
+        if (typeof e !== 'string') {
+          errMsg = JSON.stringify(e);
+        } else {
+          errMsg = e;
+        }
+        cb({
+          errno: -1,
+          errMsg,
+          data: ''
+        });
+      }
+    }
+  }
+  export default new Method();
+</script>

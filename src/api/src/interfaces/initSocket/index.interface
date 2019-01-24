@@ -33,7 +33,21 @@ export default new Method();
 
 <script cml-type="wx">
 
-import Socket from './wxSocket.js'; 
+import Socket from './wxSocket.js';
+
+class Method implements socketInterface {
+  initSocket(url) {
+    return new Socket(url);
+  }
+}
+
+export default new Method();
+
+</script>
+
+<script cml-type="baidu">
+
+import Socket from './baiduSocket.js';
 
 class Method implements socketInterface {
   initSocket(url) {
@@ -47,4 +61,16 @@ export default new Method();
 
 
 
+<script cml-type="alipay">
 
+import Socket from './alipaySocket.js';
+
+class Method implements socketInterface {
+  initSocket(url) {
+    return new Socket(url);
+  }
+}
+
+export default new Method();
+
+</script>

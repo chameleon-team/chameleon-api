@@ -45,3 +45,25 @@ class Method implements reloadInterface {
 export default new Method();
 
 </script>
+
+<script cml-type="baidu">
+
+class Method implements reloadInterface {
+  reload() {
+  }
+}
+
+export default new Method();
+
+</script>
+
+<script cml-type="alipay">
+
+class Method implements reloadInterface {
+  reload() {
+  }
+}
+
+export default new Method();
+
+</script>

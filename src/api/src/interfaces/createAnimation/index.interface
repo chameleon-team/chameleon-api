@@ -12,20 +12,20 @@
 
 <script cml-type="web">
   import Velocity from './velocity-min.js';
-  import { 
-    commonLoader as s_commonLoader, 
+  import {
+    commonLoader as s_commonLoader,
     cacheTransformStylesLoader as s_cacheTransformStylesLoader,
   } from './styleLoader/common';
-  import { 
-    transformLoader as s_transformLoader, 
+  import {
+    transformLoader as s_transformLoader,
     originLoader as s_originLoader,
   } from './styleLoader/web';
-  import { 
-    commonLoader as d_commonLoader, 
+  import {
+    commonLoader as d_commonLoader,
     cacheTransformOriginLoader as d_cacheTransformOriginLoader,
   } from './descriptionLoader/common';
-  import { 
-    stylePipe, 
+  import {
+    stylePipe,
     descriptionPipe,
   } from './_util';
 
@@ -42,7 +42,7 @@
         const info = updateQueue[i];
         current = current.then(() => {
           return Velocity(elm, info.styles, info.descriptions).then(() => { info.descriptions.cb(); });
-        }); 
+        });
       }
     }
   };
@@ -91,20 +91,20 @@
 </script>
 
 <script cml-type="weex">
-  import { 
+  import {
     commonLoader as s_commonLoader,
     cacheTransformStylesLoader as s_cacheTransformStylesLoader,
   } from './styleLoader/common';
-  import { 
-    transformLoader as s_transformLoader, 
+  import {
+    transformLoader as s_transformLoader,
     originLoader as s_originLoader,
   } from './styleLoader/weex';
-  import { 
+  import {
     commonLoader as d_commonLoader,
     cacheTransformOriginLoader as d_cacheTransformOriginLoader,
   } from './descriptionLoader/common';
-  import { 
-    stylePipe, 
+  import {
+    stylePipe,
     descriptionPipe,
   } from './_util';
 
@@ -122,15 +122,15 @@
       let current = Promise.resolve();
       for (let i = 0; i < len; i++) {
         const info = updateQueue[i];
-        
+
         current = current.then(() => {
           return new Promise((res, rej) => {
             animation.transition(
-              elm, 
-              Object.assign(info.descriptions, { styles: info.styles }), 
-              () => { 
-                info.descriptions.cb(); 
-                res();  
+              elm,
+              Object.assign(info.descriptions, { styles: info.styles }),
+              () => {
+                info.descriptions.cb();
+                res();
               }
             );
           });
@@ -173,19 +173,19 @@
 </script>
 
 <script cml-type="wx">
-  import { 
+  import {
     commonLoader as s_commonLoader,
     cacheTransformStylesLoader as s_cacheTransformStylesLoader,
   } from './styleLoader/common';
-  import { 
+  import {
     transformLoader as s_transformLoader,
   } from './styleLoader/wx';
-  import { 
+  import {
     commonLoader as d_commonLoader,
     cacheTransformOriginLoader as d_cacheTransformOriginLoader,
   } from './descriptionLoader/common';
-  import { 
-    stylePipe, 
+  import {
+    stylePipe,
     descriptionPipe,
   } from './_util';
 
@@ -205,7 +205,7 @@
       });
 
       animation.step(descriptions);
-    }); 
+    });
 
     const temp = animation.export();
     temp.cbs = cbs;
@@ -232,6 +232,129 @@
           descriptions: descriptionPipe(tick.descriptions, tick.styles, descriptionLoaderQueue, param.id)
         };
       }));
+    }
+  }
+
+  export default new Method();
+</script>
+
+<script cml-type="baidu">
+  import {
+    commonLoader as s_commonLoader,
+    cacheTransformStylesLoader as s_cacheTransformStylesLoader,
+  } from './styleLoader/common';
+  import {
+    transformLoader as s_transformLoader,
+  } from './styleLoader/baidu';
+  import {
+    commonLoader as d_commonLoader,
+    cacheTransformOriginLoader as d_cacheTransformOriginLoader,
+  } from './descriptionLoader/common';
+  import {
+    stylePipe,
+    descriptionPipe,
+  } from './_util';
+  const styleLoaderQueue = [s_commonLoader, s_cacheTransformStylesLoader, s_transformLoader];
+  const descriptionLoaderQueue = [d_commonLoader, d_cacheTransformOriginLoader];
+
+  const createAnimationFuc = (quene) => {
+    const animation = swan.createAnimation();
+    const cbs = {};
+    quene.forEach((tick, i) => {
+      const { styles, descriptions } = tick;
+      cbs[i] = descriptions.cb
+      Object.keys(styles).forEach((key) => {
+        const value = styles[key];
+
+        animation[key](value);
+      });
+
+      animation.step(descriptions);
+    });
+
+    const temp = animation.export();
+    temp.cbs = cbs;
+    temp.index = 0;
+
+    return temp;
+  };
+
+  class Method implements CreateAnimationInterface {
+    initAnimation() {}
+    checkNumber(number) {}
+    checkString(string) {}
+    checkObject(object) {}
+    getViewportWidth() {
+      const { windowWidth } = swan.getSystemInfoSync();
+      return windowWidth;
+    }
+    exportMiddleWare(param) {
+      return createAnimationFuc(param.updateQueue.map(function(tick) {
+        return {
+          styles: stylePipe(tick.styles, tick.descriptions, styleLoaderQueue, param.id),
+          descriptions: descriptionPipe(tick.descriptions, tick.styles, descriptionLoaderQueue, param.id)
+        };
+      }));
+    }
+  }
+
+  export default new Method();
+</script>
+
+<script cml-type="alipay">
+  import {
+    commonLoader as s_commonLoader,
+    cacheTransformStylesLoader as s_cacheTransformStylesLoader,
+  } from './styleLoader/common';
+  import {
+    transformLoader as s_transformLoader,
+  } from './styleLoader/wx';
+  import {
+    cacheTransformOriginLoader as d_cacheTransformOriginLoader,
+  } from './descriptionLoader/common';
+  import {
+    alipayLoader as d_alipayLoader,
+  } from './descriptionLoader/alipay';
+
+
+
+  class Method implements CreateAnimationInterface {
+    initAnimation() {}
+
+    getEnv() {
+      return 'alipay';
+    }
+
+    getStyleLoaderQueue() {
+      return [s_commonLoader, s_cacheTransformStylesLoader, s_transformLoader];
+    }
+
+    getDescriptionLoaderQueue() {
+      return [d_alipayLoader, d_cacheTransformOriginLoader]
+    }
+
+    getCreateAnimationFuc() {
+      return (quene) => {
+        const animation = my.createAnimation();
+        const cbs = {};
+        quene.forEach((tick, i) => {
+          const { styles, descriptions } = tick;
+          cbs[i] = descriptions.cb
+          Object.keys(styles).forEach((key) => {
+            const value = styles[key];
+
+            animation[key](value);
+          });
+
+          animation.step(descriptions);
+        });
+
+        const temp = animation.export();
+        temp.cbs = cbs;
+        temp.index = 0;
+
+        return temp;
+      };
     }
   }
 

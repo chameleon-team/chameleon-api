@@ -17,11 +17,11 @@ interface UtilsInterface {
 </script>
 
 <script cml-type="weex">
-  import cmlBridge from '../../lib/sdk/cmlBridge';
-
   class Method implements UtilsInterface {
     navigateBack(backPageNum) {
-      cmlBridge.navigateBack(backPageNum);
+      var runtime = require("chameleon-runtime").default;
+      let { router } = runtime.getInfo();
+      router.go(backPageNum);
     }
   }
   export default new Method();
@@ -31,6 +31,28 @@ interface UtilsInterface {
   class Method implements UtilsInterface {
     navigateBack(backPageNum) {
       wx.navigateBack({
+        delta: Math.abs(backPageNum)
+      });
+    }
+  }
+  export default new Method();
+</script>
+
+<script cml-type="baidu">
+  class Method implements UtilsInterface {
+    navigateBack(backPageNum) {
+      swan.navigateBack({
+        delta: Math.abs(backPageNum)
+      });
+    }
+  }
+  export default new Method();
+</script>
+
+<script cml-type="alipay">
+  class Method implements UtilsInterface {
+    navigateBack(backPageNum) {
+      my.navigateBack({
         delta: Math.abs(backPageNum)
       });
     }

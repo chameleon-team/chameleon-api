@@ -49,3 +49,31 @@ class Method implements closeInterface {
 export default new Method();
 
 </script>
+
+<script cml-type="baidu">
+
+class Method implements closeInterface {
+  close() {
+    swan.navigateBack({
+      delta: 1
+    });
+  }
+}
+
+export default new Method();
+
+</script>
+
+<script cml-type="alipay">
+
+class Method implements closeInterface {
+  close() {
+    my.navigateBack({
+      delta: 1
+    });
+  }
+}
+
+export default new Method();
+
+</script>

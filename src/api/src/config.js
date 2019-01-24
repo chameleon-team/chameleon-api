@@ -4,6 +4,8 @@ const api = {
       sdk: 'alert',
       web: 'alert',
       wx: 'showModal',
+      baidu: 'showModal',
+      alipay: 'alert',
       weex: 'modal.alert'
     }
   },
@@ -13,7 +15,9 @@ const api = {
       sdk: 'cancelAnimationFrame',
       web: 'cancelAnimationFrame',
       wx: 'cancelAnimationFrame',
-      weex: 'cancelAnimationFrame'
+      baidu: 'cancelAnimationFrame',
+      weex: 'cancelAnimationFrame',
+      alipay: 'cancelAnimationFrame'
     }
   },
   canIUse: {
@@ -22,7 +26,19 @@ const api = {
       sdk: 'canIUse',
       web: 'canIUse',
       wx: 'canIUse',
-      weex: 'canIUse'
+      baidu: 'canIUse',
+      weex: 'canIUse',
+      alipay: 'canIUse'
+    }
+  },
+  inSDK: {
+    allCanUse: true,
+    baseOn: {
+      sdk: 'inSDK',
+      web: 'inSDK',
+      wx: '',
+      baidu: '',
+      weex: ''
     }
   },
   chooseImage: {
@@ -30,7 +46,9 @@ const api = {
       sdk: 'chooseImage',
       web: 'chooseImage',
       wx: 'chooseImage',
-      weex: ''
+      baidu: 'chooseImage',
+      weex: '',
+      alipay: 'chooseImage'
     }
   },
   close: {
@@ -38,7 +56,9 @@ const api = {
       sdk: 'close',
       web: 'close',
       wx: 'navigateBack',
-      weex: ''
+      baidu: 'navigateBack',
+      weex: '',
+      alipay: 'navigateBack'
     }
   },
   confirm: {
@@ -46,7 +66,9 @@ const api = {
       sdk: 'confirm',
       web: 'confirm',
       wx: 'showModal',
-      weex: 'modal.confirm'
+      baidu: 'showModal',
+      weex: 'modal.confirm',
+      alipay: 'confirm'
     }
   },
   cpx2px: {
@@ -54,7 +76,9 @@ const api = {
       sdk: 'getSystemInfo',
       web: 'getSystemInfo',
       wx: 'getSystemInfoSync',
-      weex: 'getSystemInfo'
+      baidu: 'getSystemInfoSync',
+      weex: 'getSystemInfo',
+      alipay: 'getSystemInfoSync'
     }
   },
   get: {
@@ -62,7 +86,9 @@ const api = {
       sdk: 'request',
       web: 'fetch',
       wx: 'request',
-      weex: 'fetch'
+      baidu: 'request',
+      weex: 'fetch',
+      alipay: 'httpRequest'
     }
   },
   getClipBoardData: {
@@ -70,7 +96,9 @@ const api = {
       sdk: 'getClipBoardData',
       web: 'getClipboardData',
       wx: 'getClipboardData',
-      weex: 'clipboard.getString'
+      baidu: 'getClipboardData',
+      weex: 'clipboard.getString',
+      alipay: 'getClipboard'
     }
   },
   getLocationInfo: {
@@ -78,7 +106,9 @@ const api = {
       sdk: 'getLocationInfo',
       web: 'getCurrentPosition',
       wx: 'getLocation',
-      weex: ''
+      baidu: 'getLocation',
+      weex: '',
+      alipay: 'getLocation'
     }
   },
   getRect: {
@@ -86,7 +116,9 @@ const api = {
       sdk: 'getComponentRect',
       web: 'getComputedStyle',
       wx: 'createSelectorQuery',
-      weex: 'getComponentRect'
+      baidu: 'createSelectorQuery',
+      weex: 'getComponentRect',
+      alipay: ''
     }
   },
   getStorage: {
@@ -94,7 +126,9 @@ const api = {
       sdk: 'getStorage',
       web: 'localStorage.getItem',
       wx: 'getStorageSync',
-      weex: 'storage.getItem'
+      baidu: 'getStorageSync',
+      weex: 'storage.getItem',
+      alipay: 'getStorageSync'
     }
   },
   getSystemInfo: {
@@ -102,7 +136,9 @@ const api = {
       sdk: 'getSystemInfo',
       web: 'getSystemInfo',
       wx: 'getSystemInfo',
-      weex: 'getSystemInfo'
+      baidu: 'getSystemInfo',
+      weex: 'getSystemInfo',
+      alipay: 'getSystemInfo'
     }
   },
   initSocket: {
@@ -110,7 +146,9 @@ const api = {
       sdk: 'initSocket',
       web: 'initSocket',
       wx: 'connectSocket',
-      weex: ''
+      baidu: 'connectSocket',
+      weex: '',
+      alipay: 'connectSocket'
     }
   },
   getLaunchOptionsSync: {
@@ -118,7 +156,9 @@ const api = {
       sdk: 'getQueryObjSync',
       web: 'location.href',
       wx: 'getLaunchOptionsSync',
-      weex: 'weex.config.bundleUrl'
+      baidu: '',
+      weex: 'weex.config.bundleUrl',
+      alipay: ''
     }
   },
   navigateBack: {
@@ -126,7 +166,9 @@ const api = {
       sdk: 'navigateBack',
       web: 'navigateBack',
       wx: 'navigateBack',
-      weex: 'navigateBack'
+      baidu: 'navigateBack',
+      weex: 'navigateBack',
+      alipay: 'navigateBack'
     }
   },
   navigateTo: {
@@ -134,7 +176,9 @@ const api = {
       sdk: 'navigateTo',
       web: 'navigateTo',
       wx: 'navigateTo',
-      weex: 'navigateTo'
+      baidu: 'navigateTo',
+      weex: 'navigateTo',
+      alipay: 'navigateTo'
     }
   },
   open: {
@@ -142,7 +186,9 @@ const api = {
       sdk: 'open',
       web: 'location.href',
       wx: 'navigateToMiniProgram',
-      weex: 'navigator.push'
+      baidu: 'navigateToSmartProgram',
+      weex: 'navigator.push',
+      alipay: 'navigateToMiniProgram'
     }
   },
   post: {
@@ -150,7 +196,9 @@ const api = {
       sdk: 'request',
       web: 'fetch',
       wx: 'request',
-      weex: 'fetch'
+      baidu: 'request',
+      weex: 'fetch',
+      alipay: 'httpRequest'
     }
   },
   px2cpx: {
@@ -158,15 +206,19 @@ const api = {
       sdk: 'getSystemInfo',
       web: 'getSystemInfo',
       wx: 'getSystemInfoSync',
-      weex: 'getSystemInfo'
+      baidu: 'getSystemInfoSync',
+      weex: 'getSystemInfo',
+      alipay: ''
     }
   },
   redirectTo: {
     baseOn: {
       sdk: 'redirectTo',
       web: 'router.replace',
-      wx: 'navigateTo',
-      weex: 'router.replace'
+      wx: 'redirectTo',
+      baidu: 'redirectTo',
+      weex: 'router.replace',
+      alipay: 'redirectTo'
     }
   },
   reload: {
@@ -174,7 +226,9 @@ const api = {
       sdk: 'reload',
       web: 'location.reload',
       wx: '',
-      weex: ''
+      baidu: '',
+      weex: '',
+      alipay: ''
     }
   },
   removeStorage: {
@@ -182,7 +236,9 @@ const api = {
       sdk: 'removeStorage',
       web: 'localStorage.removeItem',
       wx: 'removeStorageSync',
-      weex: 'storage.removeItem'
+      baidu: 'removeStorageSync',
+      weex: 'storage.removeItem',
+      alipay: 'removeStorageSync'
     }
   },
   request: {
@@ -190,7 +246,9 @@ const api = {
       sdk: 'request',
       web: 'fetch',
       wx: 'request',
-      weex: 'fetch'
+      baidu: 'request',
+      weex: 'fetch',
+      alipay: 'httpRequest'
     }
   },
   requestAnimationFrame: {
@@ -199,15 +257,19 @@ const api = {
       sdk: 'setTimeout',
       web: 'requestAnimationFrame',
       wx: 'setTimeout',
-      weex: 'requestAnimationFrame'
+      baidu: 'setTimeout',
+      weex: 'requestAnimationFrame',
+      alipay: 'requestAnimationFrame'
     }
   },
   setClipBoardData: {
     baseOn: {
       sdk: 'setClipBoardData',
       web: 'setClipBoardData',
-      wx: 'getClipboardData',
-      weex: 'clipboard.setString'
+      wx: 'setClipBoardData',
+      baidu: 'setClipBoardData',
+      weex: 'clipboard.setString',
+      alipay: 'setClipboard'
     }
   },
   setStorage: {
@@ -215,7 +277,9 @@ const api = {
       sdk: 'setStorage',
       web: 'localStorage.setItem',
       wx: 'setStorageSync',
-      weex: 'storage.setItem'
+      baidu: 'setStorageSync',
+      weex: 'storage.setItem',
+      alipay: 'setStorageSync'
     }
   },
   setTitle: {
@@ -223,7 +287,9 @@ const api = {
       sdk: 'setTitle',
       web: 'document.title',
       wx: 'setNavigationBarTitle',
-      weex: ''
+      baidu: 'setNavigationBarTitle',
+      weex: '',
+      alipay: 'setNavigationBar'
     }
   },
   showToast: {
@@ -231,7 +297,9 @@ const api = {
       sdk: 'showToast',
       web: 'showToast',
       wx: 'showToast',
-      weex: 'modal.toast'
+      baidu: 'showToast',
+      weex: 'modal.toast',
+      alipay: 'showToast'
     }
   }
 };

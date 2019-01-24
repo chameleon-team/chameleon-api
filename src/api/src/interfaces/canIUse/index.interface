@@ -101,3 +101,37 @@ class Method implements canIUseInterface {
 
 export default new Method();
 </script>
+
+<script cml-type="baidu">
+import { api } from '../../config';
+
+class Method implements canIUseInterface {
+  canIUse(metName, cb) {
+    if(!api[metName]) {
+      cb(false);
+      return;
+    }
+
+    const allCan = api[metName].allCanUse;
+    if(allCan) {
+      cb(true);
+      return;
+    }
+
+    const method = api[metName].baseOn.wx;
+    const result = swan.canIUse(method);
+    cb(result);
+  }
+}
+
+export default new Method();
+</script>
+
+<script cml-type="alipay">
+    class Method implements canIUseInterface {
+      canIUse(metName, cb) {
+        cb(my.canIUse(metName));
+      }
+    }
+    export default new Method();
+</script>

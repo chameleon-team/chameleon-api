@@ -164,8 +164,72 @@ export default new Method();
         success: function(res) {
           cb({
             status: res.statusCode,
-            data: res.data, 
+            data: res.data,
             headers: parseHeader(res.header)
+          });
+        },
+        fail: function(e) {
+          throw e;
+        }
+      });
+    }
+  }
+
+  export default new Method();
+</script>
+
+<script cml-type="baidu">
+  import { parseHeader } from './common.js';
+
+  class Method implements UtilsInterface {
+    request(params) {
+      let {
+        url, body, headers, method, cb
+      } = params;
+      swan.request({
+        url,
+        data:body,
+        dataType: 'text',
+        method,
+        header: headers,
+        success: function(res) {
+          cb({
+            status: res.statusCode,
+            data: res.data,
+            headers: parseHeader(res.header)
+          });
+        },
+        fail: function(e) {
+          throw e;
+        }
+      });
+    }
+  }
+
+  export default new Method();
+</script>
+
+<script cml-type="alipay">
+
+  import { parseHeader } from './common.js';
+
+  class Method implements UtilsInterface {
+    request(params) {
+      let {
+        url, body, headers, method, cb
+      } = params;
+
+      my.httpRequest({
+        url,
+        method,
+        data: body,
+        dataType: 'json',
+        headers,
+        success: function(res) {
+          cb({
+            status: res.status,
+            data: res.data,
+            headers: parseHeader(res.headers)
           });
         },
         fail: function(e) {

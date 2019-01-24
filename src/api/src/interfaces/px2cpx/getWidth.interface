@@ -43,6 +43,24 @@ class Method implements getWidthInterface {
 export default new Method();
 </script>
 
+<script cml-type="baidu">
+class Method implements getWidthInterface {
+  getWidth() {
+    const { windowWidth } = swan.getSystemInfoSync();
+    return windowWidth;
+  }
+}
+
+export default new Method();
+</script>
 
 
-
+<script cml-type="alipay">
+  class Method implements getWidthInterface {
+    getWidth() {
+      const { windowWidth } = my.getSystemInfoSync();
+      return windowWidth;
+    }
+  }
+  export default new Method();
+</script>

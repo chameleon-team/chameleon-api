@@ -51,3 +51,33 @@ export default new Method();
 
   export default new Method();
 </script>
+
+<script cml-type="baidu">
+  import { requestAnimationFrame } from './animationShim.js';
+  class Method implements RequestAnimationInterface {
+    init() {
+      return class AnimationFrameFactory {
+        requestAnimationFrame() {
+          return requestAnimationFrame;
+        }
+      };
+    }
+  }
+
+  export default new Method();
+</script>
+
+<script cml-type="alipay">
+  import { requestAnimationFrame } from './animationShim.js';
+  class Method implements RequestAnimationInterface {
+    init() {
+      return class AnimationFrameFactory {
+        requestAnimationFrame() {
+          return requestAnimationFrame;
+        }
+      };
+    }
+  }
+
+  export default new Method();
+</script>
