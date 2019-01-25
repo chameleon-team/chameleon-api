@@ -24,6 +24,14 @@ export default function request({
   if (setting.apiPrefix) {
     url = addApiPrefix(url, domainkey);
   }
+  if (/get/gi.test(method)) {
+    if (data && !isEmpty(data) && queryStringify(data)) {
+      if (url.indexOf('?') === -1) {
+        url += '?';
+      }
+      url += queryStringify(data);
+    }
+  }
   switch (contentType) {
   case 'form':
     data = queryStringify(data);
