@@ -151,14 +151,29 @@ export function getUrlWithConnector(url) {
 }
 
 // 获取ref的通用对象
-export function getRefObj(ref) {
+export function getRefObj(ref, context) {
   let refObj = {
     webDom: '',
     id: '',
-    weexRef: ''
+    weexRef: '',
+    context
   };
+  // 容错处理
   if (!ref) return refObj
-  if (process.env.platform === 'wx' || process.env.platform === 'baidu') {
+  
+  // 兼容新版ref, 为字符串
+  if (typeof ref == 'string') {
+    refObj.id = ref
+    if (process.env.platform === 'weex') {
+      refObj.weexRef = context.$refs && context.$refs[ref];
+    } else if (process.env.platform === 'web') {
+      refObj.webDom = context.$refs[ref] && context.$refs[ref].$el || context.$refs[ref];
+    }
+    return refObj;
+  }
+
+  // 向下兼容旧版ref
+  if (process.env.platform === 'wx' || process.env.platform === 'baidu' || process.env.platform === 'alipay') {
     refObj.id = ref.id;
   } else if (process.env.platform === 'weex') {
     refObj.weexRef = ref;

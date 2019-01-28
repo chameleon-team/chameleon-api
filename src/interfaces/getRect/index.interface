@@ -126,7 +126,7 @@ import cmlBridge from '../../lib/sdk/cmlBridge';
       query.select(`#${refObj.id}`).boundingClientRect();
 
       query.exec(function(res) {
-        my.getSystemInfoSync({
+        my.getSystemInfo({
           success: (systemRes) => {
             let windowWidth = systemRes.windowWidth;
             let scale = 750 / windowWidth;
