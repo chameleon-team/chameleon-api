@@ -2,7 +2,6 @@ var path = require('path');
 var fs = require('fs');
 var fse = require('fs-extra');
 var PL = require('./pipeline');
-var execSync = require('child_process').execSync;
 
 var types = ['web', 'wx', 'weex'];
 var type = process.argv[2];
@@ -12,17 +11,14 @@ if (!type || !types.includes(type)) {
 }
 
 var rootPath = process.cwd();
-var apiSrcPath = path.resolve(rootPath, 'src');
-var apiIndexPath = path.resolve(rootPath, 'index.js');
+var apiPath = path.resolve(rootPath, 'src/api');
 var testApiPath = path.resolve(rootPath, 'test/.api/' + type);
 var testApiInterfacePath = path.resolve(rootPath, 'test/.api/' + type + '/src/interfaces');
 // 无用单元测试目录
 var unusualDirectoryStr = 'login|initLog|sendLog|showToast|alert|confirm|initSocket|createAnimation'
 // 拷贝文件，处理文件
 try {
-  fse.mkdirpSync(testApiPath);
-  execSync(`cp ${apiIndexPath} ${testApiPath}`);
-  execSync(`cp -rf ${apiSrcPath} ${testApiPath}`);
+  fse.copySync(apiPath, testApiPath);
   var apiIndexContent = fs.readFileSync(testApiPath + '/index.js').toString();
   apiIndexContent = apiIndexContent.replace(new RegExp(`import.+(${unusualDirectoryStr}).+\n`, "g"), '');
   apiIndexContent = apiIndexContent.replace(new RegExp(`(${unusualDirectoryStr}).+\n`, 'g'), '');

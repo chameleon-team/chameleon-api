@@ -1,7 +1,23 @@
 [![Build Status](https://travis-ci.org/beatles-chameleon/chameleon-api.svg?branch=master)](https://travis-ci.org/beatles-chameleon/chameleon-api)
 
-# 说明
-本仓库为chameleon的api的相关代码，chameleon 支持大量基础API，对外提供统一的接口，以模块的方式引入chameleon-api进行使用。
+# 使用说明
+本仓库为chameleon的api的相关代码
+
+## 如何开发
+```
+npm i
+cml dev
+```
+
+## 单元测试与覆盖率测试
+```
+npm run test
+npm run cover
+```
+
+## 接口文档
+
+chameleon 支持大量基础API，对外提供统一的接口，以模块的方式引入chameleon-api进行使用。
 接口查看及扩展等请见文档： https://beatles-chameleon.github.io/doc/api/api.html
 
 
@@ -13,18 +29,4 @@ cml.showToast({
   message: 'Hello world!',
   duration: 1000
 })
-```
-
-## 如何开发
-结合cml-dome仓库进行开发调试
-
-使用npm link的方式将本地仓库与cml-demo依赖建立链接
-
-实现cml-demo依赖本地chameleon-api进行开发
-
-## 单元测试与覆盖率测试
-```
-npm i 
-npm run test
-npm run cover
 ```
