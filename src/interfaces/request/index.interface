@@ -59,6 +59,12 @@ interface UtilsInterface {
             headers: parseHeader(res.headers && res.headers.map || {})
           });
         });
+      }, err => {
+        cb({
+          status: -1,
+          data: 'request failed',
+          headers: '{}'
+        });
       }).catch(e => {
         throw e;
       });
@@ -138,6 +144,12 @@ class Method implements UtilsInterface {
           data,
           headers
         });
+      }, err => {
+        cb({
+          status: -1,
+          data: 'request failed',
+          headers: '{}'
+        });
       });
 
     }
@@ -169,6 +181,11 @@ export default new Method();
           });
         },
         fail: function(e) {
+          cb({
+            status: -1,
+            data: 'request failed',
+            headers: '{}'
+          });
           throw e;
         }
       });
@@ -200,6 +217,11 @@ export default new Method();
           });
         },
         fail: function(e) {
+          cb({
+            status: -1,
+            data: 'request failed',
+            headers: '{}'
+          });
           throw e;
         }
       });
@@ -233,6 +255,11 @@ export default new Method();
           });
         },
         fail: function(e) {
+          cb({
+            status: -1,
+            data: 'request failed',
+            headers: '{}'
+          });
           throw e;
         }
       });

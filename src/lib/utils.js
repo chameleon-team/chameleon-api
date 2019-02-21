@@ -83,7 +83,7 @@ export function queryParse(search = '') {
 }
 
 export function isNeedApiPrefix(url) {
-  return /^\/[^/]/.test(url);
+  return !/^(https?\:\/\/)|^(\/\/)/.test(url)
 }
 
 export function addApiPrefix(url,domainkey) {
