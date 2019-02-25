@@ -86,12 +86,18 @@ export function isNeedApiPrefix(url) {
   return !/^(https?\:\/\/)|^(\/\/)/.test(url)
 }
 
-export function addApiPrefix(url,domainkey) {
+export function addApiPrefix(url, domainkey) {
   const domainMap = process.env.domainMap;
+  // 新版cli
   if (domainMap) {
-    return domainMap[domainkey] + url;
+    let prefix = domainMap[domainkey] || process.env.devApiPrefix;
+    return prefix + url;
+  } else {
+      // 老版本配置apiPrefix
+    if (process.env.cmlApiPrefix) {
+      return process.env.cmlApiPrefix + url;
+    }
   }
-  return url;
 }
 
 export function tryJsonParse(some) {

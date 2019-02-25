@@ -40,7 +40,7 @@ interface UtilsInterface {
         method,
         headers: headers
       };
-      if (['POST', 'DELETE', 'PUT'].indexOf(method.toUpperCase()) > -1) {
+      if (method.toUpperCase() !== 'GET') {
         fetchOptions.body = body;
       }
 
@@ -130,14 +130,18 @@ class Method implements UtilsInterface {
       let {
         url, body, headers, method, cb
       } = params;
-
-      stream.fetch({
+      let fetchOptions = {
         url,
         method,
         headers: headers,
-        body,
         type: 'text'
-      }, function (res) {
+      }
+
+      if (method.toUpperCase() !== 'GET') {
+        fetchOptions.body = body;
+      }
+
+      stream.fetch(fetchOptions, function (res) {
         const { status, data, headers } = res;
         cb({
           status,
@@ -176,7 +180,7 @@ export default new Method();
         success: function(res) {
           cb({
             status: res.statusCode,
-            data: res.data,
+            data: res.data, 
             headers: parseHeader(res.header)
           });
         },
