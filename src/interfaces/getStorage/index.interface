@@ -158,7 +158,7 @@ export default new Method();
         } else {
           cb({
             errno: -1,
-            errMsg,
+            errMsg: '获取失败或未存储',
             data: ''
           });
         }

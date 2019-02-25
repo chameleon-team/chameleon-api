@@ -234,12 +234,14 @@ export default new Method();
 <script cml-type="alipay">
 
   import { parseHeader } from './common.js';
+  import { getQueryParamsFromUrl } from '../../lib/utils.js';
 
   class Method implements UtilsInterface {
     request(params) {
       let {
         url, body, headers, method, cb
       } = params;
+      body = getQueryParamsFromUrl(body)
 
       my.httpRequest({
         url,

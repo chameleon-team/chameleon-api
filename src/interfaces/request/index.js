@@ -30,6 +30,7 @@ export default function request({
         url += '?';
       }
       url += queryStringify(data);
+      data = ''
     }
   }
   switch (contentType) {
