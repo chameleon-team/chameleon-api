@@ -24,7 +24,7 @@ export default function request({
     url = addApiPrefix(url, domainkey);
   }
 
-  if(method === 'GET') {
+  if (/^get$/gi.test(method)) {
     if (data && !isEmpty(data) && queryStringify(data)) {
       if (url.indexOf('?') === -1) {
         url += '?';
