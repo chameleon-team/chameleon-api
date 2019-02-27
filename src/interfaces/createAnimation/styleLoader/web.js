@@ -1,6 +1,7 @@
 import { cpx2px } from '../_util';
 import { isNum } from '../../../lib/utils';
-import { rotateStyles, isNumTypeStyles } from './common.js';
+import { isNumTypeStyles } from './common.js';
+import { getTransform } from '../_util';
 
 export const transformLoader = (styles, descriptions) => {
   const returnStyles = {};
@@ -15,18 +16,32 @@ export const transformLoader = (styles, descriptions) => {
       }
     }
 
-    if (rotateStyles.includes(key) && typeof value === 'number') {
-      value = `${value}deg`;
-    }
+    // if (rotateStyles.includes(key) && typeof value === 'number') {
+    //   value = `${value}deg`;
+    // }
     if (key === 'rotate') {
       returnStyles.rotateZ = value;
     } else {
       returnStyles[key] = value;
     }
-
   });
   return returnStyles;
 };
+
+// 解决动画链接不上问题http://velocityjs.org/#forcefeeding
+export const completionLoader = (styles, descriptions, elm) => {
+  const returnStyles = styles;
+  const transformInfo = getTransform(elm);
+  if (transformInfo) {
+    returnStyles.translateX = [styles.translateX || transformInfo.translateX, transformInfo.translateX]
+    returnStyles.translateY = [styles.translateY || transformInfo.translateY, transformInfo.translateY]
+    returnStyles.scaleX = [styles.scaleX || transformInfo.scaleX, transformInfo.scaleX]
+    returnStyles.scaleY = [styles.scaleY || transformInfo.scaleY, transformInfo.scaleY]
+    returnStyles.rotateZ = [styles.rotateZ || transformInfo.rotateZ, transformInfo.rotateZ]
+  }
+
+  return returnStyles
+}
 
 export const originLoader = (styles, descriptions) => {
   let returnStyles = styles;

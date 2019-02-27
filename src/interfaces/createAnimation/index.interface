@@ -19,6 +19,7 @@
   import {
     transformLoader as s_transformLoader,
     originLoader as s_originLoader,
+    completionLoader as s_completionLoader,
   } from './styleLoader/web';
   import {
     commonLoader as d_commonLoader,
@@ -41,7 +42,7 @@
       for (let i = 0; i < len; i++) {
         const info = updateQueue[i];
         current = current.then(() => {
-          return Velocity(elm, info.styles, info.descriptions).then(() => { info.descriptions.cb(); });
+          return Velocity(elm, stylePipe(info.styles, info.descriptions, [s_completionLoader], elm), info.descriptions).then(() => { info.descriptions.cb(); });
         });
       }
     }

@@ -22,12 +22,19 @@ export const commonLoader = (styles) => {
   Object.keys(styles).forEach((key) => {
     const value = styles[key];
     //
-    if (value.length === 1) {
+    if (value.length === 1 && key !== 'scale') {
       returnStyles[key] = value[0];
     } else {
       if (compositeStyles.includes(key)) {
-        returnStyles[`${key}X`] = value[0];
-        returnStyles[`${key}Y`] = value[1];
+        // scale的值只传递一个的情况
+        if (key === 'scale' && value.length === 1) {
+          returnStyles[`${key}X`] = value[0];
+          returnStyles[`${key}Y`] = value[0];
+        } else {
+          returnStyles[`${key}X`] = value[0];
+          returnStyles[`${key}Y`] = value[1];
+        }
+
         // returnStyles[`${key}Z`] = value[2];
       } else {
         // redLog(`${key}属性不支持传多个参数`);
