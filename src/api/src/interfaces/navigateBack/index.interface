@@ -17,14 +17,15 @@ interface UtilsInterface {
 </script>
 
 <script cml-type="weex">
-  import cmlBridge from '../../lib/sdk/cmlBridge';
-
   class Method implements UtilsInterface {
     navigateBack(backPageNum) {
-      cmlBridge.navigateBack(backPageNum);
+      var runtime = require("chameleon-runtime").default;
+      let { router } = runtime.getInfo();
+      router.go(backPageNum);
     }
   }
   export default new Method();
+
 </script>
 
 <script cml-type="wx">

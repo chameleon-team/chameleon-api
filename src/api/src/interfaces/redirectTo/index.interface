@@ -55,16 +55,24 @@ interface UtilsInterface {
 </script>
 
 <script cml-type="weex">
-  import cmlBridge from '../../lib/sdk/cmlBridge';
-  import { queryParse } from '../../lib/utils.js';
+import { queryParse } from '../../lib/utils.js';
 
   class Method implements UtilsInterface {
     redirectTo(opt) {
+      var runtime = require("chameleon-runtime").default;
+
       opt.query = queryParse(opt.query);
-      cmlBridge.redirectTo(opt);
+      let { router } = runtime.getInfo();
+      let { path, query } = opt;
+
+      router.replace({
+        path,
+        query
+      });
     }
   }
   export default new Method();
+
 </script>
 
 <script cml-type="wx">
