@@ -36,7 +36,7 @@ interface UtilsInterface {
       } = params;
 
       let fetchOptions = {
-        credentials: 'include',
+        credentials: setting.credentials || 'include',
         method,
         headers: headers
       };
@@ -58,6 +58,12 @@ interface UtilsInterface {
             data,
             headers: parseHeader(res.headers && res.headers.map || {})
           });
+        });
+      }, err => {
+        cb({
+          status: -1,
+          data: 'request failed',
+          headers: '{}'
         });
       }).catch(e => {
         throw e;

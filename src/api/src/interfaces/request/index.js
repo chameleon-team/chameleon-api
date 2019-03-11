@@ -16,14 +16,18 @@ export default function request({
   }
   switch (contentType) {
   case 'form':
-    data = queryStringify(data);
+    if (typeof data !== 'string') {
+      data = queryStringify(data);
+    }
     header = {
       ...header,
       'Content-Type': 'application/x-www-form-urlencoded'
     };
     break;
   case 'json':
-    data = JSON.stringify(data);
+    if (typeof data !== 'string') {
+      data = JSON.stringify(data);
+    }
     header = {
       ...header,
       'Content-Type': 'application/json'

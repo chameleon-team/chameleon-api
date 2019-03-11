@@ -71,10 +71,12 @@ interface UtilsInterface {
   class Method implements UtilsInterface {
     redirectTo(opt) {
       let {path, query} = opt;
-      if (path.indexOf('?') === -1) {
-        query = '?' + query;
+      if (query && query != '&') {
+        if (path.indexOf('?') === -1) {
+          query = '?' + query;
+        }
+        path = path + query;
       }
-      path = path + query;
       wx.redirectTo({
         url: path
       });
