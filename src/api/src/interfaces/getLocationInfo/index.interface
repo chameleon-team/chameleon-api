@@ -28,7 +28,7 @@ interface UtilsInterface {
           const { errno, msg, data } = res;
           if(errno == 0) {
             cb({
-              errno,
+              errno: 0,
               errMsg: msg,
               data
             });
@@ -78,7 +78,7 @@ class Method implements UtilsInterface {
       const { errno, msg = '', data = {lat: 0, lng: 0} } = res;
       if(errno == 0) {
         cb({
-          errno,
+          errno: 0,
           errMsg: msg,
           data
         });
