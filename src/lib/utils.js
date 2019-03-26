@@ -57,17 +57,25 @@ export function parseQuery(obj) {
 }
 
 export function queryStringify(obj) {
-  let str = '&';
+  let strArr = [];
   let keys = null;
   if (obj && Object.keys(obj).length > 0) {
     keys = Object.keys(obj);
     for (let i = 0; i < keys.length; i++) {
       let key = keys[i];
-      str += `${key}=${encodeURIComponent(obj[key])}` + '&';
+      strArr.push(`${key}=${encodeURIComponent(obj[key])}`)
     }
-
   }
-  return str;
+  return strArr.join('&');
+}
+
+export function buildQueryStringUrl(params, url = '') {
+  if (!url) return queryStringify(params)
+  let retUrl = url
+  if (queryStringify(params)) {
+    retUrl = url.indexOf('?') > -1 ? `${url}&${queryStringify(params)}` : `${url}?${queryStringify(params)}`
+  }
+  return retUrl
 }
 
 export function queryParse(search = '') {
@@ -83,14 +91,21 @@ export function queryParse(search = '') {
 }
 
 export function isNeedApiPrefix(url) {
-  return /^\/[^/]/.test(url);
+  return !/^(https?\:\/\/)|^(\/\/)/.test(url)
 }
 
-export function addApiPrefix(url) {
-  if (process.env.cmlApiPrefix) {
-    return process.env.cmlApiPrefix + url;
+export function addApiPrefix(url, domainkey) {
+  const domainMap = process.env.domainMap;
+  // 新版cli
+  if (domainMap) {
+    let prefix = domainMap[domainkey] || process.env.devApiPrefix;
+    return prefix + url;
+  } else {
+      // 老版本配置apiPrefix
+    if (process.env.cmlApiPrefix) {
+      return process.env.cmlApiPrefix + url;
+    }
   }
-  return url;
 }
 
 export function tryJsonParse(some) {
@@ -122,9 +137,17 @@ export function getOpenObj(url) {
   const webUrlWithoutQuery = url.split('?')[0];
   const queryObj = getQueryParamsFromUrl(url);
   const {
+    path = '',
+    envVersion = '',
     weixin_appid = '',
     weixin_path = '',
     weixin_envVersion = '',
+    baidu_appid = '',
+    baidu_path = '',
+    baidu_envVersion = '',
+    alipay_appid = '',
+    alipay_path = '',
+    alipay_envVersion = '',
     weex_path = '',
     cml_addr = '',
     ...extraData
@@ -135,10 +158,21 @@ export function getOpenObj(url) {
     web: webUrlWithoutQuery + '?' + queryStringify(extraData),
     wx: {
       appId: weixin_appid,
-      path: weixin_path,
+      path: weixin_path || path,
       extraData: extraData,
-      envVersion: weixin_envVersion
-    }
+      envVersion: weixin_envVersion || envVersion
+    },
+    alipay: {
+      appId: alipay_appid,
+      path: alipay_path || path,
+      extraData: extraData,
+      envVersion: alipay_envVersion || envVersion
+    },
+    baidu: {
+      appKey: baidu_appid,
+      path: baidu_path || path,
+      extraData: extraData,
+    },
   };
   return objTreated;
 }
@@ -150,13 +184,29 @@ export function getUrlWithConnector(url) {
 }
 
 // 获取ref的通用对象
-export function getRefObj(ref) {
+export function getRefObj(ref, context) {
   let refObj = {
     webDom: '',
     id: '',
-    weexRef: ''
+    weexRef: '',
+    context
   };
-  if (process.env.platform === 'wx') {
+  // 容错处理
+  if (!ref) return refObj
+  
+  // 兼容新版ref, 为字符串
+  if (typeof ref == 'string') {
+    refObj.id = ref
+    if (process.env.platform === 'weex') {
+      refObj.weexRef = context.$refs && context.$refs[ref];
+    } else if (process.env.platform === 'web') {
+      refObj.webDom = context.$refs[ref] && context.$refs[ref].$el || context.$refs[ref];
+    }
+    return refObj;
+  }
+
+  // 向下兼容旧版ref
+  if (process.env.platform === 'wx' || process.env.platform === 'baidu' || process.env.platform === 'alipay') {
     refObj.id = ref.id;
   } else if (process.env.platform === 'weex') {
     refObj.weexRef = ref;
@@ -224,9 +274,3 @@ export const checkValue = function (check, targetMap) {
   }
   return true;
 };
-
-/**
- * 进入页面时的格林威治时间
- * @returns {Boolean}
- */
-export const enterPageTime = Date.now();

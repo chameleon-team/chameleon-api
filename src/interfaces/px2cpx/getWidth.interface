@@ -1,0 +1,66 @@
+<script cml-type="interface">
+interface getWidthInterface {
+  getWidth(): Number
+}
+</script>
+
+<script cml-type="web">
+import { getViewportSize } from './common.js';
+
+class Method implements getWidthInterface {
+  getWidth() {
+    let { viewportWidth } = getViewportSize();
+    return viewportWidth;
+  }
+}
+
+export default new Method();
+</script>
+
+<script cml-type="weex">
+import cmlBridge from '../../lib/sdk/cmlBridge';
+import { inSDK } from '../../lib/sdk/env';
+
+class Method implements getWidthInterface {
+  getWidth() {
+    const { scale, deviceWidth } = weex.config.env;
+    const viewportWidth = deviceWidth / scale;
+    return viewportWidth;
+  }
+}
+
+export default new Method();
+</script>
+
+<script cml-type="wx">
+class Method implements getWidthInterface {
+  getWidth() {
+    const { windowWidth } = wx.getSystemInfoSync();
+    return windowWidth;
+  }
+}
+
+export default new Method();
+</script>
+
+<script cml-type="baidu">
+class Method implements getWidthInterface {
+  getWidth() {
+    const { windowWidth } = swan.getSystemInfoSync();
+    return windowWidth;
+  }
+}
+
+export default new Method();
+</script>
+
+
+<script cml-type="alipay">
+  class Method implements getWidthInterface {
+    getWidth() {
+      const { windowWidth } = my.getSystemInfoSync();
+      return windowWidth;
+    }
+  }
+  export default new Method();
+</script>
