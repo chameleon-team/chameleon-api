@@ -18,7 +18,7 @@ export default function request({
     url = buildQueryStringUrl({ domainkey }, url)
   }
 
-  if (setting.apiPrefix) {
+  if (apiPrefix) {
     url = addApiPrefix(url, domainkey);
   }
 
