@@ -18,14 +18,9 @@ export default new Method();
 </script>
 
 <script cml-type="weex">
-import cmlBridge from '../../lib/sdk/cmlBridge';
-import { inSDK } from '../../lib/sdk/env';
-
 class Method implements getWidthInterface {
   getWidth() {
-    const { scale, deviceWidth } = weex.config.env;
-    const viewportWidth = deviceWidth / scale;
-    return viewportWidth;
+    return 750
   }
 }
 
