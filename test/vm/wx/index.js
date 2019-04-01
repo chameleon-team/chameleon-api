@@ -63,6 +63,10 @@ global.wx.getClipboardData = function (params) {
 }
 
 global.wx._storage = {};
+global.wx.setStorage = function (params) {
+  global.wx._storage[params.key] = params.data;
+  params.success({})
+}
 global.wx.setStorageSync = function (key, value) {
   global.wx._storage[key] = value;
 }
@@ -84,7 +88,7 @@ global.wx.navigateToMiniProgram = function (params) {
 }
 
 global.wx.request = function (params) {
-  var fromData = queryParse(params.data);
+  var fromData = queryParse(params.data || params.url.split('?')[1]);
   var fromDataLength = Object.keys(fromData).length;
   var res = {
     errno: "0"

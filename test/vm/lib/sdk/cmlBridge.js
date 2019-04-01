@@ -111,7 +111,7 @@ let cmlBridge = {
     }
   },
   request: function (params) {
-    var fromData = queryParse(params.body);
+    var fromData = queryParse(params.body || params.url.split('?')[1]);
     var fromDataLength = Object.keys(fromData).length;
     var cb = params.cb;
     var res = {

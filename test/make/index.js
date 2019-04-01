@@ -12,10 +12,13 @@ if (!type || !types.includes(type)) {
 }
 
 var rootPath = process.cwd();
-var apiSrcPath = path.resolve(rootPath, 'src');
-var apiIndexPath = path.resolve(rootPath, 'index.js');
-var testApiPath = path.resolve(rootPath, 'test/.api/' + type);
-var testApiInterfacePath = path.resolve(rootPath, 'test/.api/' + type + '/src/interfaces');
+var apiSrcPath = path.join(rootPath, './src');
+var apiIndexPath = path.join(rootPath, './index.js');
+var testApiPath = path.join(rootPath, './test/.api/' + type);
+var testApiInterfacePath = path.join(rootPath, './test/.api/' + type + '/src/interfaces');
+var utilsPath = path.join(rootPath, './src/lib/utils.js');
+var testVmUtilsPath = path.join(rootPath, './test/vm/lib/utils.js');
+
 // 无用单元测试目录
 var unusualDirectoryStr = 'login|initLog|sendLog|showToast|alert|confirm|initSocket|createAnimation'
 // 拷贝文件，处理文件
@@ -30,6 +33,11 @@ try {
   unusualDirectoryStr.split('|').forEach(function (dirName) {
     fse.removeSync(testApiInterfacePath + '/' + dirName);
   })
+
+  // 拷贝utils
+  execSync(`cp ${utilsPath} ${testVmUtilsPath}`);
+
+  // 执行替换任务
   PLMake(testApiInterfacePath + '/**/*.{js,interface}');
 } catch (err) {
   console.error(err)

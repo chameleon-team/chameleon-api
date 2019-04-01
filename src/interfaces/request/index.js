@@ -66,7 +66,7 @@ export default function request({
       cb: function(res) {
         let { status, data } = res;
         if (status >= 200 && status < 300) {
-          if (resDataType === 'json') {
+          if (resDataType === 'json' && typeof data == 'string') {
             try {
               data = JSON.parse(data);
             } catch (e) {

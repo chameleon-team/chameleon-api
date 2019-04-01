@@ -86,7 +86,7 @@ export default new Method();
     getStorage(key, cb) {
       try {
         let data = wx.getStorageSync(key);
-        if (typeof data !== 'string') {
+        if (data && typeof data !== 'string') {
           data = JSON.stringify(value);
         }
         cb({
@@ -97,6 +97,7 @@ export default new Method();
       } catch (e) {
         let errMsg;
         if (typeof e !== 'string') {
+          console.log('===1==')
           errMsg = JSON.stringify(e);
         } else {
           errMsg = e;

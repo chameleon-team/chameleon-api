@@ -5,7 +5,7 @@ var expect = require('chai').expect;
 describe('选择图片', function () {
   it('chooseImage: 选择图片(wx)', function () {
     return cml.chooseImage({ type: 'choice' }).then((res) => {
-      expect(res.WxTempFilePaths).to.have.length.above(0);
+      expect(res.tempFilePaths[0]).to.have.length.above(0);
     })
   })
 })
