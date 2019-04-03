@@ -200,7 +200,7 @@ export function getRefObj(ref, context) {
     if (process.env.platform === 'weex') {
       refObj.weexRef = context.$refs && context.$refs[ref];
     } else if (process.env.platform === 'web') {
-      refObj.webDom = context.$refs[ref] && context.$refs[ref].$el || context.$refs[ref];
+      refObj.webDom = context.$refs[ref] && context.$refs[ref][0] || context.$refs[ref] && context.$refs[ref].$el || context.$refs[ref];
     }
     return refObj;
   }
