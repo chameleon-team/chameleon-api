@@ -97,7 +97,6 @@ export default new Method();
       } catch (e) {
         let errMsg;
         if (typeof e !== 'string') {
-          console.log('===1==')
           errMsg = JSON.stringify(e);
         } else {
           errMsg = e;
@@ -150,11 +149,11 @@ export default new Method();
     getStorage(key, cb) {
       try {
         let data = my.getStorageSync({ key });
-        if(data && data.success){
+        if(data && data.success || data.APDataStorage){
           cb({
             errno: 0,
             errMsg: 'success',
-            data: data.data || ''
+            data: data.data || data.APDataStorage || ''
           });
         } else {
           cb({

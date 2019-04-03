@@ -1,7 +1,7 @@
 import index from './index.interface';
-import { isEmpty, addApiPrefix, isNeedApiPrefix, tryJsonParse, buildQueryStringUrl } from '../../lib/utils.js';
+import { isEmpty, isNeedApiPrefix, buildQueryStringUrl } from '../../lib/utils.js';
 export default function request({
-  domainkey, 
+  domain, 
   url,
   data = {},
   method = 'GET', 
@@ -12,14 +12,26 @@ export default function request({
 }) {
   let { apiPrefix = isNeedApiPrefix(url), jsonp = false, credentials = 'include' } = setting;
   let media = process.env.media;
-  domainkey = domainkey || process.env.defaultDomainKey;
-  // dev模式模拟多域名需要区分dmain
-  if (media === 'dev' && domainkey) {
-    url = buildQueryStringUrl({ domainkey }, url)
-  }
-
-  if (apiPrefix) {
-    url = addApiPrefix(url, domainkey);
+  // 如果用户配置了domain
+  if(domain) {
+    if (media === 'dev') {
+      // dev模式对domain做分割处理
+      if(~domain.indexOf('__DEV_SPLIT__')) {
+        let splitArray = domain.split('__DEV_SPLIT__');
+        domain = splitArray[0];
+        let domainKey = splitArray[1];
+        url = buildQueryStringUrl({ domainKey }, url)
+      }
+    }
+    url = domain + url;
+  } else {
+    // 如果没有配置domain
+    if (apiPrefix) {
+      // 有apiPrefix优先
+      if (process.env.cmlApiPrefix) {
+        url = process.env.cmlApiPrefix + url;
+      }
+    }
   }
 
   if (/^get$/gi.test(method)) {
