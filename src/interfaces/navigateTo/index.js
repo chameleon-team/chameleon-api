@@ -1,9 +1,8 @@
 import index from './index.interface';
-import { buildQueryStringUrl } from '../../lib/utils.js';
 
 export default function navigateTo(opt) {
   // 转换为字符串通过多态不支持object，需改
-  let query = buildQueryStringUrl(opt.query) || '';
+  let query = opt.query || {};
   let path = opt.path || '';
   let url = opt.url || '';
 

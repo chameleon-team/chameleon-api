@@ -1,7 +1,7 @@
 <script cml-type="interface">
 type options = {
   path: String,
-  query: String,
+  query: CMLObject,
   url: String
 }
 
@@ -12,12 +12,10 @@ interface UtilsInterface {
 </script>
 
 <script cml-type="web">
-  import { queryParse } from '../../lib/utils.js';
 
   class Method implements UtilsInterface {
     navigateTo(opt) {
       let {path, query} = opt;
-      query = queryParse(query);
 
       var runtime = require("chameleon-runtime").default;
       let {router, routerConfig} = runtime.getInfo();
@@ -55,14 +53,12 @@ interface UtilsInterface {
 </script>
 
 <script cml-type="weex">
-  import { queryParse } from '../../lib/utils.js';
 
   class Method implements UtilsInterface {
     navigateTo(opt) {
       var runtime = require("chameleon-runtime").default;
       let { router, routerConfig } = runtime.getInfo();
 
-      opt.query = queryParse(opt.query);
       let { path, query } = opt;
 
       if (path && router) {
@@ -98,11 +94,11 @@ interface UtilsInterface {
 </script>
 
 <script cml-type="wx">
-import { buildQueryStringUrl, queryParse } from '../../lib/utils.js';
+import { buildQueryStringUrl } from '../../lib/utils.js';
   class Method implements UtilsInterface {
     navigateTo(opt) {
       let {path, query} = opt;
-      path = buildQueryStringUrl(queryParse(query), path);
+      path = buildQueryStringUrl(query, path);
       wx.navigateTo({
         url: path
       });
@@ -112,11 +108,11 @@ import { buildQueryStringUrl, queryParse } from '../../lib/utils.js';
 </script>
 
 <script cml-type="baidu">
-import { buildQueryStringUrl, queryParse } from '../../lib/utils.js';
+import { buildQueryStringUrl } from '../../lib/utils.js';
   class Method implements UtilsInterface {
     navigateTo(opt) {
       let {path, query} = opt;
-      path = buildQueryStringUrl(queryParse(query), path);
+      path = buildQueryStringUrl(query, path);
       swan.navigateTo({
         url: path
       });
@@ -127,11 +123,11 @@ import { buildQueryStringUrl, queryParse } from '../../lib/utils.js';
 
 
 <script cml-type="alipay">
-import { buildQueryStringUrl, queryParse } from '../../lib/utils.js';
+import { buildQueryStringUrl } from '../../lib/utils.js';
   class Method implements UtilsInterface {
     navigateTo(opt) {
       let {path, query} = opt;
-      path = buildQueryStringUrl(queryParse(query), path);
+      path = buildQueryStringUrl(query, path);
       my.navigateTo({
         url: path
       });

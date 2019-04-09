@@ -1,19 +1,10 @@
 import index from './index.interface';
-import { buildQueryStringUrl } from '../../lib/utils.js';
 
 export default function redirectTo(opt) {
-  let query = '';
-  let path = '';
-  let url = '';
-  if (opt.path) {
-    path = opt.path;
-  }
-  if (opt.url) {
-    url = opt.url;
-  }
-  if (typeof opt.query !== 'string') {
-    query = buildQueryStringUrl(opt.query);
-  }
+  let query = opt.query || {};
+  let path = opt.path || '';
+  let url = opt.url || '';
+
   index.redirectTo({
     path,
     url,
