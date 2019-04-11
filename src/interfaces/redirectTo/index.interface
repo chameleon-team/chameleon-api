@@ -1,7 +1,7 @@
 <script cml-type="interface">
 type options = {
   path: String,
-  query: String,
+  query: CMLObject,
   url: String
 }
 
@@ -12,12 +12,10 @@ interface UtilsInterface {
 </script>
 
 <script cml-type="web">
-  import { getQueryParamsFromUrl, queryParse } from '../../lib/utils.js';
 
   class Method implements UtilsInterface {
     redirectTo(opt) {
       let {path, query} = opt;
-      query = queryParse(query);
 
       let runtime = require("chameleon-runtime").default;
       let {router, routerConfig} = runtime.getInfo();
@@ -55,13 +53,11 @@ interface UtilsInterface {
 </script>
 
 <script cml-type="weex">
-  import { queryParse } from '../../lib/utils.js';
 
   class Method implements UtilsInterface {
     redirectTo(opt) {
       var runtime = require("chameleon-runtime").default;
 
-      opt.query = queryParse(opt.query);
       let { router } = runtime.getInfo();
       let { path, query } = opt;
 
@@ -75,11 +71,11 @@ interface UtilsInterface {
 </script>
 
 <script cml-type="wx">
-import { buildQueryStringUrl, queryParse } from '../../lib/utils.js';
+import { buildQueryStringUrl } from '../../lib/utils.js';
   class Method implements UtilsInterface {
     redirectTo(opt) {
       let {path, query} = opt;
-      path = buildQueryStringUrl(queryParse(query), path)
+      path = buildQueryStringUrl(query, path)
       wx.redirectTo({
         url: path
       });
@@ -89,11 +85,11 @@ import { buildQueryStringUrl, queryParse } from '../../lib/utils.js';
 </script>
 
 <script cml-type="baidu">
-import { buildQueryStringUrl, queryParse } from '../../lib/utils.js';
+import { buildQueryStringUrl } from '../../lib/utils.js';
   class Method implements UtilsInterface {
     redirectTo(opt) {
       let {path, query} = opt;
-      path = buildQueryStringUrl(queryParse(query), path)
+      path = buildQueryStringUrl(query, path)
       swan.redirectTo({
         url: path
       });
@@ -104,11 +100,11 @@ import { buildQueryStringUrl, queryParse } from '../../lib/utils.js';
 
 
 <script cml-type="alipay">
-import { buildQueryStringUrl, queryParse } from '../../lib/utils.js';
+import { buildQueryStringUrl } from '../../lib/utils.js';
   class Method implements UtilsInterface {
     redirectTo(opt) {
       let {path, query} = opt;
-      path = buildQueryStringUrl(queryParse(query), path)
+      path = buildQueryStringUrl(query, path)
       my.redirectTo({
         url: path
       });
