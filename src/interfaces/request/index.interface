@@ -65,7 +65,11 @@ interface UtilsInterface {
           headers: '{}'
         });
       }).catch(e => {
-        throw e;
+        cb({
+          status: -1,
+          data: 'request failed',
+          headers: '{}'
+        });
       });
     }
   }
@@ -183,7 +187,6 @@ export default new Method();
             data: 'request failed',
             headers: '{}'
           });
-          throw e;
         }
       });
     }
@@ -219,7 +222,6 @@ export default new Method();
             data: 'request failed',
             headers: '{}'
           });
-          throw e;
         }
       });
     }
@@ -262,7 +264,6 @@ export default new Method();
             data: 'request failed',
             headers: '{}'
           });
-          throw e;
         }
       });
     }
