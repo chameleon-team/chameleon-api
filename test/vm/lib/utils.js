@@ -84,7 +84,7 @@ export function queryParse(search = '') {
   for (let i = 0; i < arr.length; i++) {
     if (arr[i].indexOf('=') !== -1) {
       let keyValue = arr[i].match(/([^=]*)=(.*)/);
-      parmsObj[keyValue[1]] = keyValue[2];
+      parmsObj[keyValue[1]] = decodeURIComponent(keyValue[2]);
     }
   }
   return parmsObj;
@@ -200,7 +200,7 @@ export function getRefObj(ref, context) {
     if (process.env.platform === 'weex') {
       refObj.weexRef = context.$refs && context.$refs[ref];
     } else if (process.env.platform === 'web') {
-      refObj.webDom = context.$refs[ref] && context.$refs[ref].$el || context.$refs[ref];
+      refObj.webDom = context.$refs[ref] && context.$refs[ref][0] || context.$refs[ref] && context.$refs[ref].$el || context.$refs[ref];
     }
     return refObj;
   }
