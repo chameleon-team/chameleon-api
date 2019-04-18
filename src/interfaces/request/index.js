@@ -10,6 +10,7 @@ export default function request({
   setting = {},
   resDataType = 'json'
 }) {
+  method = method.toUpperCase()
   let { apiPrefix = isNeedApiPrefix(url), jsonp = false, credentials = 'include' } = setting;
   let media = process.env.media;
   // 如果用户配置了domain
@@ -34,15 +35,10 @@ export default function request({
     }
   }
 
-  if (/^get$/gi.test(method)) {
-    if (data && !isEmpty(data)) {
-      url = buildQueryStringUrl(data, url)
-    }
-    if (typeof data !== 'string') {
-      data = ''
-    }
-  } else {
-    switch (contentType) {
+  if (['GET', 'PUT', 'DELETE'].indexOf(method) > -1) {
+    url = buildQueryStringUrl(data, url)
+  }
+  switch (contentType) {
     case 'form':
       if (typeof data !== 'string') {
         data = buildQueryStringUrl(data);
@@ -61,7 +57,9 @@ export default function request({
         'Content-Type': 'application/json'
       };
       break;
-    }
+  }
+  if (typeof data !== 'string') {
+    data = ''
   }
 
   return new Promise(function(resolve, reject) {
