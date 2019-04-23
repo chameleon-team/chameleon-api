@@ -7,7 +7,7 @@ interface UtilsInterface {
 <script cml-type="web">
 class Method implements UtilsInterface {
   createVideoContext(id, instance) {
-    console.log({id, instance})
+    return {};
   }
 }
 export default new Method();
@@ -25,6 +25,7 @@ export default new Method();
 <script cml-type="weex">
 class Method implements UtilsInterface {
   createVideoContext(id, instance) {
+    return {};
   }
 }
 export default new Method();
@@ -33,6 +34,7 @@ export default new Method();
 <script cml-type="alipay">
 class Method implements UtilsInterface {
   createVideoContext(id, instance) {
+    return {};
   }
 }
 export default new Method();
@@ -41,6 +43,7 @@ export default new Method();
 <script cml-type="baidu">
 class Method implements UtilsInterface {
   createVideoContext(id, instance) {
+    return {};
   }
 }
 export default new Method();
