@@ -29,7 +29,7 @@ import px2cpx from './src/interfaces/px2cpx/index.js';
 import cpx2px from './src/interfaces/cpx2px/index.js';
 import getLaunchOptionsSync from './src/interfaces/getLaunchOptionsSync/index.js';
 import inSDK from './src/interfaces/inSDK/index.js';
-
+import createVideoContext from './src/interfaces/createVideoContext/index.js';
 export default {
   requestAnimationFrame,
   cancelAnimationFrame,
@@ -61,5 +61,6 @@ export default {
   px2cpx,
   cpx2px,
   getLaunchOptionsSync,
-  inSDK
+  inSDK,
+  createVideoContext
 };
