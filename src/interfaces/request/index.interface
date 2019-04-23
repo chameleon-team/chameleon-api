@@ -245,7 +245,7 @@ export default new Method();
       } catch (e) {
         console.log(e)
       }
-      my.httpRequest({
+      my.request({
         url,
         method,
         data: body,
