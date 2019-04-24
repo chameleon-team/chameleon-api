@@ -243,9 +243,8 @@ export default new Method();
       try {
         body = JSON.parse(body)
       } catch (e) {
-        console.log(e)
       }
-      my.httpRequest({
+      let allData = {
         url,
         method,
         data: body,
@@ -265,7 +264,12 @@ export default new Method();
             headers: '{}'
           });
         }
-      });
+      }
+      if (my.request) {
+        my.request(allData);
+      } else {
+        my.httpRequest(allData);
+      }
     }
   }
 
