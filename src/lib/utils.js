@@ -111,7 +111,10 @@ export function addApiPrefix(url, domainkey) {
 export function tryJsonParse(some) {
   // 这里eslint提示也先别删除\[\]
   if (isStr(some) && /[\{\[].*[\}\]]/.test(some)) {
-    some = JSON.parse(some);
+    try{
+      some = JSON.parse(some);
+    } catch(err) {
+    }
   }
   return some;
 }
