@@ -108,7 +108,7 @@ interface UtilsInterface {
       };
       let separater = options.url.indexOf('?') > -1 ? '&' : '?'
       script = document.createElement('script');
-      script.src = options.url + `${separater}${name}=${callback}` + options.data || '';
+      script.src = options.url + `${separater}${name}=${callback}&` + options.data || '';
       script.type = 'text/javascript';
       script.async = true;
       script.onload = handler;
