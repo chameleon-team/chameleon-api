@@ -15,12 +15,12 @@ cml.showToast({
 })
 ```
 
-## 如何开发
+## 如何开发
 结合cml-dome仓库进行开发调试
 
-使用npm link的方式将本地仓库与cml-demo依赖建立链接
+使用npm link的方式将本地仓库与cml-demo依赖建立链接
 
-实现cml-demo依赖本地chameleon-api进行开发
+实现cml-demo依赖本地chameleon-api进行开发
 
 ## 单元测试与覆盖率测试
 ```
