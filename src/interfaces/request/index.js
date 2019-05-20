@@ -37,6 +37,9 @@ export default function request({
 
   if (['GET', 'PUT', 'DELETE'].indexOf(method) > -1) {
     url = buildQueryStringUrl(data, url)
+    if (method == 'GET') {
+      data = ''
+    }
   }
   switch (contentType) {
     case 'form':
