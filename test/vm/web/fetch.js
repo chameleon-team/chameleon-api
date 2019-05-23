@@ -1,6 +1,7 @@
 module.exports = function (url, fetchOptions) {
+  let status = Math.random() > 0.4 ? 400 : 200;
   return Promise.resolve({
-    status: 200,
+    status: status,
     text: function () {
       var fromData = queryParse(fetchOptions.body);
       var fromDataLength = Object.keys(fromData).length;
