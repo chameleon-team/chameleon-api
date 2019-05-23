@@ -96,7 +96,7 @@ class Method implements AudioInterfaceInterface {
         console.log('interval')
         audioInstance.then((res) => {
           weexAudio.getWeexAudioCurrentPos({id:res.data.id},function(currentPosRes){
-            audioContext.currentTime = currentPosRes.data && currentPosRes.data.mesc/1000;
+            audioContext.currentTime = currentPosRes.data && currentPosRes.data.msec/1000;
             audioContext.duration = res.data && res.data.duration/1000
             events.emit('onTimeUpdate');
           })

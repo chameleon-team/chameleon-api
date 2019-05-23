@@ -61,7 +61,8 @@ export const getWeexAudioCurrentPos = function(param,cb = () => {}) {
 }
 export const destroyAudio = function(param,cb = () => {}){
   cmlBridge.destroyAudio(param,function(res){
-    if(error == 0){
+    let {errno,msg} = res; 
+    if(errno == 0){
       cb(res);
     }
   })
