@@ -33,7 +33,7 @@
         "src"
     ],
     "dependencies": {
-        "chameleon-bridge": "0.1.2",
+        "chameleon-bridge": "^0.1.5-alpha.0",
         "child_process": "^1.0.2",
         "events": "^3.0.0",
         "fetch-detector": "^1.0.1",
