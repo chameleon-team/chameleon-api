@@ -27,7 +27,7 @@ interface UtilsInterface {
   import { parseHeader } from './common.js';
 
 
-  // web端接口实现
+  // web端接口实现
   class Method implements UtilsInterface {
     request(params) {
       let {
@@ -205,7 +205,7 @@ export default new Method();
       } = params;
       swan.request({
         url,
-        data:body,
+        data: body || {},
         dataType: 'text',
         method,
         header: headers,
