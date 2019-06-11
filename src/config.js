@@ -4,6 +4,7 @@ const api = {
       sdk: 'alert',
       web: 'alert',
       wx: 'showModal',
+      qq: 'showModal',
       baidu: 'showModal',
       alipay: 'alert',
       weex: 'modal.alert'
@@ -15,6 +16,7 @@ const api = {
       sdk: 'cancelAnimationFrame',
       web: 'cancelAnimationFrame',
       wx: 'cancelAnimationFrame',
+      qq: 'cancelAnimationFrame',
       baidu: 'cancelAnimationFrame',
       weex: 'cancelAnimationFrame',
       alipay: 'cancelAnimationFrame'
@@ -26,6 +28,7 @@ const api = {
       sdk: 'canIUse',
       web: 'canIUse',
       wx: 'canIUse',
+      qq: 'canIUse',
       baidu: 'canIUse',
       weex: 'canIUse',
       alipay: 'canIUse'
@@ -37,6 +40,7 @@ const api = {
       sdk: 'inSDK',
       web: 'inSDK',
       wx: '',
+      qq: '',
       baidu: '',
       weex: ''
     }
@@ -46,6 +50,7 @@ const api = {
       sdk: 'chooseImage',
       web: 'chooseImage',
       wx: 'chooseImage',
+      qq: 'chooseImage',
       baidu: 'chooseImage',
       weex: '',
       alipay: 'chooseImage'
@@ -56,6 +61,7 @@ const api = {
       sdk: 'close',
       web: 'close',
       wx: 'navigateBack',
+      qq: 'navigateBack',
       baidu: 'navigateBack',
       weex: '',
       alipay: 'navigateBack'
@@ -66,6 +72,7 @@ const api = {
       sdk: 'confirm',
       web: 'confirm',
       wx: 'showModal',
+      qq: 'showModal',
       baidu: 'showModal',
       weex: 'modal.confirm',
       alipay: 'confirm'
@@ -76,6 +83,7 @@ const api = {
       sdk: 'getSystemInfo',
       web: 'getSystemInfo',
       wx: 'getSystemInfoSync',
+      qq: 'getSystemInfoSync',
       baidu: 'getSystemInfoSync',
       weex: 'getSystemInfo',
       alipay: 'getSystemInfoSync'
@@ -86,6 +94,7 @@ const api = {
       sdk: 'request',
       web: 'fetch',
       wx: 'request',
+      qq: 'request',
       baidu: 'request',
       weex: 'fetch',
       alipay: 'httpRequest'
@@ -96,6 +105,7 @@ const api = {
       sdk: 'getClipBoardData',
       web: 'getClipboardData',
       wx: 'getClipboardData',
+      qq: 'getClipboardData',
       baidu: 'getClipboardData',
       weex: 'clipboard.getString',
       alipay: 'getClipboard'
@@ -106,6 +116,7 @@ const api = {
       sdk: 'getLocationInfo',
       web: 'getCurrentPosition',
       wx: 'getLocation',
+      qq: 'getLocation',
       baidu: 'getLocation',
       weex: '',
       alipay: 'getLocation'
@@ -116,6 +127,7 @@ const api = {
       sdk: 'getComponentRect',
       web: 'getComputedStyle',
       wx: 'createSelectorQuery',
+      qq: 'createSelectorQuery',
       baidu: 'createSelectorQuery',
       weex: 'getComponentRect',
       alipay: ''
@@ -126,6 +138,7 @@ const api = {
       sdk: 'getStorage',
       web: 'localStorage.getItem',
       wx: 'getStorageSync',
+      qq: 'getStorageSync',
       baidu: 'getStorageSync',
       weex: 'storage.getItem',
       alipay: 'getStorageSync'
@@ -136,6 +149,7 @@ const api = {
       sdk: 'getSystemInfo',
       web: 'getSystemInfo',
       wx: 'getSystemInfo',
+      qq: 'getSystemInfo',
       baidu: 'getSystemInfo',
       weex: 'getSystemInfo',
       alipay: 'getSystemInfo'
@@ -146,6 +160,7 @@ const api = {
       sdk: 'initSocket',
       web: 'initSocket',
       wx: 'connectSocket',
+      qq: 'connectSocket',
       baidu: 'connectSocket',
       weex: '',
       alipay: 'connectSocket'
@@ -156,6 +171,7 @@ const api = {
       sdk: 'getQueryObjSync',
       web: 'location.href',
       wx: 'getLaunchOptionsSync',
+      qq: 'getLaunchOptionsSync',
       baidu: '',
       weex: 'weex.config.bundleUrl',
       alipay: ''
@@ -166,6 +182,7 @@ const api = {
       sdk: 'navigateBack',
       web: 'navigateBack',
       wx: 'navigateBack',
+      qq: 'navigateBack',
       baidu: 'navigateBack',
       weex: 'navigateBack',
       alipay: 'navigateBack'
@@ -176,6 +193,7 @@ const api = {
       sdk: 'navigateTo',
       web: 'navigateTo',
       wx: 'navigateTo',
+      qq: 'navigateTo',
       baidu: 'navigateTo',
       weex: 'navigateTo',
       alipay: 'navigateTo'
@@ -186,6 +204,7 @@ const api = {
       sdk: 'open',
       web: 'location.href',
       wx: 'navigateToMiniProgram',
+      qq: 'navigateToMiniProgram',
       baidu: 'navigateToSmartProgram',
       weex: 'navigator.push',
       alipay: 'navigateToMiniProgram'
@@ -196,6 +215,7 @@ const api = {
       sdk: 'request',
       web: 'fetch',
       wx: 'request',
+      qq: 'request',
       baidu: 'request',
       weex: 'fetch',
       alipay: 'httpRequest'
@@ -206,6 +226,7 @@ const api = {
       sdk: 'getSystemInfo',
       web: 'getSystemInfo',
       wx: 'getSystemInfoSync',
+      qq: 'getSystemInfoSync',
       baidu: 'getSystemInfoSync',
       weex: 'getSystemInfo',
       alipay: ''
@@ -216,6 +237,7 @@ const api = {
       sdk: 'redirectTo',
       web: 'router.replace',
       wx: 'redirectTo',
+      qq: 'redirectTo',
       baidu: 'redirectTo',
       weex: 'router.replace',
       alipay: 'redirectTo'
@@ -226,6 +248,7 @@ const api = {
       sdk: 'reload',
       web: 'location.reload',
       wx: '',
+      qq: '',
       baidu: '',
       weex: '',
       alipay: ''
@@ -236,6 +259,7 @@ const api = {
       sdk: 'removeStorage',
       web: 'localStorage.removeItem',
       wx: 'removeStorageSync',
+      qq: 'removeStorageSync',
       baidu: 'removeStorageSync',
       weex: 'storage.removeItem',
       alipay: 'removeStorageSync'
@@ -246,6 +270,7 @@ const api = {
       sdk: 'request',
       web: 'fetch',
       wx: 'request',
+      qq: 'request',
       baidu: 'request',
       weex: 'fetch',
       alipay: 'httpRequest'
@@ -257,6 +282,7 @@ const api = {
       sdk: 'setTimeout',
       web: 'requestAnimationFrame',
       wx: 'setTimeout',
+      qq: 'setTimeout',
       baidu: 'setTimeout',
       weex: 'requestAnimationFrame',
       alipay: 'requestAnimationFrame'
@@ -267,6 +293,7 @@ const api = {
       sdk: 'setClipBoardData',
       web: 'setClipBoardData',
       wx: 'setClipBoardData',
+      qq: 'setClipBoardData',
       baidu: 'setClipBoardData',
       weex: 'clipboard.setString',
       alipay: 'setClipboard'
@@ -277,6 +304,7 @@ const api = {
       sdk: 'setStorage',
       web: 'localStorage.setItem',
       wx: 'setStorageSync',
+      qq: 'setStorageSync',
       baidu: 'setStorageSync',
       weex: 'storage.setItem',
       alipay: 'setStorageSync'
@@ -287,6 +315,7 @@ const api = {
       sdk: 'setTitle',
       web: 'document.title',
       wx: 'setNavigationBarTitle',
+      qq: 'setNavigationBarTitle',
       baidu: 'setNavigationBarTitle',
       weex: '',
       alipay: 'setNavigationBar'
@@ -297,6 +326,7 @@ const api = {
       sdk: 'showToast',
       web: 'showToast',
       wx: 'showToast',
+      qq: 'showToast',
       baidu: 'showToast',
       weex: 'modal.toast',
       alipay: 'showToast'

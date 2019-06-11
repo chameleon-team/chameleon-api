@@ -65,6 +65,22 @@ export default new Method();
 
 </script>
 
+<script cml-type="qq">
+class Method implements uiInterface {
+  showToast(opt) {
+    let { message, duration } = opt;
+    qq.showToast({
+      icon: 'none',
+      title: message,
+      duration: duration
+    });
+  }
+}
+
+export default new Method();
+
+</script>
+
 <script cml-type="baidu">
 class Method implements uiInterface {
   showToast(opt) {

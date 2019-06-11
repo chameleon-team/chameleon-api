@@ -185,6 +185,50 @@ interface ClipBoardDataInterface {
     export default new Method();
 </script>
 
+<script cml-type="qq">
+    class Method implements ClipBoardDataInterface {
+      getClipBoardData(cb) {
+        qq.getClipboardData({
+          success : res => {
+            cb({
+              errno: 0,
+              errMsg: '',
+              data: res.data
+            });
+          },
+          fail:res => {
+            cb({
+              errno: -1,
+              errMsg : 'qq.getClipboardData fail',
+              data: ''
+            });
+          }
+        });
+      }
+      setClipBoardData(text, cb) {
+        qq.setClipboardData({
+          data: text,
+          success: res => {
+            cb({
+              errno: 0,
+              errMsg: '',
+              data : text
+            });
+          },
+          fail:res => {
+            cb({
+              errno: -1,
+              data: '',
+              errMsg : 'qq.setClipboardData fail'
+            });
+          }
+        });
+      }
+    }
+
+    export default new Method();
+</script>
+
 <script cml-type="baidu">
     class Method implements ClipBoardDataInterface {
       getClipBoardData(cb) {

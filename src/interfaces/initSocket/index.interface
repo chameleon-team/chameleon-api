@@ -45,6 +45,20 @@ export default new Method();
 
 </script>
 
+<script cml-type="qq">
+
+import Socket from './qqSocket.js';
+
+class Method implements socketInterface {
+  initSocket(url) {
+    return new Socket(url);
+  }
+}
+
+export default new Method();
+
+</script>
+
 <script cml-type="baidu">
 
 import Socket from './baiduSocket.js';

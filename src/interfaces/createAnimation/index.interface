@@ -239,6 +239,72 @@
   export default new Method();
 </script>
 
+<script cml-type="qq">
+  import {
+    commonLoader as s_commonLoader,
+    cacheTransformStylesLoader as s_cacheTransformStylesLoader,
+  } from './styleLoader/common';
+  import {
+    transformLoader as s_transformLoader,
+  } from './styleLoader/qq';
+  import {
+    commonLoader as d_commonLoader,
+    cacheTransformOriginLoader as d_cacheTransformOriginLoader,
+  } from './descriptionLoader/common';
+  import {
+    stylePipe,
+    descriptionPipe,
+  } from './_util';
+
+  const styleLoaderQueue = [s_commonLoader, s_cacheTransformStylesLoader, s_transformLoader];
+  const descriptionLoaderQueue = [d_commonLoader, d_cacheTransformOriginLoader];
+
+  const createAnimationFuc = (quene) => {
+    const animation = qq.createAnimation();
+    const cbs = {};
+    quene.forEach((tick, i) => {
+      const { styles, descriptions } = tick;
+      cbs[i] = descriptions.cb
+      Object.keys(styles).forEach((key) => {
+        const value = styles[key];
+
+        animation[key](value);
+      });
+
+      animation.step(descriptions);
+    });
+
+    const temp = animation.export();
+    temp.cbs = cbs;
+    temp.index = 0;
+
+    return temp;
+  };
+
+  class Method implements CreateAnimationInterface {
+    initAnimation() {}
+    checkNumber(number) {}
+    checkString(string) {}
+    checkObject(object) {}
+
+    getViewportWidth() {
+      const { windowWidth } = qq.getSystemInfoSync();
+      return windowWidth;
+    }
+
+    exportMiddleWare(param) {
+      return createAnimationFuc(param.updateQueue.map(function(tick) {
+        return {
+          styles: stylePipe(tick.styles, tick.descriptions, styleLoaderQueue, param.id),
+          descriptions: descriptionPipe(tick.descriptions, tick.styles, descriptionLoaderQueue, param.id)
+        };
+      }));
+    }
+  }
+
+  export default new Method();
+</script>
+
 <script cml-type="baidu">
   import {
     commonLoader as s_commonLoader,

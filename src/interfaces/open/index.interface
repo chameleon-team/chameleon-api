@@ -85,6 +85,24 @@ export default new Method();
 
 </script>
 
+<script cml-type="qq">
+import {
+  tryJsonParse,
+  getOpenObj,
+  buildQueryStringUrl,
+} from '../../lib/utils.js';
+class Method implements openPageInterface {
+
+  open(url, commonPatchParams, extraOptions) {
+    url = buildQueryStringUrl(commonPatchParams, url)    
+    qq.navigateToMiniProgram(getOpenObj(url).qq);
+  }
+}
+
+export default new Method();
+
+</script>
+
 <script cml-type="baidu">
 import {
   tryJsonParse,
