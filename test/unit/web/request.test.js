@@ -14,6 +14,10 @@ describe('请求数据', function () {
       header
     }).then(function (res) {
       expect(res.errno).to.equal('0');
+    }, function(err) {
+      expect(typeof err.data).to.equal('object');
+      expect(typeof err.headers).to.equal('object');
+      expect(typeof err.status).to.equal('number');
     })
   })
 
@@ -25,6 +29,10 @@ describe('请求数据', function () {
       resDataType
     }).then(function (res) {
       expect(res.name).to.equal('vava');
+    }, function(err) {
+      expect(typeof err.data).to.equal('object');
+      expect(typeof err.headers).to.equal('object');
+      expect(typeof err.status).to.equal('number');
     })
   })
 
@@ -38,6 +46,10 @@ describe('请求数据', function () {
       resDataType
     }).then(function (res) {
       expect(res.name).to.equal('vava');
+    }, function(err) {
+      expect(typeof err.data).to.equal('object');
+      expect(typeof err.headers).to.equal('object');
+      expect(typeof err.status).to.equal('number');
     })
   })
 
@@ -50,6 +62,10 @@ describe('请求数据', function () {
       resDataType
     }).then(function (res) {
       expect(res.name).to.equal('vava');
+    }, function(err) {
+      expect(typeof err.data).to.equal('object');
+      expect(typeof err.headers).to.equal('object');
+      expect(typeof err.status).to.equal('number');
     })
   })
 
@@ -61,6 +77,10 @@ describe('请求数据', function () {
       resDataType
     }).then(function (res) {
       expect(res.errno).to.equal('0');
+    }, function(err) {
+      expect(typeof err.data).to.equal('object');
+      expect(typeof err.headers).to.equal('object');
+      expect(typeof err.status).to.equal('number');
     })
   })
 
@@ -73,6 +93,10 @@ describe('请求数据', function () {
     }).then(function (res) {
       expect(res.errno).to.equal('0');
     })
+  }, function(err) {
+    expect(typeof err.data).to.equal('object');
+    expect(typeof err.headers).to.equal('object');
+    expect(typeof err.status).to.equal('number');
   })
 
 })

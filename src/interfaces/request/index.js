@@ -1,5 +1,5 @@
 import index from './index.interface';
-import { isEmpty, isNeedApiPrefix, buildQueryStringUrl } from '../../lib/utils.js';
+import { isEmpty, isNeedApiPrefix, tryJsonParse, buildQueryStringUrl } from '../../lib/utils.js';
 export default function request({
   domain, 
   url,
@@ -37,6 +37,9 @@ export default function request({
 
   if (['GET', 'PUT', 'DELETE'].indexOf(method) > -1) {
     url = buildQueryStringUrl(data, url)
+    if (method == 'GET') {
+      data = ''
+    }
   }
   switch (contentType) {
     case 'form':
@@ -74,7 +77,7 @@ export default function request({
       method,
       headers: header,
       cb: function(res) {
-        let { status, data } = res;
+        let { status, headers, data } = res;
         if (status >= 200 && status < 300) {
           if (resDataType === 'json' && typeof data == 'string') {
             try {
@@ -85,7 +88,11 @@ export default function request({
           }
           resolve(data);
         } else {
-          reject('http statusCode:' + status);
+          if (resDataType === 'json') {
+            data = tryJsonParse(data);
+          }
+          headers = tryJsonParse(headers);
+          reject({ data, headers, status });
         }
       }
     });

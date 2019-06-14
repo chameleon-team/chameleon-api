@@ -50,6 +50,20 @@ export default new Method();
 
 </script>
 
+<script cml-type="qq">
+
+class Method implements closeInterface {
+  close() {
+    qq.navigateBack({
+      delta: 1
+    });
+  }
+}
+
+export default new Method();
+
+</script>
+
 <script cml-type="baidu">
 
 class Method implements closeInterface {

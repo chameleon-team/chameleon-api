@@ -51,6 +51,20 @@ export default new Method();
 
 </script>
 
+<script cml-type="qq">
+
+class Method implements setTitleInterface {
+  setTitle(title) {
+    qq.setNavigationBarTitle({
+      title
+    });
+  }
+}
+
+export default new Method();
+
+</script>
+
 <script cml-type="baidu">
 
 class Method implements setTitleInterface {

@@ -108,7 +108,7 @@ interface UtilsInterface {
       };
       let separater = options.url.indexOf('?') > -1 ? '&' : '?'
       script = document.createElement('script');
-      script.src = options.url + `${separater}${name}=${callback}` + options.data || '';
+      script.src = options.url + `${separater}${name}=${callback}&` + options.data || '';
       script.type = 'text/javascript';
       script.async = true;
       script.onload = handler;
@@ -195,6 +195,41 @@ export default new Method();
   export default new Method();
 </script>
 
+<script cml-type="qq">
+  import { parseHeader } from './common.js';
+
+  class Method implements UtilsInterface {
+    request(params) {
+      let {
+        url, body, headers, method, cb
+      } = params;
+      qq.request({
+        url,
+        data:body,
+        dataType: 'text',
+        method,
+        header: headers,
+        success: function(res) {
+          cb({
+            status: res.statusCode,
+            data: res.data, 
+            headers: parseHeader(res.header)
+          });
+        },
+        fail: function(e) {
+          cb({
+            status: -1,
+            data: 'request failed',
+            headers: '{}'
+          });
+        }
+      });
+    }
+  }
+
+  export default new Method();
+</script>
+
 <script cml-type="baidu">
   import { parseHeader } from './common.js';
 
@@ -243,9 +278,8 @@ export default new Method();
       try {
         body = JSON.parse(body)
       } catch (e) {
-        console.log(e)
       }
-      my.httpRequest({
+      let allData = {
         url,
         method,
         data: body,
@@ -265,7 +299,12 @@ export default new Method();
             headers: '{}'
           });
         }
-      });
+      }
+      if (my.request) {
+        my.request(allData);
+      } else {
+        my.httpRequest(allData);
+      }
     }
   }
 

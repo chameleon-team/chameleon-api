@@ -84,7 +84,7 @@ let cmlBridge = {
   close: function () {
     global.weex.visible.page.closed = true;
   },
-  open: function () {
+  openPage: function () {
     global.weex.visible.page.opened = true;
   },
   updateNaviTitle: function ({ title = '' }) {

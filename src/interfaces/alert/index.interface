@@ -84,6 +84,30 @@ export default new Method();
 
 </script>
 
+<script cml-type="qq">
+
+class Method implements uiInterface {
+  alert(opt, successCallBack, failCallBack) {
+    let { message, confirmTitle} = opt;
+    qq.showModal({
+      showCancel: false,
+      title: '',
+      content: message,
+      confirmText: confirmTitle,
+      success() {
+        successCallBack(confirmTitle);
+      },
+      fail() {
+        failCallBack(confirmTitle);
+      }
+    });
+  }
+}
+
+export default new Method();
+
+</script>
+
 <script cml-type="baidu">
 
 class Method implements uiInterface {
