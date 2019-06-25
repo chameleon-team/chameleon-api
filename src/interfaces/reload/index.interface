@@ -46,6 +46,17 @@ export default new Method();
 
 </script>
 
+<script cml-type="qq">
+
+class Method implements reloadInterface {
+  reload() {
+  }
+}
+
+export default new Method();
+
+</script>
+
 <script cml-type="baidu">
 
 class Method implements reloadInterface {

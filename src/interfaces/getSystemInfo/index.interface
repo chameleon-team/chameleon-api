@@ -140,6 +140,41 @@ export default new Method();
   export default new Method();
 </script>
 
+
+<script cml-type="qq">
+  class Method implements UserInfoInterface {
+    getSystemInfo(cb) {
+      qq.getSystemInfo({
+        success(res) {
+          let os = /android/i.test(res.system) ? 'android' : 'ios';
+          let viewportWidth = res.windowWidth;
+          let viewportHeight = res.windowHeight;
+          let systemInfo = {
+            os,
+            env: 'qq',
+            viewportWidth,
+            viewportHeight,
+            extraParams: res || {}
+          };
+          cb(systemInfo);
+        },
+        fail(err) {
+          let systemInfo = {
+            os: '',
+            env: 'qq',
+            viewportWidth: 0,
+            viewportHeight: 0,
+            extraParams: {}
+          };
+          cb(systemInfo);
+        }
+      });
+    }
+  }
+
+  export default new Method();
+</script>
+
 <script cml-type="baidu">
   class Method implements UserInfoInterface {
     getSystemInfo(cb) {

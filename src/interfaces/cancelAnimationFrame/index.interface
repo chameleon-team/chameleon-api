@@ -37,7 +37,6 @@ export default new Method();
 </script>
 
 <script cml-type="wx">
-  // web端接口实现
   import { cancelAnimationFrame } from '../requestAnimationFrame/animationShim.js';
   class Method implements CancelAnimationInterface {
     init() {
@@ -51,6 +50,22 @@ export default new Method();
 
   export default new Method();
 </script>
+
+<script cml-type="qq">
+  import { cancelAnimationFrame } from '../requestAnimationFrame/animationShim.js';
+  class Method implements CancelAnimationInterface {
+    init() {
+      return class AnimationFrameFactory {
+        cancelAnimationFrame() {
+          return cancelAnimationFrame;
+        }
+      };
+    }
+  }
+
+  export default new Method();
+</script>
+
 <script cml-type="baidu">
 
   import { cancelAnimationFrame } from '../requestAnimationFrame/animationShim.js';

@@ -1,6 +1,6 @@
 {
     "name": "chameleon-api",
-    "version": "0.4.17",
+    "version": "0.5.0-alpha.8",
     "description": "chameleon-api for chameleon app",
     "main": "index.js",
     "author": {
@@ -33,7 +33,7 @@
         "src"
     ],
     "dependencies": {
-        "chameleon-bridge": "0.1.10",
+        "chameleon-bridge": "0.2.0-alpha.5",
         "child_process": "^1.0.2",
         "events": "^3.0.0",
         "fetch-detector": "^1.0.1",

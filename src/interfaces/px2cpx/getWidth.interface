@@ -38,6 +38,17 @@ class Method implements getWidthInterface {
 export default new Method();
 </script>
 
+<script cml-type="qq">
+class Method implements getWidthInterface {
+  getWidth() {
+    const { windowWidth } = qq.getSystemInfoSync();
+    return windowWidth;
+  }
+}
+
+export default new Method();
+</script>
+
 <script cml-type="baidu">
 class Method implements getWidthInterface {
   getWidth() {

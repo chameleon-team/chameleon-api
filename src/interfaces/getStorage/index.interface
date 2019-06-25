@@ -112,6 +112,37 @@ export default new Method();
   export default new Method();
 </script>
 
+<script cml-type="qq">
+  class Method implements UtilsInterface {
+    getStorage(key, cb) {
+      try {
+        let data = qq.getStorageSync(key);
+        if (data && typeof data !== 'string') {
+          data = JSON.stringify(data);
+        }
+        cb({
+          errno: 0,
+          errMsg: 'success',
+          data: data !== null ? data : ''
+        });
+      } catch (e) {
+        let errMsg;
+        if (typeof e !== 'string') {
+          errMsg = JSON.stringify(e);
+        } else {
+          errMsg = e;
+        }
+        cb({
+          errno: -1,
+          errMsg,
+          data: ''
+        });
+      }
+    }
+  }
+  export default new Method();
+</script>
+
 <script cml-type="baidu">
   class Method implements UtilsInterface {
     getStorage(key, cb) {
