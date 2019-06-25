@@ -48,7 +48,7 @@ import { inSDK } from '../../lib/sdk/env';
 class Method implements openPageInterface {
   open(url, commonPatchParams, extraOptions) {
     if(inSDK()) {
-      cmlBridge.openPage({url, commonPatchParams, extraOptions});
+      cmlBridge.open({url, commonPatchParams, extraOptions});
     }else {
       const navigator = weex.requireModule('navigator');
       let weexUrlMatch = url.match(/(cml_addr|wx_addr)=([^&]*)/);
