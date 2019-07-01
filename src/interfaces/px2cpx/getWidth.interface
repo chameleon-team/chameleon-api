@@ -6,10 +6,10 @@ interface getWidthInterface {
 
 <script cml-type="web">
 import { getViewportSize } from './common.js';
+let { viewportWidth } = getViewportSize();
 
 class Method implements getWidthInterface {
   getWidth() {
-    let { viewportWidth } = getViewportSize();
     return viewportWidth;
   }
 }
@@ -28,9 +28,9 @@ export default new Method();
 </script>
 
 <script cml-type="wx">
+const { windowWidth } = wx.getSystemInfoSync();
 class Method implements getWidthInterface {
   getWidth() {
-    const { windowWidth } = wx.getSystemInfoSync();
     return windowWidth;
   }
 }
@@ -39,9 +39,9 @@ export default new Method();
 </script>
 
 <script cml-type="qq">
+const { windowWidth } = qq.getSystemInfoSync();
 class Method implements getWidthInterface {
   getWidth() {
-    const { windowWidth } = qq.getSystemInfoSync();
     return windowWidth;
   }
 }
@@ -50,9 +50,9 @@ export default new Method();
 </script>
 
 <script cml-type="baidu">
+const { windowWidth } = swan.getSystemInfoSync();
 class Method implements getWidthInterface {
   getWidth() {
-    const { windowWidth } = swan.getSystemInfoSync();
     return windowWidth;
   }
 }
@@ -62,9 +62,9 @@ export default new Method();
 
 
 <script cml-type="alipay">
+  const { windowWidth } = my.getSystemInfoSync();
   class Method implements getWidthInterface {
     getWidth() {
-      const { windowWidth } = my.getSystemInfoSync();
       return windowWidth;
     }
   }
