@@ -16,19 +16,18 @@
 </script>
 
 <script cml-type="web">
+import px2cpx from '../px2cpx/index.js';
   class Method implements UserInfoInterface {
     getRect(refObj, cb) {
       let dom = refObj.webDom;
-      let domComputedStyle = window.getComputedStyle(dom);
       let domRect = dom.getBoundingClientRect();
-      let scale = 750 / window.innerWidth;
       let rectObj = {
-        width: parseFloat(domComputedStyle.width) * scale || 0,
-        height: parseFloat(domComputedStyle.height) * scale || 0,
-        top: domRect && domRect.top * scale || 0,
-        left: domRect && domRect.left * scale || 0,
-        right: domRect && domRect.right * scale || 0,
-        bottom: domRect && domRect.bottom * scale || 0,
+        width: domRect && px2cpx(domRect.width) || 0,
+        height: domRect && px2cpx(domRect.height) || 0,
+        top: domRect && px2cpx(domRect.top) || 0,
+        left: domRect && px2cpx(domRect.left) || 0,
+        right: domRect && px2cpx(domRect.right) || 0,
+        bottom: domRect && px2cpx(domRect.bottom) || 0,
       };
       cb(rectObj);
     }
@@ -62,27 +61,22 @@ import cmlBridge from '../../lib/sdk/cmlBridge';
 
 
 <script cml-type="wx">
+  import px2cpx from '../px2cpx/index.js';
   class Method implements UserInfoInterface {
     getRect(refObj, cb) {
       let query = wx.createSelectorQuery().in(refObj.context);
       query.select(`#${refObj.id}`).boundingClientRect();
 
       query.exec(function(res) {
-        wx.getSystemInfo({
-          success: (systemRes) => {
-            let windowWidth = systemRes.windowWidth;
-            let scale = 750 / windowWidth;
-            let rectObj = {
-              width: res[0] && res[0].width * scale || 0,
-              height: res[0] && res[0].height * scale || 0,
-              left: res[0] && res[0].left * scale || 0,
-              top: res[0] && res[0].top * scale || 0,
-              right: res[0] && res[0].right * scale || 0,
-              bottom: res[0] && res[0].bottom * scale || 0
-            };
-            cb(rectObj);
-          }
-        });
+        let rectObj = {
+          width: res[0] && px2cpx(res[0].width) || 0,
+          height: res[0] && px2cpx(res[0].height) || 0,
+          left: res[0] && px2cpx(res[0].left) || 0,
+          top: res[0] && px2cpx(res[0].top) || 0,
+          right: res[0] && px2cpx(res[0].right) || 0,
+          bottom: res[0] && px2cpx(res[0].bottom) || 0
+        };
+        cb(rectObj);
       });
     }
   }
@@ -91,27 +85,22 @@ import cmlBridge from '../../lib/sdk/cmlBridge';
 </script>
 
 <script cml-type="qq">
+  import px2cpx from '../px2cpx/index.js';
   class Method implements UserInfoInterface {
     getRect(refObj, cb) {
       let query = qq.createSelectorQuery().in(refObj.context);
       query.select(`#${refObj.id}`).boundingClientRect();
 
       query.exec(function(res) {
-        qq.getSystemInfo({
-          success: (systemRes) => {
-            let windowWidth = systemRes.windowWidth;
-            let scale = 750 / windowWidth;
-            let rectObj = {
-              width: res[0] && res[0].width * scale || 0,
-              height: res[0] && res[0].height * scale || 0,
-              left: res[0] && res[0].left * scale || 0,
-              top: res[0] && res[0].top * scale || 0,
-              right: res[0] && res[0].right * scale || 0,
-              bottom: res[0] && res[0].bottom * scale || 0
-            };
-            cb(rectObj);
-          }
-        });
+        let rectObj = {
+          width: res[0] && px2cpx(res[0].width) || 0,
+          height: res[0] && px2cpx(res[0].height) || 0,
+          left: res[0] && px2cpx(res[0].left) || 0,
+          top: res[0] && px2cpx(res[0].top) || 0,
+          right: res[0] && px2cpx(res[0].right) || 0,
+          bottom: res[0] && px2cpx(res[0].bottom) || 0
+        };
+        cb(rectObj);
       });
     }
   }
@@ -120,27 +109,22 @@ import cmlBridge from '../../lib/sdk/cmlBridge';
 </script>
 
 <script cml-type="baidu">
+  import px2cpx from '../px2cpx/index.js';
   class Method implements UserInfoInterface {
     getRect(refObj, cb) {
       let query = swan.createSelectorQuery().in(refObj.context);
       query.select(`#${refObj.id}`).boundingClientRect();
 
       query.exec(function(res) {
-        swan.getSystemInfo({
-          success: (systemRes) => {
-            let windowWidth = systemRes.windowWidth;
-            let scale = 750 / windowWidth;
-            let rectObj = {
-              width: res[0] && res[0].width * scale || 0,
-              height: res[0] && res[0].height * scale || 0,
-              left: res[0] && res[0].left * scale || 0,
-              top: res[0] && res[0].top * scale || 0,
-              right: res[0] && res[0].right * scale || 0,
-              bottom: res[0] && res[0].bottom * scale || 0
-            };
-            cb(rectObj);
-          }
-        });
+        let rectObj = {
+          width: res[0] && px2cpx(res[0].width) || 0,
+          height: res[0] && px2cpx(res[0].height) || 0,
+          left: res[0] && px2cpx(res[0].left) || 0,
+          top: res[0] && px2cpx(res[0].top) || 0,
+          right: res[0] && px2cpx(res[0].right) || 0,
+          bottom: res[0] && px2cpx(res[0].bottom) || 0
+        };
+        cb(rectObj);
       });
     }
   }
@@ -149,27 +133,22 @@ import cmlBridge from '../../lib/sdk/cmlBridge';
 </script>
 
 <script cml-type="alipay">
+  import px2cpx from '../px2cpx/index.js';
   class Method implements UserInfoInterface {
     getRect(refObj, cb) {
       let query = my.createSelectorQuery();
       query.select(`#${refObj.id}`).boundingClientRect();
 
       query.exec(function(res) {
-        my.getSystemInfo({
-          success: (systemRes) => {
-            let windowWidth = systemRes.windowWidth;
-            let scale = 750 / windowWidth;
-            let rectObj = {
-              width: res[0] && res[0].width * scale || 0,
-              height: res[0] && res[0].height * scale || 0,
-              left: res[0] && res[0].left * scale || 0,
-              top: res[0] && res[0].top * scale || 0,
-              right: res[0] && res[0].right * scale || 0,
-              bottom: res[0] && res[0].bottom * scale || 0
-            };
-            cb(rectObj);
-          }
-        });
+        let rectObj = {
+          width: res[0] && px2cpx(res[0].width) || 0,
+          height: res[0] && px2cpx(res[0].height) || 0,
+          left: res[0] && px2cpx(res[0].left) || 0,
+          top: res[0] && px2cpx(res[0].top) || 0,
+          right: res[0] && px2cpx(res[0].right) || 0,
+          bottom: res[0] && px2cpx(res[0].bottom) || 0
+        };
+        cb(rectObj);
       });
     }
   }
