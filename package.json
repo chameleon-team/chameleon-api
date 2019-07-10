@@ -1,6 +1,6 @@
 {
     "name": "chameleon-api",
-    "version": "0.5.2",
+    "version": "0.5.3",
     "description": "chameleon-api for chameleon app",
     "main": "index.js",
     "author": {

@@ -20,8 +20,14 @@ interface UserInfoInterface {
   import { isIos } from '../../lib/web/ua';
   import { getViewportSize } from './common.js';
 
+  let systemInfo = null;
+
   class Method implements UserInfoInterface {
     getSystemInfo(cb) {
+      if (systemInfo) {
+        cb(systemInfo)
+        return 
+      }
       const os = isIos() ? 'ios' : 'android';
       let { viewportWidth, viewportHeight } = getViewportSize();
       if (inSDK()) {
@@ -29,7 +35,7 @@ interface UserInfoInterface {
           const {errno, data} = res;
           if(errno == 0) {
             const { os, viewportWidth, viewportHeight, extraParams, ...extra } = data;
-            cb({
+            systemInfo = {
               os,
               env: 'web',
               viewportWidth,
@@ -38,17 +44,19 @@ interface UserInfoInterface {
                 ...extraParams,
                 ...extra
               }
-            });
+            }
+            cb(systemInfo);
           }
         });
       } else {
-        cb({
+        systemInfo = {
           os,
           env: 'web',
           viewportWidth,
           viewportHeight,
           extraParams: {}
-        });
+        }
+        cb(systemInfo);
       }
     }
   }
@@ -59,15 +67,20 @@ interface UserInfoInterface {
 <script cml-type="weex">
 import cmlBridge from '../../lib/sdk/cmlBridge';
 import { inSDK } from '../../lib/sdk/env';
+let systemInfo = null;
 
 class Method implements UserInfoInterface {
   getSystemInfo(cb) {
+    if (systemInfo) {
+      cb(systemInfo)
+      return 
+    }
     if(inSDK()) {
       cmlBridge.getSystemInfo({}, function (res) {
         const {errno, data} = res;
         if(errno == 0) {
           const { os, viewportWidth, viewportHeight, extraParams, ...extra } = data;
-          cb({
+          systemInfo = {
             os,
             env: 'weex',
             viewportWidth,
@@ -76,7 +89,8 @@ class Method implements UserInfoInterface {
               ...extraParams,
               ...extra
             }
-          });
+          }
+          cb(systemInfo);
         }
       });
     }else {
@@ -86,7 +100,7 @@ class Method implements UserInfoInterface {
       let os = WXEnvironment.platform.toLowerCase();
       let extraParams = Object.assign({}, WXEnvironment);
 
-      let systemInfo = {
+      systemInfo = {
         os,
         env: 'weex',
         viewportWidth,
@@ -107,14 +121,20 @@ export default new Method();
 
 
 <script cml-type="wx">
+  let systemInfo = null;
+
   class Method implements UserInfoInterface {
     getSystemInfo(cb) {
+      if (systemInfo) {
+        cb(systemInfo)
+        return 
+      }
       wx.getSystemInfo({
         success(res) {
           let os = /android/i.test(res.system) ? 'android' : 'ios';
           let viewportWidth = res.windowWidth;
           let viewportHeight = res.windowHeight;
-          let systemInfo = {
+          systemInfo = {
             os,
             env: 'wx',
             viewportWidth,
@@ -124,14 +144,15 @@ export default new Method();
           cb(systemInfo);
         },
         fail(err) {
-          let systemInfo = {
+          // 获取失败时不做存储
+          let failSystemInfo = {
             os: '',
             env: 'wx',
             viewportWidth: 0,
             viewportHeight: 0,
             extraParams: {}
           };
-          cb(systemInfo);
+          cb(failSystemInfo);
         }
       });
     }
@@ -142,14 +163,20 @@ export default new Method();
 
 
 <script cml-type="qq">
+  let systemInfo = null;
+
   class Method implements UserInfoInterface {
     getSystemInfo(cb) {
+      if (systemInfo) {
+        cb(systemInfo)
+        return 
+      }
       qq.getSystemInfo({
         success(res) {
           let os = /android/i.test(res.system) ? 'android' : 'ios';
           let viewportWidth = res.windowWidth;
           let viewportHeight = res.windowHeight;
-          let systemInfo = {
+          systemInfo = {
             os,
             env: 'qq',
             viewportWidth,
@@ -159,14 +186,15 @@ export default new Method();
           cb(systemInfo);
         },
         fail(err) {
-          let systemInfo = {
+          // 获取失败时不做存储
+          let failSystemInfo = {
             os: '',
             env: 'qq',
             viewportWidth: 0,
             viewportHeight: 0,
             extraParams: {}
           };
-          cb(systemInfo);
+          cb(failSystemInfo);
         }
       });
     }
@@ -176,14 +204,19 @@ export default new Method();
 </script>
 
 <script cml-type="baidu">
+  let systemInfo = null;
   class Method implements UserInfoInterface {
     getSystemInfo(cb) {
+      if (systemInfo) {
+        cb(systemInfo)
+        return 
+      }
       swan.getSystemInfo({
         success(res) {
           let os = /android/i.test(res.system) ? 'android' : 'ios';
           let viewportWidth = res.windowWidth;
           let viewportHeight = res.windowHeight;
-          let systemInfo = {
+          systemInfo = {
             os,
             env: 'baidu',
             viewportWidth,
@@ -193,14 +226,15 @@ export default new Method();
           cb(systemInfo);
         },
         fail(err) {
-          let systemInfo = {
+          // 获取失败时不做存储
+          let failSystemInfo = {
             os: '',
             env: 'baidu',
             viewportWidth: 0,
             viewportHeight: 0,
             extraParams: {}
           };
-          cb(systemInfo);
+          cb(failSystemInfo);
         }
       });
     }
@@ -210,14 +244,19 @@ export default new Method();
 </script>
 
 <script cml-type="alipay">
+  let systemInfo = null;
   class Method implements UserInfoInterface {
     getSystemInfo(cb) {
+      if (systemInfo) {
+        cb(systemInfo)
+        return 
+      }
       my.getSystemInfo({
         success(res) {
           let os = res.platform === "iPhone" ? "ios" : "android";
           let viewportWidth = res.windowWidth;
           let viewportHeight = res.windowHeight;
-          let systemInfo = {
+          systemInfo = {
             os,
             env: 'alipay',
             viewportWidth,
@@ -227,14 +266,15 @@ export default new Method();
           cb(systemInfo);
         },
         fail(err) {
-          let systemInfo = {
+          // 获取失败时不做存储
+          let failSystemInfo = {
             os: '',
             env: 'alipay',
             viewportWidth: 0,
             viewportHeight: 0,
             extraParams: {}
           };
-          cb(systemInfo);
+          cb(failSystemInfo);
         }
       });
     }

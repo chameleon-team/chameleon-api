@@ -7,8 +7,8 @@ export default function getSystemInfo() {
       res.extraParams = tryJsonParse(res.extraParams);
       // px2viewpx
       const pxRpxRate = 750 / res.viewportWidth;
-      const viewportHeight = ( res.viewportHeight * pxRpxRate ).toFixed(3);
-      const viewportWidth = ( res.viewportWidth * pxRpxRate ).toFixed(3);
+      const viewportHeight = +( res.viewportHeight * pxRpxRate ).toFixed(3);
+      const viewportWidth = +( res.viewportWidth * pxRpxRate ).toFixed(3);
 
       if (res.os) {
         resolve({
