@@ -1,3 +1,6 @@
+### 0.5.4
+更新chameleon-bridge依赖 支持tt/quickapp
+
 ### 0.5.3
 缓存systemInfo insdk, 不再每次调用都重新获取
 
