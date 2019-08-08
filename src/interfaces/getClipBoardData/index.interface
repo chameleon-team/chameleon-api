@@ -288,7 +288,7 @@ interface ClipBoardDataInterface {
           fail:res => {
             cb({
               errno: -1,
-              errMsg : 'wx.getClipboardData fail',
+              errMsg : 'my.getClipboardData fail',
               data: ''
             });
           }
@@ -309,7 +309,7 @@ interface ClipBoardDataInterface {
             cb({
               errno: -1,
               data: '',
-              errMsg : 'swan.setClipboardData fail'
+              errMsg : 'my.setClipboardData fail'
             });
           }
         });

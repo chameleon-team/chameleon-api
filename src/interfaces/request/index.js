@@ -74,6 +74,7 @@ export default function request({
         jsonp, 
         credentials
       },
+      contentType,
       method,
       headers: header,
       cb: function(res) {
