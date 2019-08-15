@@ -13,7 +13,8 @@
     },
     "scripts": {
         "test": "sh test.sh",
-        "cover": "sh cover.sh"
+        "cover": "sh cover.sh",
+        "export": "sh ./export/export.sh"
     },
     "babel": {
         "presets": [
