@@ -13,7 +13,8 @@
     },
     "scripts": {
         "test": "sh test.sh",
-        "cover": "sh cover.sh"
+        "cover": "sh cover.sh",
+        "export": "sh ./export/export.sh"
     },
     "babel": {
         "presets": [
@@ -33,7 +34,7 @@
         "src"
     ],
     "dependencies": {
-        "chameleon-bridge": "0.1.11",
+        "chameleon-bridge": "0.2.0",
         "child_process": "^1.0.2",
         "events": "^3.0.0",
         "fetch-detector": "^1.0.1",

@@ -1,0 +1,22 @@
+{
+  "name": "@didi/chameleon-api-mpx",
+  "version": "0.0.2",
+  "description": "chameleon框架mpx端api",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "build": "npm version patch && npm  publish"
+  },
+  "keywords": [
+    "chameleon",
+    "api",
+    "mpx"
+  ],
+  "dependencies": {},
+  "files": [
+    "index.js"
+  ],
+  "author": "Chameleon-Team",
+  "license": "Apache",
+  "email": "ChameleonCore@didiglobal.com"
+}
