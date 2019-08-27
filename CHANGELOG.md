@@ -1,3 +1,6 @@
+### 1.0.0
+cml 1.0发布
+
 ### 0.5.4
 更新chameleon-bridge依赖 支持tt/quickapp
 
