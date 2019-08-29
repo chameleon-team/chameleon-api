@@ -21,7 +21,7 @@ export default class ChooseImageByJs {
     }, false);
   }
   chooseImage(params = {
-    quality: 0.9
+    quality: 60
   }, callback) {
     this.chooseImageCallback = callback;
     let MouseEvents = document.createEvent('MouseEvents');
@@ -57,12 +57,13 @@ export default class ChooseImageByJs {
         crop: false,
         quality: me.opt.quality,
         rotate: 0,
-        callback: function (dataURL, width, height) {
-          me.compress({
-            dataURL: dataURL
-          }, function (minData) {
-            me.chooseImageCallback(minData);
-          });
+        callback: function (dataURL) {
+          // me.compress({
+          //   dataURL: dataURL
+          // }, function (minData) {
+          //   me.chooseImageCallback(minData);
+          // });
+          me.chooseImageCallback(dataURL);
           me.fileInput.value = '';
         }
       });

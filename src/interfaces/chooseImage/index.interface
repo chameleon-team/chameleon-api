@@ -1,6 +1,7 @@
 <script cml-type="interface">
 type params = {
-  type: string
+  type: string,
+  quality:string
 }
 
 type callbackSuccessReturn = {
@@ -31,7 +32,6 @@ class Method implements chooseImageInterface {
   chooseImage(params, callbackSuccess, callbackFail) {
     if (inSDK()) {
       // 图片质量
-      params.quality = '60';
       bridge.chooseImage(params, function (res) {
         const {errno, data} = res;
         if(errno == 0) {
@@ -49,9 +49,11 @@ class Method implements chooseImageInterface {
         }
       });
     } else {
-      const cij = new ChooseImageByJs();
+      const cij = new ChooseImageByJs({
+        quality:params.quality
+      });
       cij.chooseImage({
-        quality: 0.8
+        quality:params.quality
       }, (base64) => {
         callbackSuccess({
           base64,
