@@ -42,7 +42,8 @@
       for (let i = 0; i < len; i++) {
         const info = updateQueue[i];
         current = current.then(() => {
-          return Velocity(elm, stylePipe(info.styles, info.descriptions, [s_completionLoader], elm), info.descriptions).then(() => { info.descriptions.cb(); });
+          var style = stylePipe(info.styles, info.descriptions, [s_completionLoader], elm)
+          return Velocity(elm, style, info.descriptions).then(() => { info.descriptions.cb(); });
         });
       }
     }

@@ -22,7 +22,7 @@ export const getRotateZ = (a, b, c, d, e, f) => {
 // 获取元素的transform信息
 const getTransform = (ele) => {
   var st = window.getComputedStyle(ele, null);
-
+  
   var tr = st.getPropertyValue("-webkit-transform") ||
          st.getPropertyValue("-moz-transform") ||
          st.getPropertyValue("-ms-transform") ||
@@ -35,14 +35,29 @@ const getTransform = (ele) => {
   // var scale = Math.sqrt(a * a + b * b);
   // arc sin, convert from radians to degrees, round
   // var sin = b / scale;
-
   const rotateZ = getRotateZ(a, b, c, d, e, f)
+  var style = ele.style.getPropertyValue('transform')
+  if (style == '') {return}
+  var styleArray = style.split(' ')
+  let obj ={
+    scaleX:'1',
+    scaleY:'1',
+    rotateZ:'0deg',
+    translateX:'0px',
+    translateY:'0px'
+  }
+  styleArray.map((item)=>{
+    let key = item.split('(')[0]
+    let value = item.split('(')[1].split(')')[0]
+    obj[key] = value
+  })
+
   return {
-    translateX: Number(e.trim()),
-    translateY: Number(f.trim()),
-    scaleX: Number(a.trim()),
-    scaleY: Number(d.trim()),
-    rotateZ
+    translateX: Number(obj.translateX.split('px')[0].trim()),
+    translateY: Number(obj.translateY.split('px')[0].trim()),
+    scaleX: Number(obj.scaleX.trim()),
+    scaleY: Number(obj.scaleX.trim()),
+    rotateZ:Number(obj.rotateZ.split('deg')[0].trim())
   }
   // var angle = Math.round(Math.asin(sin) * (180/Math.PI));
   // var angle = Math.round(Math.atan2(b, a) * (180 / Math.PI));
