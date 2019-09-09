@@ -1,4 +1,4 @@
-[![Build Status](https://travis-ci.org/beatles-chameleon/chameleon-api.svg?branch=master)](https://travis-ci.org/beatles-chameleon/chameleon-api)
+# chameleon-api  [![version](https://img.shields.io/npm/v/chameleon-tool.svg?style=flat)](https://www.npmjs.com/package/chameleon-api) [![Build Status](https://travis-ci.org/beatles-chameleon/chameleon-api.svg?branch=master)](https://travis-ci.org/beatles-chameleon/chameleon-api)
 
 # 说明
 本仓库为chameleon的api的相关代码，chameleon 支持大量基础API，对外提供统一的接口，以模块的方式引入chameleon-api进行使用。
