@@ -73,7 +73,7 @@ import cmlBridge from '../../lib/sdk/cmlBridge';
 class Method implements chooseImageInterface {
   chooseImage(params, callbackSuccess, callbackFail) {
     // 图片质量
-    params.quality = '60';
+    params.quality = params.quality || '60';
     cmlBridge.chooseImage(params, function (res) {
       const {errno, data} = res;
       if(errno == 0) {

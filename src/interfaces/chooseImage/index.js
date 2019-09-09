@@ -1,12 +1,16 @@
 import index from './index.interface';
 
-export default function chooseImage({
-    type = 'choice',
-    quality = '60'
-  }) {
+export default function chooseImage(
+  params = {
+    type: 'choice',
+    quality: '60'
+  }
+) {
+  params.type = params.type || 'choice';
+  params.quality = params.quality || '60';
   return new Promise((resolve, reject) => {
     index.chooseImage(
-      {tyep,quality},
+      params,
       (res) => {
         resolve(res);
       },
