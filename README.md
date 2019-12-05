@@ -28,3 +28,15 @@ npm i
 npm run test
 npm run cover
 ```
+
+## 发布正式版本:
+
+修改package.json中version
+
+sh publish.sh
+
+## 发布alpha版本:
+
+修改package.json中version
+
+sh publish.alpha.sh
