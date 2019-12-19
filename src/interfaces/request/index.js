@@ -47,8 +47,8 @@ export default function request({
         data = buildQueryStringUrl(data);
       }
       header = {
-        ...header,
-        'Content-Type': 'application/x-www-form-urlencoded'
+        'Content-Type': 'application/x-www-form-urlencoded',
+        ...header
       };
       break;
     case 'json':
@@ -56,8 +56,8 @@ export default function request({
         data = JSON.stringify(data);
       }
       header = {
-        ...header,
-        'Content-Type': 'application/json'
+        'Content-Type': 'application/json',
+        ...header
       };
       break;
   }
