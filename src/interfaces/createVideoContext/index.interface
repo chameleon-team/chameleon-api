@@ -22,6 +22,15 @@ class Method implements UtilsInterface {
 export default new Method();
 </script>
 
+<script cml-type="tt">
+class Method implements UtilsInterface {
+  createVideoContext(id, instance) {
+    return tt.createVideoContext('cmlVideo', instance.selectComponent('#' + id));
+  }
+}
+export default new Method();
+</script>
+
 <script cml-type="qq">
 class Method implements UtilsInterface {
   createVideoContext(id, instance) {

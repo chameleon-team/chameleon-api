@@ -84,6 +84,20 @@ import { buildQueryStringUrl } from '../../lib/utils.js';
   export default new Method();
 </script>
 
+<script cml-type="tt">
+import { buildQueryStringUrl } from '../../lib/utils.js';
+  class Method implements UtilsInterface {
+    redirectTo(opt) {
+      let {path, query} = opt;
+      path = buildQueryStringUrl(query, path)
+      tt.redirectTo({
+        url: path
+      });
+    }
+  }
+  export default new Method();
+</script>
+
 <script cml-type="qq">
 import { buildQueryStringUrl } from '../../lib/utils.js';
   class Method implements UtilsInterface {

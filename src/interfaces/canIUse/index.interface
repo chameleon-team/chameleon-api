@@ -102,6 +102,31 @@ class Method implements canIUseInterface {
 export default new Method();
 </script>
 
+<script cml-type="tt">
+import { api } from '../../config';
+
+class Method implements canIUseInterface {
+  canIUse(metName, cb) {
+    if(!api[metName]) {
+      cb(false);
+      return;
+    }
+
+    const allCan = api[metName].allCanUse;
+    if(allCan) {
+      cb(true);
+      return;
+    }
+
+    const method = api[metName].baseOn.wx;
+    const result = tt.canIUse(method);
+    cb(result);
+  }
+}
+
+export default new Method();
+</script>
+
 <script cml-type="qq">
 import { api } from '../../config';
 

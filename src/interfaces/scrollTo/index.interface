@@ -66,6 +66,20 @@ const dom = weex.requireModule('dom');
   export default new Method();
 </script>
 
+<script cml-type="tt">
+  import cpx2px from '../cpx2px/index.js';
+  class Method implements UserInfoInterface {
+    scrollTo(opt) {
+      tt.pageScrollTo({
+        scrollTop: cpx2px(opt.scrollTop),
+        duration: opt.duration
+      })
+    }
+  }
+
+  export default new Method();
+</script>
+
 <script cml-type="qq">
   import cpx2px from '../cpx2px/index.js';
   class Method implements UserInfoInterface {

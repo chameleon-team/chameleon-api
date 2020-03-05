@@ -84,6 +84,30 @@ import cmlBridge from '../../lib/sdk/cmlBridge';
   export default new Method();
 </script>
 
+<script cml-type="tt">
+  import px2cpx from '../px2cpx/index.js';
+  class Method implements UserInfoInterface {
+    getRect(refObj, cb) {
+      let query = tt.createSelectorQuery().in(refObj.context);
+      query.select(`#${refObj.id}`).boundingClientRect();
+
+      query.exec(function(res) {
+        let rectObj = {
+          width: res[0] && px2cpx(res[0].width) || 0,
+          height: res[0] && px2cpx(res[0].height) || 0,
+          left: res[0] && px2cpx(res[0].left) || 0,
+          top: res[0] && px2cpx(res[0].top) || 0,
+          right: res[0] && px2cpx(res[0].right) || 0,
+          bottom: res[0] && px2cpx(res[0].bottom) || 0
+        };
+        cb(rectObj);
+      });
+    }
+  }
+
+  export default new Method();
+</script>
+
 <script cml-type="qq">
   import px2cpx from '../px2cpx/index.js';
   class Method implements UserInfoInterface {

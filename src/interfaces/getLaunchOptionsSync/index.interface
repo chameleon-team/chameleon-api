@@ -45,6 +45,17 @@ export default new Method();
 
 </script>
 
+<script cml-type="tt">
+class Method implements launchOptionsInterface {
+  getLaunchOptionsSync() {
+    return tt.getLaunchOptionsSync();
+  }
+}
+
+export default new Method();
+
+</script>
+
 <script cml-type="qq">
 class Method implements launchOptionsInterface {
   getLaunchOptionsSync() {
