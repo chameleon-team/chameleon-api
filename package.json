@@ -1,5 +1,5 @@
 {
-    "name": "chameleon-api",
+    "name": "@didi/chameleon-api",
     "version": "1.0.3-alpha.1",
     "description": "chameleon-api for chameleon app",
     "main": "index.js",

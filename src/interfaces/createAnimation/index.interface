@@ -1,7 +1,7 @@
 <script cml-type="interface">
   interface CreateAnimationInterface {
     initAnimation(): void;
-    exportMiddleWare(param: CMLObject): CMLObject;
+    // exportMiddleWare(param: CMLObject): CMLObject;
     checkNumber(param: Number): void;
     checkString(param: String): void;
     checkObject(param: CMLObject): void;
@@ -274,12 +274,7 @@
 
       animation.step(descriptions);
     });
-
-    const temp = animation.export();
-    temp.cbs = cbs;
-    temp.index = 0;
-
-    return temp;
+    return animation.export();
   };
 
   class Method implements CreateAnimationInterface {
