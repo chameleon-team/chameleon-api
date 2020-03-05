@@ -7,7 +7,7 @@
 
 例如:
 ``` javascript
-import cml from 'chameleon-api'
+import cml from '@didi/chameleon-api'
 
 cml.showToast({
   message: 'Hello world!',
