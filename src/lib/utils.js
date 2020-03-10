@@ -39,7 +39,7 @@ export function isEmpty(obj) {
   return true;
 }
 
-export function noop() { }
+export function noop() {}
 
 export function parseQuery(obj) {
   let str = '&';
@@ -87,6 +87,10 @@ export function queryParse(search = '') {
       parmsObj[keyValue[1]] = decodeURIComponent(keyValue[2]);
     }
   }
+  if (JSON.stringify(parmsObj) === '{}') {
+    // 如果解析失败，返回原值
+    return search;
+  }
   return parmsObj;
 }
 
@@ -113,8 +117,7 @@ export function tryJsonParse(some) {
   if (isStr(some) && /[\{\[].*[\}\]]/.test(some)) {
     try {
       some = JSON.parse(some);
-    } catch (err) {
-    }
+    } catch (err) {}
   }
   return some;
 }
@@ -141,22 +144,22 @@ export function getOpenObj(url) {
   const queryObj = getQueryParamsFromUrl(url);
   const {
     path = '',
-    envVersion = '',
-    weixin_appid = '',
-    weixin_path = '',
-    weixin_envVersion = '',
-    qq_appid = '',
-    qq_path = '',
-    qq_envVersion = '',
-    baidu_appid = '',
-    baidu_path = '',
-    baidu_envVersion = '',
-    alipay_appid = '',
-    alipay_path = '',
-    alipay_envVersion = '',
-    weex_path = '',
-    cml_addr = '',
-    ...extraData
+      envVersion = '',
+      weixin_appid = '',
+      weixin_path = '',
+      weixin_envVersion = '',
+      qq_appid = '',
+      qq_path = '',
+      qq_envVersion = '',
+      baidu_appid = '',
+      baidu_path = '',
+      baidu_envVersion = '',
+      alipay_appid = '',
+      alipay_path = '',
+      alipay_envVersion = '',
+      weex_path = '',
+      cml_addr = '',
+      ...extraData
   } = queryObj;
 
   let objTreated = {

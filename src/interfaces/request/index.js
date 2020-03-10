@@ -1,27 +1,37 @@
 import index from './index.interface';
-import { isEmpty, isNeedApiPrefix, tryJsonParse, buildQueryStringUrl } from '../../lib/utils.js';
+import {
+  isEmpty,
+  isNeedApiPrefix,
+  tryJsonParse,
+  buildQueryStringUrl
+} from '../../lib/utils.js';
 export default function request({
-  domain, 
+  domain,
   url,
   data = {},
-  method = 'GET', 
+  method = 'GET',
   header = {},
   contentType = 'form',
   setting = {},
-  resDataType = 'json'
+  resDataType = 'json',
+  needReturnOthersResponse = false
 }) {
   method = method.toUpperCase()
-  let { apiPrefix = isNeedApiPrefix(url), jsonp = false, credentials = 'include' } = setting;
+  let {
+    apiPrefix = isNeedApiPrefix(url), jsonp = false, credentials = 'include'
+  } = setting;
   let media = process.env.media;
   // 如果用户配置了domain
-  if(domain) {
+  if (domain) {
     if (media === 'dev') {
       // dev模式对domain做分割处理
-      if(~domain.indexOf('__DEV_SPLIT__')) {
+      if (~domain.indexOf('__DEV_SPLIT__')) {
         let splitArray = domain.split('__DEV_SPLIT__');
         domain = splitArray[0];
         let domainKey = splitArray[1];
-        url = buildQueryStringUrl({ domainKey }, url)
+        url = buildQueryStringUrl({
+          domainKey
+        }, url)
       }
     }
     url = domain + url;
@@ -65,20 +75,24 @@ export default function request({
     data = ''
   }
 
-  return new Promise(function(resolve, reject) {
+  return new Promise(function (resolve, reject) {
     index.request({
       url,
       body: data,
       setting: {
         apiPrefix,
-        jsonp, 
+        jsonp,
         credentials
       },
       contentType,
       method,
       headers: header,
-      cb: function(res) {
-        let { status, headers, data } = res;
+      cb: function (res) {
+        let {
+          status,
+          headers,
+          data
+        } = res;
         if (status >= 200 && status < 300) {
           if (resDataType === 'json' && typeof data == 'string') {
             try {
@@ -87,13 +101,25 @@ export default function request({
               console.warn('resDataType默认为"json", 尝试对返回内容进行JSON.parse, 但似乎出了些问题(若不希望对结果进行parse, 可传入resDataType: "text"): ', e)
             }
           }
+          if (needReturnOthersResponse) {
+            resolve({
+              data,
+              headers,
+              status
+            });
+            return;
+          }
           resolve(data);
         } else {
           if (resDataType === 'json') {
             data = tryJsonParse(data);
           }
           headers = tryJsonParse(headers);
-          reject({ data, headers, status });
+          reject({
+            data,
+            headers,
+            status
+          });
         }
       }
     });
