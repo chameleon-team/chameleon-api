@@ -42,7 +42,7 @@ class Method implements AudioInterfaceInterface {
     }
     //web端onStop  offStop 以及stop方法需要模拟,小程序端的stop方法会触发pause
     audioContext.stop = function(){
-      this.audioContext.pause();
+      this.pause();
       this.seek(0);
       events.emit('onStop');
     }
