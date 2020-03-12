@@ -1,3 +1,9 @@
+### 1.0.3-alpha.2
+
+1、 音频api的使用问题
+2、 request的优化
+3、 解决http请求formdata加密后会被置空的问题
+
 ### 1.0.3-alpha.1
 
 支持 开发者网络请求可以覆盖 Content-Type 的默认值；
