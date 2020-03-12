@@ -1,3 +1,3 @@
-import cmlBridge from 'chameleon-bridge';
+import cmlBridge from '@didi/chameleon-bridge';
 
 export default cmlBridge;
