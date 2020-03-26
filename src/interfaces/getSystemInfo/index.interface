@@ -161,6 +161,47 @@ export default new Method();
   export default new Method();
 </script>
 
+<script cml-type="tt">
+  let systemInfo = null;
+
+  class Method implements UserInfoInterface {
+    getSystemInfo(cb) {
+      if (systemInfo) {
+        cb(systemInfo)
+        return 
+      }
+      tt.getSystemInfo({
+        success(res) {
+          let os = /android/i.test(res.system) ? 'android' : 'ios';
+          let viewportWidth = res.windowWidth;
+          let viewportHeight = res.windowHeight;
+          systemInfo = {
+            os,
+            env: 'tt',
+            viewportWidth,
+            viewportHeight,
+            extraParams: res || {}
+          };
+          cb(systemInfo);
+        },
+        fail(err) {
+          // 获取失败时不做存储
+          let failSystemInfo = {
+            os: '',
+            env: 'tt',
+            viewportWidth: 0,
+            viewportHeight: 0,
+            extraParams: {}
+          };
+          cb(failSystemInfo);
+        }
+      });
+    }
+  }
+
+  export default new Method();
+</script>
+
 
 <script cml-type="qq">
   let systemInfo = null;

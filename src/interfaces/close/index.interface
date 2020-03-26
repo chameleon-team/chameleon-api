@@ -50,6 +50,20 @@ export default new Method();
 
 </script>
 
+<script cml-type="tt">
+
+class Method implements closeInterface {
+  close() {
+    tt.navigateBack({
+      delta: 1
+    });
+  }
+}
+
+export default new Method();
+
+</script>
+
 <script cml-type="qq">
 
 class Method implements closeInterface {

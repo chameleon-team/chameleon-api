@@ -229,6 +229,17 @@ class Method implements AudioInterfaceInterface {
 export default new Method();
 </script>
 
+<script cml-type="tt">
+
+class Method implements AudioInterfaceInterface {
+  createInnerAudioContext() {
+    return tt.createInnerAudioContext();
+  }
+}
+
+export default new Method();
+</script>
+
 <script cml-type="qq">
 
 class Method implements AudioInterfaceInterface {

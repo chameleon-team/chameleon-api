@@ -38,6 +38,17 @@ interface UtilsInterface {
   export default new Method();
 </script>
 
+<script cml-type="tt">
+  class Method implements UtilsInterface {
+    navigateBack(backPageNum) {
+      tt.navigateBack({
+        delta: Math.abs(backPageNum)
+      });
+    }
+  }
+  export default new Method();
+</script>
+
 <script cml-type="qq">
   class Method implements UtilsInterface {
     navigateBack(backPageNum) {

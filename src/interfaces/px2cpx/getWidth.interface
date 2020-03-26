@@ -38,6 +38,17 @@ class Method implements getWidthInterface {
 export default new Method();
 </script>
 
+<script cml-type="tt">
+const { windowWidth } = tt.getSystemInfoSync();
+class Method implements getWidthInterface {
+  getWidth() {
+    return windowWidth;
+  }
+}
+
+export default new Method();
+</script>
+
 <script cml-type="qq">
 const { windowWidth } = qq.getSystemInfoSync();
 class Method implements getWidthInterface {

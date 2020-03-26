@@ -1,6 +1,6 @@
 {
     "name": "@didi/chameleon-api",
-    "version": "3.0.2-alpha.1",
+    "version": "3.0.2",
     "description": "chameleon-api for chameleon app",
     "main": "index.js",
     "author": {

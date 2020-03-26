@@ -85,6 +85,24 @@ export default new Method();
 
 </script>
 
+<script cml-type="tt">
+import {
+  tryJsonParse,
+  getOpenObj,
+  buildQueryStringUrl,
+} from '../../lib/utils.js';
+class Method implements openPageInterface {
+
+  open(url, commonPatchParams, extraOptions) {
+    url = buildQueryStringUrl(commonPatchParams, url)    
+    tt.navigateToMiniProgram(getOpenObj(url).wx);
+  }
+}
+
+export default new Method();
+
+</script>
+
 <script cml-type="qq">
 import {
   tryJsonParse,

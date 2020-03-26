@@ -39,6 +39,16 @@ import { inSDK } from '../../lib/sdk/env.js';
   export default new Method();
 </script>
 
+<script cml-type="tt">
+  class Method implements InSDKInterface {
+    inSDK() {
+      return false
+    }
+  }
+
+  export default new Method();
+</script>
+
 <script cml-type="qq">
   class Method implements InSDKInterface {
     inSDK() {

@@ -52,6 +52,22 @@ export default new Method();
   export default new Method();
 </script>
 
+<script cml-type="tt">
+  // web端接口实现
+  import { requestAnimationFrame } from './animationShim.js';
+  class Method implements RequestAnimationInterface {
+    init() {
+      return class AnimationFrameFactory {
+        requestAnimationFrame() {
+          return requestAnimationFrame;
+        }
+      };
+    }
+  }
+
+  export default new Method();
+</script>
+
 <script cml-type="qq">
   import { requestAnimationFrame } from './animationShim.js';
   class Method implements RequestAnimationInterface {
