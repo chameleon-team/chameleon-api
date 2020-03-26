@@ -1,6 +1,6 @@
 {
-    "name": "@didi/chameleon-api",
-    "version": "3.0.2",
+    "name": "chameleon-api",
+    "version": "1.0.3",
     "description": "chameleon-api for chameleon app",
     "main": "index.js",
     "author": {
@@ -34,7 +34,7 @@
         "src"
     ],
     "dependencies": {
-        "@didi/chameleon-bridge": "0.2.0",
+        "chameleon-bridge": "0.2.0",
         "child_process": "^1.0.2",
         "events": "^3.0.0",
         "fetch-detector": "^1.0.1",
