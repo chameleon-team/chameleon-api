@@ -7,7 +7,7 @@ interface AudioInterfaceInterface {
 </script>
 
 <script cml-type="web">
-import cml from "chameleon-api"
+import cml from "@didi/chameleon-api"
 import EventEmitter from 'events'
 class Method implements AudioInterfaceInterface {
   createInnerAudioContext() {
@@ -84,7 +84,7 @@ export default new Method();
 <script cml-type="weex">
 import cmlBridge from '../../lib/sdk/cmlBridge';
 import * as weexAudio from './weex-audio.js';
-import cml from "chameleon-api";
+import cml from "@didi/chameleon-api";
 //设计思路，在createCb里面绑定事件，用于play pause setSrc，然后再执行这些方法的时候去触发对应的事件；
 //play的时候设置定时器获取播放进度；pause  stop destroy 的时候需要清除定时器
 import EventEmitter from 'events'
