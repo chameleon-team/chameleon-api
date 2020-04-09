@@ -17,7 +17,7 @@ interface UtilsInterface {
     navigateTo(opt) {
       let {path, query} = opt;
 
-      var runtime = require("@didi/chameleon").default;
+      var runtime = require("chameleon-runtime").default;
       let {router, routerConfig} = runtime.getInfo();
 
       if (path && router) {
@@ -56,7 +56,7 @@ interface UtilsInterface {
 
   class Method implements UtilsInterface {
     navigateTo(opt) {
-      var runtime = require("@didi/chameleon").default;
+      var runtime = require("chameleon-runtime").default;
       let { router, routerConfig } = runtime.getInfo();
 
       let { path, query } = opt;
@@ -107,7 +107,7 @@ import { buildQueryStringUrl } from '../../lib/utils.js';
   export default new Method();
 </script>
 
-<script cml-type="tt">
+<script cml-type="tt"> 
 import { buildQueryStringUrl } from '../../lib/utils.js';
   class Method implements UtilsInterface {
     navigateTo(opt) {

@@ -8,7 +8,7 @@ interface UtilsInterface {
 <script cml-type="web">
   class Method implements UtilsInterface {
     navigateBack(backPageNum) {
-      let runtime = require("@didi/chameleon").default;
+      let runtime = require("chameleon-runtime").default;
       let {router, routerConfig} = runtime.getInfo();
       router.go(backPageNum);
     }
@@ -19,7 +19,7 @@ interface UtilsInterface {
 <script cml-type="weex">
   class Method implements UtilsInterface {
     navigateBack(backPageNum) {
-      var runtime = require("@didi/chameleon").default;
+      var runtime = require("chameleon-runtime").default;
       let { router } = runtime.getInfo();
       router.go(backPageNum);
     }
