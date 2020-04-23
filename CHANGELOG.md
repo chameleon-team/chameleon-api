@@ -1,3 +1,7 @@
+### 1.0.5
+修复navigateTo和redirectTo在小程序端中文参数乱码问题
+https://github.com/didi/chameleon/issues/387
+
 ### 1.0.4
 修复了1.0.3版本中中  web端编译报错的问题
 
