@@ -1,3 +1,6 @@
+### 1.0.7
+chameleon-bridge: 0.2.2版本升级
+
 ### 1.0.6
 chameleon-bridge: 0.2.1版本升级
 
