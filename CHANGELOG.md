@@ -1,3 +1,6 @@
+### 1.0.6
+chameleon-bridge: 0.2.1版本升级
+
 ### 1.0.5
 修复navigateTo和redirectTo在小程序端中文参数乱码问题
 https://github.com/didi/chameleon/issues/387
