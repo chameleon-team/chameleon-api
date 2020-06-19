@@ -1,3 +1,7 @@
+### 1.0.8-alpha.3
+- 增加storageSync支持  weex端暂时不支持
+- alert confirm支持web端自定义iconUrl
+- request 支持fail抛出错误类型
 ### 1.0.7
 chameleon-bridge: 0.2.2版本升级
 
@@ -68,7 +72,7 @@ locationInfo 更改errno类型使其符合interface的规范
 ### 0.2.6
 navigate方法改为依赖运行时模块
 
-### 0.2.5
+### 0.2.5 
 request增加credentials参数
 
 ### 0.2.0

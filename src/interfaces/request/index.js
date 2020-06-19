@@ -91,7 +91,8 @@ export default function request({
         let {
           status,
           headers,
-          data
+          data,
+          err
         } = res;
         if (status >= 200 && status < 300) {
           if (resDataType === 'json' && typeof data == 'string') {
@@ -105,7 +106,8 @@ export default function request({
             resolve({
               data,
               headers,
-              status
+              status,
+              err
             });
             return;
           }
@@ -118,7 +120,8 @@ export default function request({
           reject({
             data,
             headers,
-            status
+            status,
+            err
           });
         }
       }

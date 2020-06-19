@@ -2,7 +2,8 @@
 type confirmOpt = {
   message: string,
   confirmTitle: string,
-  cancelTitle: string
+  cancelTitle: string,
+  iconUrl: string
 }
 
 type successCallBack = (value: string) => void;
@@ -21,7 +22,8 @@ class Method implements uiInterface {
     let instance = buildConfirm('confirm', {
       content: opt.message,
       confirmText: opt.confirmTitle,
-      cancelText: opt.cancelTitle
+      cancelText: opt.cancelTitle,
+      iconUrl: opt.iconUrl
     }, successCallBack);
   }
 

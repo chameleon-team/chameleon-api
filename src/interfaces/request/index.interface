@@ -1,10 +1,4 @@
 <script cml-type="interface">
-type responseType = {
-  status: Number,
-  data: String,
-  headers: String
-}
-
 type requestParams = {
   url: String,
   body: String,
@@ -12,7 +6,7 @@ type requestParams = {
   headers: CMLObject,
   setting: CMLObject,
   method: String,
-  cb(res: responseType): void
+  cb(res: CMLObject): void
 }
 
 
@@ -56,20 +50,23 @@ interface UtilsInterface {
           cb({
             status: res.status,
             data,
-            headers: parseHeader(res.headers && res.headers.map || {})
+            headers: parseHeader(res.headers && res.headers.map || {}),
+            err: {}
           });
         });
       }, err => {
         cb({
           status: -1,
           data: 'request failed',
-          headers: '{}'
+          headers: '{}',
+          err: err
         });
       }).catch(e => {
         cb({
           status: -1,
           data: 'request failed',
-          headers: '{}'
+          headers: '{}',
+          err: e
         });
       });
     }
@@ -150,7 +147,8 @@ class Method implements UtilsInterface {
         cb({
           status,
           data,
-          headers
+          headers,
+          err: {}
         });
       });
 
@@ -188,14 +186,16 @@ export default new Method();
           cb({
             status: res.statusCode,
             data: res.data, 
-            headers: parseHeader(res.header)
+            headers: parseHeader(res.header),
+            err: {}
           });
         },
         fail: function(e) {
           cb({
             status: -1,
             data: 'request failed',
-            headers: '{}'
+            headers: '{}',
+            err: e
           });
         }
       });
@@ -232,14 +232,16 @@ export default new Method();
           cb({
             status: res.statusCode,
             data: res.data, 
-            headers: parseHeader(res.header)
+            headers: parseHeader(res.header),
+            err: {}
           });
         },
         fail: function(e) {
           cb({
             status: -1,
             data: 'request failed',
-            headers: '{}'
+            headers: '{}',
+            err: e
           });
         }
       });
@@ -276,14 +278,16 @@ export default new Method();
           cb({
             status: res.statusCode,
             data: res.data, 
-            headers: parseHeader(res.header)
+            headers: parseHeader(res.header),
+            err: {}
           });
         },
         fail: function(e) {
           cb({
             status: -1,
             data: 'request failed',
-            headers: '{}'
+            headers: '{}',
+            err: e
           });
         }
       });
@@ -320,14 +324,16 @@ export default new Method();
           cb({
             status: res.statusCode,
             data: res.data,
-            headers: parseHeader(res.header)
+            headers: parseHeader(res.header),
+            err: {}
           });
         },
         fail: function(e) {
           cb({
             status: -1,
             data: 'request failed',
-            headers: '{}'
+            headers: '{}',
+            err: e
           });
         }
       });
@@ -365,14 +371,16 @@ export default new Method();
           cb({
             status: res.status,
             data: res.data,
-            headers: parseHeader(res.headers)
+            headers: parseHeader(res.headers),
+            err: {}
           });
         },
         fail: function(e) {
           cb({
             status: -1,
             data: 'request failed',
-            headers: '{}'
+            headers: '{}',
+            err: e
           });
         }
       }

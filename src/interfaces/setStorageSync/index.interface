@@ -1,0 +1,74 @@
+<script cml-type="interface">
+
+    interface MethodsInterface {
+    }
+</script>
+<script cml-type="web">
+    class Method implements UtilsInterface {
+        setStorageSync(key, data) {
+            const valueType = typeof data;
+            if (valueType !== 'string') {
+                data = JSON.stringify(data);
+            }
+            return localStorage.setItem(key, data);
+        }
+    }
+    export default new Method();
+</script>
+
+<script cml-type="weex">
+    class Method implements UtilsInterface {
+        setStorageSync(key, data) {
+            let defaultMessage = 'weex端暂时不支持setStorageSync'
+            return defaultMessage;
+        }
+    }
+    export default new Method();
+</script>
+
+<script cml-type="wx">
+    class Method implements MethodsInterface {
+        setStorageSync(key, data) {
+            return wx.setStorageSync(key, data);
+        }
+    }
+
+    export default new Method();
+</script>
+
+<script cml-type="alipay">
+    class Method implements MethodsInterface {
+        setStorageSync(key, data) {
+            return my.setStorageSync({key, data});
+        }
+    }
+
+    export default new Method();
+</script>
+
+<script cml-type="tt">
+  class Method implements UtilsInterface {
+    setStorageSync(key, data) {
+      return tt.setStorageSync(key, data)
+    }
+  }
+  export default new Method();
+</script>
+
+<script cml-type="qq">
+  class Method implements UtilsInterface {
+    setStorageSync(key, data) {
+      return qq.setStorageSync(key, data);
+    }
+  }
+  export default new Method();
+</script>
+
+<script cml-type="baidu">
+  class Method implements UtilsInterface {
+    setStorageSync(key, data) {
+      return swan.setStorageSync(key, data);
+    }
+  }
+  export default new Method();
+</script>

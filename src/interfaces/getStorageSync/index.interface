@@ -1,0 +1,70 @@
+<script cml-type="interface">
+
+    interface MethodsInterface {
+    }
+</script>
+<script cml-type="web">
+    class Method implements UtilsInterface {
+        getStorageSync(key) {
+            return localStorage.getItem(key);
+        }
+    }
+    export default new Method();
+</script>
+
+<script cml-type="weex">
+    class Method implements UtilsInterface {
+        getStorageSync(key) {
+            let defaultMessage = 'weex端暂时不支持getStorageSync'
+            return defaultMessage;
+        }
+    }
+    export default new Method();
+</script>
+
+<script cml-type="wx">
+    class Method implements MethodsInterface {
+        getStorageSync(key) {
+            return wx.getStorageSync(key);
+        }
+    }
+
+    export default new Method();
+</script>
+
+<script cml-type="alipay">
+    class Method implements MethodsInterface {
+        getStorageSync(key) {
+            return my.getStorageSync({key}) && my.getStorageSync({key}).data;
+        }
+    }
+
+    export default new Method();
+</script>
+
+<script cml-type="tt">
+  class Method implements UtilsInterface {
+    getStorageSync(key) {
+      return tt.getStorageSync(key)
+    }
+  }
+  export default new Method();
+</script>
+
+<script cml-type="qq">
+  class Method implements UtilsInterface {
+    getStorageSync(key) {
+      return qq.getStorageSync(key);
+    }
+  }
+  export default new Method();
+</script>
+
+<script cml-type="baidu">
+  class Method implements UtilsInterface {
+    getStorageSync(key) {
+      return swan.getStorageSync(key);
+    }
+  }
+  export default new Method();
+</script>

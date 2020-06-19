@@ -17,8 +17,11 @@ import request from './src/interfaces/request/index.js';
 import setTitle from './src/interfaces/setTitle/index.js';
 import initSocket from './src/interfaces/initSocket/index.js';
 import getStorage from './src/interfaces/getStorage/index.js';
+import getStorageSync from './src/interfaces/getStorageSync/index.js';
 import setStorage from './src/interfaces/setStorage/index.js';
+import setStorageSync from './src/interfaces/setStorageSync/index.js';
 import removeStorage from './src/interfaces/removeStorage/index.js';
+import removeStorageSync from './src/interfaces/removeStorageSync/index.js';
 import getSystemInfo from './src/interfaces/getSystemInfo/index.js';
 import showToast from './src/interfaces/showToast/index.js';
 import alert from './src/interfaces/alert/index.js';
@@ -54,6 +57,9 @@ export default {
   getStorage,
   setStorage,
   removeStorage,
+  getStorageSync,
+  setStorageSync,
+  removeStorageSync,
   getSystemInfo,
   showToast,
   alert,
