@@ -159,11 +159,12 @@ export function getOpenObj(url) {
       alipay_envVersion = '',
       weex_path = '',
       cml_addr = '',
+      wx_addr = '',
       ...extraData
   } = queryObj;
 
   let objTreated = {
-    weex: cml_addr ? webUrlWithoutQuery + '?weex_path=' + weex_path + queryStringify(extraData) + '&cml_addr=' + cml_addr : null,
+    weex: (cml_addr || wx_addr) ? webUrlWithoutQuery + '?wx_addr=' + wx_addr + '&path=' + path + '&weex_path=' + weex_path + queryStringify(extraData) + '&cml_addr=' + cml_addr : null,
     web: webUrlWithoutQuery + '?' + queryStringify(extraData),
     wx: {
       appId: weixin_appid,
