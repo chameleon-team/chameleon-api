@@ -28,7 +28,7 @@ class Method implements openPageInterface {
     url = buildQueryStringUrl(commonPatchParams, url)
     const openObj = getOpenObj(url);
     if (inSDK() && openObj.weex) {
-      bridge.openPage({
+      bridge.open({
         url: openObj.weex,
         closeCurrent: extraOptions.closeCurrent
       });
