@@ -1,3 +1,6 @@
+### 1.0.7-alpha.1
+h5中cml.open打开的地址支持weex页面
+
 ### 1.0.7
 chameleon-bridge: 0.2.2版本升级
 
