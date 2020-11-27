@@ -125,10 +125,6 @@ export default new Method();
 
   class Method implements UserInfoInterface {
     getSystemInfo(cb) {
-      if (systemInfo) {
-        cb(systemInfo)
-        return 
-      }
       wx.getSystemInfo({
         success(res) {
           let os = /android/i.test(res.system) ? 'android' : 'ios';
