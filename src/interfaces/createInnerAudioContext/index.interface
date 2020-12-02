@@ -7,7 +7,6 @@ interface AudioInterfaceInterface {
 </script>
 
 <script cml-type="web">
-import cml from "chameleon-api"
 import EventEmitter from 'events'
 class Method implements AudioInterfaceInterface {
   createInnerAudioContext() {
@@ -84,7 +83,6 @@ export default new Method();
 <script cml-type="weex">
 import cmlBridge from '../../lib/sdk/cmlBridge';
 import * as weexAudio from './weex-audio.js';
-import cml from "chameleon-api";
 //设计思路，在createCb里面绑定事件，用于play pause setSrc，然后再执行这些方法的时候去触发对应的事件；
 //play的时候设置定时器获取播放进度；pause  stop destroy 的时候需要清除定时器
 import EventEmitter from 'events'
@@ -122,7 +120,7 @@ class Method implements AudioInterfaceInterface {
           audioContext.play();
         }
         return res;
-        
+
       });
     }).catch((res) => {
       //创建失败
@@ -196,8 +194,8 @@ class Method implements AudioInterfaceInterface {
         }
       })
     })
-    
-    
+
+
     let onAudioEvents = ['onCanPlay','onPlay','onPause','onEnded','onError','onTimeUpdate','onSeeking','onSeeked','onStop'];
     onAudioEvents.forEach((item) => {
       audioContext[item] = function(callback){
@@ -210,7 +208,7 @@ class Method implements AudioInterfaceInterface {
         events.removeAllListeners(item);//同步注册方法
       }
     });
-    
+
     return audioContext;
   }
 }

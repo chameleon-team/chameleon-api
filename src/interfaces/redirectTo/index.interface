@@ -74,10 +74,9 @@ interface UtilsInterface {
 import { buildQueryStringUrl } from '../../lib/utils.js';
   class Method implements UtilsInterface {
     redirectTo(opt) {
-      let {path, query} = opt;
-      path = buildQueryStringUrl(query, path)
+      const {path, query} = opt;
       wx.redirectTo({
-        url: decodeURIComponent(path)
+        url: buildQueryStringUrl(query, path)
       });
     }
   }
@@ -88,10 +87,9 @@ import { buildQueryStringUrl } from '../../lib/utils.js';
 import { buildQueryStringUrl } from '../../lib/utils.js';
   class Method implements UtilsInterface {
     redirectTo(opt) {
-      let {path, query} = opt;
-      path = buildQueryStringUrl(query, path)
+      const {path, query} = opt;
       tt.redirectTo({
-        url: decodeURIComponent(path)
+        url: buildQueryStringUrl(query, path)
       });
     }
   }
@@ -102,10 +100,9 @@ import { buildQueryStringUrl } from '../../lib/utils.js';
 import { buildQueryStringUrl } from '../../lib/utils.js';
   class Method implements UtilsInterface {
     redirectTo(opt) {
-      let {path, query} = opt;
-      path = buildQueryStringUrl(query, path)
+      const {path, query} = opt;
       qq.redirectTo({
-        url: decodeURIComponent(path)
+        url: buildQueryStringUrl(query, path)
       });
     }
   }
@@ -116,10 +113,9 @@ import { buildQueryStringUrl } from '../../lib/utils.js';
 import { buildQueryStringUrl } from '../../lib/utils.js';
   class Method implements UtilsInterface {
     redirectTo(opt) {
-      let {path, query} = opt;
-      path = buildQueryStringUrl(query, path)
+      const {path, query} = opt;
       swan.redirectTo({
-        url: decodeURIComponent(path)
+        url: buildQueryStringUrl(query, path)
       });
     }
   }
@@ -131,10 +127,9 @@ import { buildQueryStringUrl } from '../../lib/utils.js';
 import { buildQueryStringUrl } from '../../lib/utils.js';
   class Method implements UtilsInterface {
     redirectTo(opt) {
-      let {path, query} = opt;
-      path = buildQueryStringUrl(query, path)
+      const {path, query} = opt;
       my.redirectTo({
-        url: decodeURIComponent(path)
+        url: buildQueryStringUrl(query, path)
       });
     }
   }

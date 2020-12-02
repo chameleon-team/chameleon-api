@@ -97,24 +97,22 @@ interface UtilsInterface {
 import { buildQueryStringUrl } from '../../lib/utils.js';
   class Method implements UtilsInterface {
     navigateTo(opt) {
-      let {path, query} = opt;
-      path = buildQueryStringUrl(query, path);
+      const {path, query} = opt;
       wx.navigateTo({
-        url: decodeURIComponent(path)
+        url: buildQueryStringUrl(query, path)
       });
     }
   }
   export default new Method();
 </script>
 
-<script cml-type="tt"> 
+<script cml-type="tt">
 import { buildQueryStringUrl } from '../../lib/utils.js';
   class Method implements UtilsInterface {
     navigateTo(opt) {
-      let {path, query} = opt;
-      path = buildQueryStringUrl(query, path);
+      const {path, query} = opt;
       tt.navigateTo({
-        url: decodeURIComponent(path)
+        url: buildQueryStringUrl(query, path)
       });
     }
   }
@@ -125,10 +123,9 @@ import { buildQueryStringUrl } from '../../lib/utils.js';
 import { buildQueryStringUrl } from '../../lib/utils.js';
   class Method implements UtilsInterface {
     navigateTo(opt) {
-      let {path, query} = opt;
-      path = buildQueryStringUrl(query, path);
+      const {path, query} = opt;
       qq.navigateTo({
-        url: decodeURIComponent(path)
+        url: buildQueryStringUrl(query, path)
       });
     }
   }
@@ -139,10 +136,9 @@ import { buildQueryStringUrl } from '../../lib/utils.js';
 import { buildQueryStringUrl } from '../../lib/utils.js';
   class Method implements UtilsInterface {
     navigateTo(opt) {
-      let {path, query} = opt;
-      path = buildQueryStringUrl(query, path);
+      const {path, query} = opt;
       swan.navigateTo({
-        url: decodeURIComponent(path)
+        url: buildQueryStringUrl(query, path)
       });
     }
   }
@@ -154,10 +150,9 @@ import { buildQueryStringUrl } from '../../lib/utils.js';
 import { buildQueryStringUrl } from '../../lib/utils.js';
   class Method implements UtilsInterface {
     navigateTo(opt) {
-      let {path, query} = opt;
-      path = buildQueryStringUrl(query, path);
+      const {path, query} = opt;
       my.navigateTo({
-        url: decodeURIComponent(path)
+        url: buildQueryStringUrl(query, path)
       });
     }
   }
