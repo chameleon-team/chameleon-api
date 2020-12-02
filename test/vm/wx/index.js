@@ -88,7 +88,7 @@ global.wx.navigateToMiniProgram = function (params) {
 }
 
 global.wx.request = function (params) {
-  var fromData = queryParse(params.data || params.url.split('?')[1]);
+  var fromData = params.data || (params.url ? queryParse(params.url.split('?')[1]) : {})
   var fromDataLength = Object.keys(fromData).length;
   var res = {
     errno: "0"
