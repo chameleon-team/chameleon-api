@@ -4,7 +4,7 @@ var fse = require('fs-extra');
 var PL = require('./pipeline');
 var execSync = require('child_process').execSync;
 
-var types = ['web', 'wx', 'weex'];
+var types = ['web', 'wx', 'weex', 'qq', 'tt', 'baidu', 'alipay'];
 var type = process.argv[2];
 if (!type || !types.includes(type)) {
   console.error('What type of file do you want to make?[weex/web/wx]');
