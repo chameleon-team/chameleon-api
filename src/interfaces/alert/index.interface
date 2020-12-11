@@ -1,9 +1,9 @@
 <script cml-type="interface">
 type alertOpt = {
   message: String,
-  confirmTitle: String
+  confirmTitle: String,
+  iconUrl: String
 }
-
 type successCallBack = (result: String) => void;
 type failCallBack = (result: String) => void;
 
@@ -19,7 +19,8 @@ class Method implements uiInterface {
   alert(opt, successCallBack, failCallBack) {
     let instance = buildConfirm('alert', {
       content: opt.message,
-      confirmText: opt.confirmTitle
+      confirmText: opt.confirmTitle,
+      iconUrl: opt.iconUrl
     }, successCallBack);
   }
 }

@@ -53,9 +53,9 @@
 </template>
 <script>
 let IconMap = {
-  network: require("./images/network.png?inline"),
-  warn: require("./images/warn.png?inline"),
-  success: require("./images/success.png?inline")
+  network: require("./images/network.png?__inline"),
+  warn: require("./images/warn.png?__inline"),
+  success: require("./images/success.png?__inline")
 };
 class CDialog {
   props = {
@@ -85,7 +85,7 @@ class CDialog {
     },
     closeSrc: {
       type: String,
-      default: require("./images/close.png?inline")
+      default: require("./images/close.png?__inline")
     },
     cancelText: {
       type: String,
@@ -109,7 +109,7 @@ class CDialog {
   }
 
   data = {
-    defaultCloseIcon: require('./images/close.png?inline')
+    defaultCloseIcon: require('./images/close.png?__inline')
   }
 
   computed = {
