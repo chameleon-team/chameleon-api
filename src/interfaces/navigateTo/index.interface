@@ -100,7 +100,7 @@ import { buildQueryStringUrl } from '../../lib/utils.js';
       let {path, query} = opt;
       path = buildQueryStringUrl(query, path);
       wx.navigateTo({
-        url: decodeURIComponent(path)
+        url: path
       });
     }
   }
@@ -114,7 +114,7 @@ import { buildQueryStringUrl } from '../../lib/utils.js';
       let {path, query} = opt;
       path = buildQueryStringUrl(query, path);
       tt.navigateTo({
-        url: decodeURIComponent(path)
+        url: path
       });
     }
   }
@@ -128,7 +128,7 @@ import { buildQueryStringUrl } from '../../lib/utils.js';
       let {path, query} = opt;
       path = buildQueryStringUrl(query, path);
       qq.navigateTo({
-        url: decodeURIComponent(path)
+        url: path
       });
     }
   }
@@ -142,7 +142,7 @@ import { buildQueryStringUrl } from '../../lib/utils.js';
       let {path, query} = opt;
       path = buildQueryStringUrl(query, path);
       swan.navigateTo({
-        url: decodeURIComponent(path)
+        url: path
       });
     }
   }
@@ -157,7 +157,7 @@ import { buildQueryStringUrl } from '../../lib/utils.js';
       let {path, query} = opt;
       path = buildQueryStringUrl(query, path);
       my.navigateTo({
-        url: decodeURIComponent(path)
+        url: path
       });
     }
   }

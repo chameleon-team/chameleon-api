@@ -1,7 +1,22 @@
+### 1.0.8-alpha.4    对应内网版本3.0.8-alpha.4
+- navigateTo方法在实现的时候加了decodeUri
+```
+wx.navigateTo({
+  url: decodeURIComponent(path)  // 修改前
+  url: path  // 修改后
+});
+
+修改原因：decodeURIComponent会把已经编码的url再次解码  导致url类型的参数解析失败
+目前字段值如果是中文  会自动encode   业务方还需自己解码
+
+兼容中文及url两种情况，在下版本解决
+```
+
 ### 1.0.8-alpha.3
 - 增加storageSync支持  weex端暂时不支持
 - alert confirm支持web端自定义iconUrl
 - request 支持fail抛出错误类型
+
 ### 1.0.7-alpha.1
 h5中cml.open打开的地址支持weex页面
 
