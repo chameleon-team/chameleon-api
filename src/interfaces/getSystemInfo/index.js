@@ -1,7 +1,7 @@
 import index from './index.interface';
 import { tryJsonParse } from '../../lib/utils';
 
-export default function getSystemInfo() {
+export default function getSystemInfo(options) {
   return new Promise((resolve, reject) => {
     index.getSystemInfo(res => {
       res.extraParams = tryJsonParse(res.extraParams);
@@ -20,5 +20,5 @@ export default function getSystemInfo() {
         reject(res);
       }
     });
-  });
+  }, options);
 }

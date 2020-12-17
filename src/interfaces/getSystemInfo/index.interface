@@ -10,7 +10,7 @@ type res = {
 type CallBack = (res: res) => void
 
 interface UserInfoInterface {
-  getSystemInfo(cb: CallBack): void
+  getSystemInfo(cb: CallBack, options: CMLObject): void
 }
 </script>
 
@@ -23,8 +23,8 @@ interface UserInfoInterface {
   let systemInfo = null;
 
   class Method implements UserInfoInterface {
-    getSystemInfo(cb) {
-      if (systemInfo) {
+    getSystemInfo(cb, options) {
+      if (options && options.isNeedCache && systemInfo) {
         cb(systemInfo)
         return 
       }
@@ -70,8 +70,8 @@ import { inSDK } from '../../lib/sdk/env';
 let systemInfo = null;
 
 class Method implements UserInfoInterface {
-  getSystemInfo(cb) {
-    if (systemInfo) {
+  getSystemInfo(cb, options) {
+    if (options && options.isNeedCache && systemInfo) {
       cb(systemInfo)
       return 
     }
@@ -124,7 +124,11 @@ export default new Method();
   let systemInfo = null;
 
   class Method implements UserInfoInterface {
-    getSystemInfo(cb) {
+    getSystemInfo(cb, options) {
+      if (options && options.isNeedCache && systemInfo) {
+        cb(systemInfo)
+        return 
+      }
       wx.getSystemInfo({
         success(res) {
           let os = /android/i.test(res.system) ? 'android' : 'ios';
@@ -161,8 +165,8 @@ export default new Method();
   let systemInfo = null;
 
   class Method implements UserInfoInterface {
-    getSystemInfo(cb) {
-      if (systemInfo) {
+    getSystemInfo(cb, options) {
+      if (options && options.isNeedCache && systemInfo) {
         cb(systemInfo)
         return 
       }
@@ -203,8 +207,8 @@ export default new Method();
   let systemInfo = null;
 
   class Method implements UserInfoInterface {
-    getSystemInfo(cb) {
-      if (systemInfo) {
+    getSystemInfo(cb, options) {
+      if (options && options.isNeedCache && systemInfo) {
         cb(systemInfo)
         return 
       }
@@ -243,8 +247,8 @@ export default new Method();
 <script cml-type="baidu">
   let systemInfo = null;
   class Method implements UserInfoInterface {
-    getSystemInfo(cb) {
-      if (systemInfo) {
+    getSystemInfo(cb, options) {
+      if (options && options.isNeedCache && systemInfo) {
         cb(systemInfo)
         return 
       }
@@ -283,8 +287,8 @@ export default new Method();
 <script cml-type="alipay">
   let systemInfo = null;
   class Method implements UserInfoInterface {
-    getSystemInfo(cb) {
-      if (systemInfo) {
+    getSystemInfo(cb, options) {
+      if (options && options.isNeedCache && systemInfo) {
         cb(systemInfo)
         return 
       }
