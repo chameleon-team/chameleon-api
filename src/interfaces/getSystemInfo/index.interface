@@ -23,7 +23,7 @@ interface UserInfoInterface {
   let systemInfo = null;
 
   class Method implements UserInfoInterface {
-    getSystemInfo(cb, options) {
+    getSystemInfo(cb, options = {}) {
       if (options && options.isNeedCache && systemInfo) {
         cb(systemInfo)
         return 
@@ -70,7 +70,7 @@ import { inSDK } from '../../lib/sdk/env';
 let systemInfo = null;
 
 class Method implements UserInfoInterface {
-  getSystemInfo(cb, options) {
+  getSystemInfo(cb, options = {}) {
     if (options && options.isNeedCache && systemInfo) {
       cb(systemInfo)
       return 
@@ -124,7 +124,7 @@ export default new Method();
   let systemInfo = null;
 
   class Method implements UserInfoInterface {
-    getSystemInfo(cb, options) {
+    getSystemInfo(cb, options = {}) {
       if (options && options.isNeedCache && systemInfo) {
         cb(systemInfo)
         return 
@@ -165,7 +165,7 @@ export default new Method();
   let systemInfo = null;
 
   class Method implements UserInfoInterface {
-    getSystemInfo(cb, options) {
+    getSystemInfo(cb, options = {}) {
       if (options && options.isNeedCache && systemInfo) {
         cb(systemInfo)
         return 
@@ -207,7 +207,7 @@ export default new Method();
   let systemInfo = null;
 
   class Method implements UserInfoInterface {
-    getSystemInfo(cb, options) {
+    getSystemInfo(cb, options = {}) {
       if (options && options.isNeedCache && systemInfo) {
         cb(systemInfo)
         return 
@@ -247,7 +247,7 @@ export default new Method();
 <script cml-type="baidu">
   let systemInfo = null;
   class Method implements UserInfoInterface {
-    getSystemInfo(cb, options) {
+    getSystemInfo(cb, options = {}) {
       if (options && options.isNeedCache && systemInfo) {
         cb(systemInfo)
         return 
@@ -287,7 +287,7 @@ export default new Method();
 <script cml-type="alipay">
   let systemInfo = null;
   class Method implements UserInfoInterface {
-    getSystemInfo(cb, options) {
+    getSystemInfo(cb, options = {}) {
       if (options && options.isNeedCache && systemInfo) {
         cb(systemInfo)
         return 
