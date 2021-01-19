@@ -129,13 +129,14 @@ class Method implements UtilsInterface {
     }else {
       const stream = weex.requireModule('stream');
       let {
-        url, body, headers, method, cb, contentType
+        url, body, headers, method, cb, contentType, timeout
       } = params;
       let fetchOptions = {
         url,
         method,
         headers: headers,
-        type: 'text'
+        type: 'text',
+        timeout
       }
 
       if (method.toUpperCase() !== 'GET') {
